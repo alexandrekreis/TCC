@@ -1,0 +1,38 @@
+\BOOKMARK [0][-]{chapter*.3}{Lista de Abreviaturas e Siglas}{}% 1
+\BOOKMARK [0][-]{chapter*.4}{Lista de Figuras}{}% 2
+\BOOKMARK [0][-]{chapter*.5}{Resumo}{}% 3
+\BOOKMARK [0][-]{chapter*.6}{Abstract}{}% 4
+\BOOKMARK [0][-]{chapter.1}{Introdu\347\343o}{}% 5
+\BOOKMARK [1][-]{section.1.1}{Interoperabilidade}{chapter.1}% 6
+\BOOKMARK [1][-]{section.1.2}{Organiza\347\343o}{chapter.1}% 7
+\BOOKMARK [0][-]{chapter.2}{Padr\365es e Tecnologias de Videoconfer\352ncia}{}% 8
+\BOOKMARK [1][-]{section.2.1}{Protocolos de Sinaliza\347\343o}{chapter.2}% 9
+\BOOKMARK [2][-]{subsection.2.1.1}{Padr\343o H.323}{section.2.1}% 10
+\BOOKMARK [2][-]{subsection.2.1.2}{Padr\343o SIP}{section.2.1}% 11
+\BOOKMARK [1][-]{section.2.2}{Protocolos de Transporte de M\355dia}{chapter.2}% 12
+\BOOKMARK [2][-]{subsection.2.2.1}{Padr\343o RTP}{section.2.2}% 13
+\BOOKMARK [2][-]{subsection.2.2.2}{Padr\343o RTMP}{section.2.2}% 14
+\BOOKMARK [1][-]{section.2.3}{Codifica\347\343o de \341udio}{chapter.2}% 15
+\BOOKMARK [2][-]{subsection.2.3.1}{Padr\343o PCMA}{section.2.3}% 16
+\BOOKMARK [2][-]{subsection.2.3.2}{Padr\343o PCMU}{section.2.3}% 17
+\BOOKMARK [2][-]{subsection.2.3.3}{Padr\343o G.711}{section.2.3}% 18
+\BOOKMARK [2][-]{subsection.2.3.4}{Padr\343o Speex}{section.2.3}% 19
+\BOOKMARK [2][-]{subsection.2.3.5}{Padr\343o OPUS}{section.2.3}% 20
+\BOOKMARK [1][-]{section.2.4}{Codifica\347\343o de v\355deo}{chapter.2}% 21
+\BOOKMARK [2][-]{subsection.2.4.1}{Padr\343o H.263}{section.2.4}% 22
+\BOOKMARK [2][-]{subsection.2.4.2}{Padr\343o H.264}{section.2.4}% 23
+\BOOKMARK [2][-]{subsection.2.4.3}{Padr\343o VP8}{section.2.4}% 24
+\BOOKMARK [1][-]{section.2.5}{Tecnologias para Webconfer\352ncia}{chapter.2}% 25
+\BOOKMARK [2][-]{subsection.2.5.1}{Flash}{section.2.5}% 26
+\BOOKMARK [2][-]{subsection.2.5.2}{WebRTC}{section.2.5}% 27
+\BOOKMARK [0][-]{chapter.3}{Solu\347\365es Open Source para Interoperabilidade}{}% 28
+\BOOKMARK [1][-]{section.3.1}{Freeswitch}{chapter.3}% 29
+\BOOKMARK [1][-]{section.3.2}{Asterisk}{chapter.3}% 30
+\BOOKMARK [1][-]{section.3.3}{Red5}{chapter.3}% 31
+\BOOKMARK [1][-]{section.3.4}{FFMPEG}{chapter.3}% 32
+\BOOKMARK [0][-]{chapter.4}{Arquitetura}{}% 33
+\BOOKMARK [1][-]{section.4.1}{Mconf}{chapter.4}% 34
+\BOOKMARK [2][-]{subsection.4.1.1}{Arquitetura anterior}{section.4.1}% 35
+\BOOKMARK [2][-]{subsection.4.1.2}{Arquitetura modificada}{section.4.1}% 36
+\BOOKMARK [0][-]{chapter.5}{Resultados}{}% 37
+\BOOKMARK [0][-]{chapter*.7}{Refer\352ncias}{}% 38

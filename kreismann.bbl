@@ -1,0 +1,40 @@
+\begin{thebibliography}{\hspace{\parindent}}
+
+\bibitem[ADOBE CONNECT: BRINGING TOGETHER VIDEO AND NEXT-GENERATION WEB
+  CONFERENCING(2011)ADOBE CONNECT: BRINGING TOGETHER VIDEO AND NEXT-GENERATION
+  WEB CONFERENCING]{adobeConnect} Adobe Connect: bringing together video and
+  next-generation web conferencing. \textbf{White paper}, [S.l.], 2011.
+
+\bibitem[FIRESTONE; RAMALINGAM; FRY(2007)FIRESTONE; RAMALINGAM;
+  FRY]{conferencingFundamentals} FIRESTONE, S.; RAMALINGAM, T.; FRY, S\@.
+  \textbf{Voice and Video Conferencing Fundamentals}. [S.l.:~s.n.], 2007.
+
+\bibitem[IETF(2002)IETF]{sip-rfc} IETF. \textbf{SIP RFC 3261}. [Online;
+  acessado em 4-Maio-2016], \url{https://tools.ietf.org/html/rfc3261}.
+
+\bibitem[ITU(2009a)ITU]{h225-recommendation} ITU. \textbf{H.225 Recommendation
+  (12/09)}. [Online; acessado em 4-Maio-2016],
+  \url{http://www.itu.int/rec/T-REC-H.225.0-200912-I/en}.
+
+\bibitem[ITU(2009b)ITU]{h323-recommendation} ITU. \textbf{H.323 Recommendation
+  (12/09)}. [Online; acessado em 4-Maio-2016],
+  \url{http://www.itu.int/rec/T-REC-H.323-200912-I/en}.
+
+\bibitem[ITU(2011)ITU]{h245-recommendation} ITU. \textbf{H.245 Recommendation
+  (05/11)}. [Online; acessado em 4-Maio-2016],
+  \url{http://www.itu.int/rec/T-REC-H.245-201105-I/en}.
+
+\bibitem[KUROSE; ROSS(2013)KUROSE; ROSS]{kurose} KUROSE, J.~F.; ROSS, K.~W\@.
+  \textbf{Computer Networking}: a top-down approach, 6th edition. [S.l.]:
+  Pearson, 2013.
+
+\bibitem[ROESLER et~al.(2012)ROESLER; CECAGNO; DARONCO;
+  DIXON]{mconfIntroduction} ROESLER, V. et~al\@. Mconf: an open source
+  multiconference system for web and mobile devices. In: \textbf{Multimedia - A
+  Multidisciplinary Approach to Complex Issues}. [S.l.]: InTech, 2012.
+
+\bibitem[TANENBAUM; WETHERALL(2011)TANENBAUM; WETHERALL]{tanenbaum} TANENBAUM,
+  A.~S.; WETHERALL, D.~J\@. \textbf{Computer Networks, 5th Edition}. [S.l.]:
+  Pearson, 2011.
+
+\end{thebibliography}

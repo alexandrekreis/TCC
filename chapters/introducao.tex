@@ -1,0 +1,24 @@
+\chapter{Introdução}\label{cha:introducao}
+
+	Sistemas de videoconferência possibilitam a comunicação de múltiplos usuários, independente de suas posições geográficas, através de áudio e vídeo. Com isso, aulas, treinamentos, apresentações e outros tipos de reunião podem ser realizados sem o deslocamento pessoal para um mesmo local físico, reduzindo custos e agilizando logísticas. Ainda sim, tais sistemas ainda requerem significantes investimentos de infraestrutura, já que exigem o uso de salas físicas com terminais de acesso - no caso, equipamentos de videoconferência, acompanhados de televisões, monitores ou sistemas de som. Por serem \textit{hardware-based}, têm sua flexibilidade prejudicada, dependendo de extensões Desktop para funcionalidades extras, tais como compartilhamento de tela ou apresentação de slides. Entretanto, justamente por serem hardwares dedicados, sistemas de videoconferência garantem áudio de alta qualidade e vídeo de alta definição em tempo real.
+	
+	Com a popularização dos serviços web, a web conferência surge, então, como uma solução de baixo custo e alta flexibilidade. Um usuário de web conferência, normalmente, necessita apenas de um computador com acesso à internet, um headset - com fone de ouvido e microfone - e uma webcam para se comunicar com outros participantes. Por ser \textit{software-based}, possui grande flexibilidade, podendo acompanhar funcionalidades tais como apresentação de slides, compartilhamento de tela, espaço para anotações, criação de enquetes, chat público e privado entre participantes, entre outras \textit{features} - facilmente extensíveis através de updates - sem precisar de \textit{Desktop add-ons}.
+		
+    Através dos padrões de videoconferência, um sistema deve ser capaz de interoperar, através de áudio e vídeo, com diferentes sistemas. Por exemplo, se um sistema utiliza os padrões SIP para sinalização e RTP para o transporte de mídia (itens que veremos mais adiante), espera-se que ele possa se comunicar com outro sistema que também os empregue. Entretanto, quando sistemas de videoconferência e webconferência implementam diferentes padrões, não há como a interoperação ocorrer sem alguma solução intermediária que possibilite a ponte entre eles. Voltando aos exemplos, caso um sistema de videoconferência utilize os padrões H.323 para sinalização e RTP para o transporte de mídia, e um sistema de webconferência empregue, respectivamente, SIP e RTMP, precisaremos de duas pontes para haver interoperabilidade : uma que viabilize a comunicação H.323/SIP e a outra, RTP/RTMP.
+    
+    Este trabalho, portanto, apresentará os principais padrões e tecnologias de videoconferência, e, em seguida, soluções \textit{open source} que possibilitem pontes entre eles, a fim da comunicação transparente entre webconferência e videoconferência. Como soluções para interoperação normalmente implementam apenas algumas pontes, precisamos integrá-las em uma arquitetura para cobrir um número maior de padrões e alcançar um nível maior de interoperabilidade.
+	 
+	
+\section{Organização}
+
+	Para tanto, o trabalho está estruturado da seguinte forma:
+	
+	\begin{itemize}
+		\item capítulo 2: Apresentação de padrões de videoconferência e tecnologias: codecs de áudio (OPUS, Speex, G.722, PCMU, PCMA), codecs de vídeo (H.263, H.264, VP8), protocolos de transporte de mídia (RTP, RTMP), protocolos de sinalização (SIP, H.323), tecnologias para webconferência (Flash, WebRTC);
+		\item capítulo 3: Soluções de interoperabilidade \textit{open source}: Freeswitch, Asterisk, FFMPEG, Red5;
+		\item capítulo 4: Desenvolvimento de arquitetura integrando soluções de interoperabilidade;
+		\item capítulo 5: Resultados.
+	\end{itemize}
+
+
+

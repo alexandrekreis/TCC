@@ -1,0 +1,96 @@
+\chapter{Testes de Desempenho}\label{cha:testes}
+
+	Neste capítulo apresentaremos alguns testes realizados para medir o desempenho do plug-in. Como mencionado anteriormente o problema atacado neste trabalho não é trivial e necessita de suporte computacional, então resolvemos executar alguns testes para medir a performance do algoritmo implementado. As tarefas testadas foram a leitura e construção do modelo de \textit{features} pela ferramenta e o tempo de recomendação das configurações ótimas. Os testes foram executados em um computador com processador Intel Core i5-2320 3.00GHz e 6GB de memória RAM rodando Windows 7 64 bits.
+	
+	Usamos três modelos de \textit{features} para basear nossos testes. O primeiro foi apresentado anteriormente (na Figura~\ref{fig:exmodelofeatures}) e foi utilizado como exemplo para as explicações da seção anterior. O segundo trata-se de um modelo representando algumas possibilidades na definição de um grafo, como podemos ver na Figura~\ref{fig:modgrafo}. O terceiro modelo, utilizado apenas para a primeira parte dos testes, é uma variação do modelo do grafo, porém maior e mais complexo, e está presente no conjunto de exemplos do FeatureIDE.
+	
+	\begin{figure}[h]
+	\centering
+	\includegraphics[width=.9\linewidth]{img/fmgrafo.jpg}
+	\caption{Modelo de \textit{features} para um grafo.}
+	\label{fig:modgrafo}
+	\end{figure}	
+	
+	A Tabela~\ref{tab:t1} mostra algumas informações referentes à quantidade de \textit{features} de cada modelo. O primeiro modelo descrito no parágrafo anterior será chamado de Exemplo, o segundo de Grafo, e o terceiro de GPL. A última linha da tabela mostra a quantidade de \textit{features} que não são obrigatórias presentes no modelo, ou seja, o conjunto de  \textit{features} as quais os \textit{stakeholders} poderão expressar suas preferências sobre elas.
+	
+	\begin{table}[h]
+	\begin{center}
+		\begin{tabular}{| c | c | c | c |}    \hline
+		Quantidade de \textit{features} & Exemplo & Grafo & GPL \\ \hline \hline
+		Total        & 11  & 14  & 66 \\ \hline
+		Concretas     & 10  & 13  & 36 \\ \hline
+		Não-obrigatórias & 9  & 13  & 53 \\ \hline
+		\end{tabular}
+		\caption{Quantidade dos tipos de \textit{features} dos modelos.}
+		\label{tab:t1}
+	\end{center}
+	\end{table}
+	
+\section{Testes de preparação do modelo de \textit{features}}
+	
+	Primeiramente foram realizados os testes referentes à preparação dos modelos para serem utilizados pela ferramenta. Como foi descrito no Capítulo~\ref{cha:implementacao}, o plug-in executa duas tarefas antes de qualquer outra ação ser feita pela \textit{view}: a leitura do arquivo no formato XML que representa o modelo de \textit{features} e a construção do modelo dentro da ferramenta, para possibilitar a execução das demais funções incluindo a recomendação de configurações. Analisando os dados da Tabela~\ref{tab:t2} fica evidente que estas duas tarefas não causarão problemas no desempenho do plug-in, visto que o tempo necessário para a realização de ambas é muito pequeno. Foi constatado que o tempo consumido pela leitura e pela construção do modelo é bastante semelhante. Naturalmente, quanto maior o modelo, maior será o tempo gasto para as tarefas, porém esse aumento na duração não é muito significativo.
+		
+	\begin{table}[h]
+	\begin{center}
+	    \begin{tabular}{| c | c | c | c |}    \hline
+	    Tarefa   & Exemplo & Grafo & GPL  \\ \hline \hline
+		Leitura     & 4ms  & 5ms  & 14ms \\ \hline
+	    Construção  & 4ms  & 5ms  & 14ms  \\ \hline
+	    \end{tabular}
+		\caption{Tempos de leitura e construção dos modelos pela ferramenta.}
+		\label{tab:t2}
+	\end{center}
+	\end{table}
+	
+\section{Testes de recomendação de configurações}
+	A segunda fase de testes consistiu em medir o tempo gasto para a execução do algoritmo de recomendação de configurações ótimas. Como os modelos utilizados não são muito complexos, não medimos o tempo gasto por cada estratégia, mas sim do processo todo, desde o clique no botão com a função de executar o algoritmo até a obtenção dos resultados. Outro motivo para essa medição envolvendo todo o processo foi que grande parte do tempo é consumido no momento da geração do conjunto de consideração, antes da execução dos algoritmos das estratégias. Não foi incluso o tempo para a geração dos arquivos resultantes, por se tratar de uma parcela mínima do total gasto.
+	
+	Na Tabela~\ref{tab:t3} estão os primeiros resultados a respeito do modelo Exemplo. O grupo de teste contava em média com quatro preferências de \textit{stakeholder} por configuração. Cada etapa dos testes presentes neste capítulo foi executada três vezes, e a média do tempo gasto entre elas é o valor indicado nas tabelas seguintes. Incrementamos a quantidade de configuração a cada execução para analisar o aumento de tempo consumido. A primeira linha representa o caso exibido na Seção~\ref{sec:implresults}, onde tivemos três configurações com uma média de quatro preferências por configuração. Podemos observar que o aumento na quantidade de configurações a serem analisadas não causa um grande consumo adicional de tempo necessário para a recomendação.
+	
+	\begin{table}[h]
+	\begin{center}
+		\begin{tabular}{| c | c |}    \hline
+		Quantidade de configurações  & Tempo gasto (ms)  \\ \hline \hline
+		3     & 44   \\ \hline
+		6  & 54   \\ \hline
+		10  & 60    \\ \hline
+		\end{tabular}
+		\caption{Testes com média de quatro preferências por configuração.}
+		\label{tab:t3}
+	\end{center}
+	\end{table}
+	
+	Resolvemos aumentar o número de preferências por configuração e medir novamente o tempo gasto. Na Tabela~\ref{tab:t4} estão os resultados das execuções com preferências definidas sobre todas \textit{features} do modelo, que no caso do Exemplo somam um total de nove \textit{features} não-obrigatórias (conforme a última linha da Tabela~\ref{tab:t1}), ou seja, aproximadamente o dobro da quantidade utilizada no teste anterior. Como esperado para esses casos o tempo gasto foi maior devido ao aumento na quantidade de conflitos entre as preferências dos \textit{stakeholders}, e podemos ver que o aumento no número de configurações continuou não ocasionando uma grande quantidade de tempo consumido.
+		
+	\begin{table}[h]
+	\begin{center}
+		\begin{tabular}{| c | c |}    \hline
+		Quantidade de configurações  & Tempo gasto (ms)  \\ \hline \hline
+		3     & 183   \\ \hline
+		6  & 201   \\ \hline
+		10  & 209    \\ \hline
+		\end{tabular}
+		\caption{Testes com preferências para todas as \textit{features}.}
+		\label{tab:t4}
+	\end{center}
+	\end{table}
+	
+	Por último realizamos medições em um modelo de \textit{features} diferente do utilizado nos testes anteriores. A Tabela~\ref{tab:t5} apresenta os resultados referentes ao modelo chamado de Grafo, exibido na Figura~\ref{fig:modgrafo}. Neste caso foram definidas em média quatro preferências para cada configuração do grupo. É notável o aumento no consumo de tempo quando o modelo não é tão simples como o descrito no Exemplo, pois o modelo Grafo possui uma maior quantidade de grupos de \textit{features} alternativas que necessitam a presença de um membro de cada grupo na configuração final, caso o nodo pai seja selecionado. Como foi apontado nos testes anteriores o aumento na quantidade de configurações não se reflete muito significativamente no tempo gasto, então para esse modelo excluímos o teste com dez configurações feito anteriormente.
+	
+	\begin{table}[h]
+	\begin{center}
+		\begin{tabular}{| c | c |}    \hline
+		Quantidade de configurações  & Tempo gasto (ms)  \\ \hline \hline
+		3  & 394   \\ \hline
+		6  & 415   \\ \hline
+		\end{tabular}
+		\caption{Testes utilizando o modelo Grafo da Figura~\ref{fig:modgrafo}.}
+		\label{tab:t5}
+	\end{center}
+	\end{table}
+	
+\section{Considerações Finais}
+
+	Após a realização de todos os testes descritos neste capítulo concluímos que na nossa implementação o fator que mais afeta o tempo total necessário para a recomendação das configurações ótimas é a quantidade de preferências definidas pelos \textit{stakeholders}. O aumento no número de configurações pertencentes ao grupo não ocasiona um gasto significativo no tempo consumido. Além disso, a complexidade do modelo de \textit{features} afeta consideravelmente o tempo que será gasto para a geração do conjunto de consideração antes mesmo da execução dos algoritmos para cada estratégia.
+	
+	

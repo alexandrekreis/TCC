@@ -1,0 +1,158 @@
+
+\documentclass[tc]{iiufrgs}
+
+\usepackage[brazilian]{babel}
+\usepackage[T1]{fontenc}        % pacote para conj. de caracteres correto
+\usepackage[latin1]{inputenc}   % pacote para acentuacao
+\usepackage{graphicx}           % pacote para importar figuras
+\usepackage{times}              % pacote para usar fonte Adobe Times
+\usepackage{amsmath}			% pacote para equacoes matemÃ¡ticas
+\usepackage{url}				% pacote para usar urls
+%\usepackage{mathptmx}          % p/ usar fonte Adobe Times nas fÃ³rmulas
+%\usepackage{epstopdf}			% pacote para usar figuras eps
+%\usepackage{eucal}				% fonte euler para script
+
+\usepackage{subfigure}
+%\usepackage[bookmark]{hyperref}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{amssymb}			% simbolo de checkmark
+\usepackage{relsize}            % saumentar somatorio
+\usepackage{adjustbox}
+\usepackage{makecell}
+
+
+
+\title{Soluções 
+\textit{Open Source} para Interoperabilidade entre Sistemas de Videoconferência e Webconferência}
+\author{Kreismann dos Santos}{Alexandre}
+\advisor[Prof.~Dr.]{Roesler}{Valter}
+
+% a data deve ser a da defesa; se nao especificada, sÃ£o gerados
+% mes e ano correntes
+%\date{maio}{2001}
+
+\course{Curso de Bacharelado em Ciência da Computação}
+\location{Porto Alegre}{RS}
+
+\renewcommand{\nominata}{
+        UNIVERSIDADE FEDERAL DO RIO GRANDE DO SUL\\
+        Reitor: Prof. Carlos Alexandre Netto \\
+        Vice-Reitor: Prof. Rui Vicente Oppermann \\
+        Pr\'o-Reitor de Gradua\c{c}\~ao: Prof. Vladimir Pinheiro do Nascimento \\
+        Diretor do Instituto de Inform\'atica: Prof. Lu\'is da Cunha Lamb \\
+        Coordenador do Curso de Ciência da Computação: Prof. Carlos Arthur Lang Lisb\^oa \\
+        Bibliotec\'aria-Chefe do Instituto de Inform\'atica: Beatriz Regina Bastos Haro \\
+}
+
+%
+% palavras-chave
+% iniciar todas com letras minÃºsculas, exceto no caso de abreviaturas
+%
+\keyword{interoperabilidade}
+\keyword{videoconfere\^ncia}
+\keyword{webconfere\^ncia}
+\keyword{open source}
+\keyword{Mconf}
+
+%
+% inicio do documento
+%
+\begin{document}
+% folha de rosto
+% Ã s vezes Ã© necessÃ¡rio redefinir algum comando logo antes de produzir
+% a folha de rosto:
+% \renewcommand{\coordname}{Coordenadora do Curso}
+\maketitle
+% dedicatoria
+\clearpage
+\begin{flushright}
+\mbox{}\vfill
+{\sffamily\itshape
+``To do''\\}
+--- \textsc{To do}
+\end{flushright}
+
+% agradecimentos
+\chapter*{Agradecimentos}
+
+To do
+%Agradeço aos amigos - vocês sabem quem são - que me acompanharam durante o curso. Nossa panelinha foi determinante para (ou seria 'culpada de' ?) eu completar esta minha Graduação.
+%
+%Também agradeço aos amigos e colegas do Mconf, sobretudo ao Mário Gasparoni Jr., Felipe Cecagno e Leonardo Daronco. É um prazer trabalhar e aprender tanto com vocês.
+%
+%Finalmente, agradeço à minha mãe Sandra. Tu, sozinha, foste mãe, pai, tio, tia, avô, avó, enfim, minha família inteira. Dedico este trabalho a ti.
+
+% sumario
+\tableofcontents
+
+% lista de abreviaturas e siglas
+% o parametro deve ser a abreviatura mais longa
+\begin{listofabbrv}{WebRTC}
+    \item[ASCII] American Standard Code
+    \item[IETF] Internet Engineering Task Force
+    \item[ITU] International Telecommunication Union
+    \item[MCU] Multipoint Control Unit
+    \item[RFC] Request for Comments
+	\item[RTP] Real-time Transport Protocol
+	\item[RTMP] Real Time Messaging Protocol
+	\item[SIP] Session Initiation Protocol
+	\item[SDP] Session Description Protocol
+	\item[URI] Uniform Resource Identifier
+	\item[WebRTC] Web Real-Time Communication
+	\item[XML] eXtensible Markup Language
+	
+\end{listofabbrv}
+
+% idem para a lista de sÃ­mbolos
+%\begin{listofsymbols}{SPMD}
+%	\item[$\vee$] Operador Ou lógico	
+%	\item[$\wedge$] Operador E lógico	
+%\end{listofsymbols}
+
+% lista de figuras
+\listoffigures
+
+% lista de tabelas
+\listoftables
+
+% resumo na lÃ­ngua do documento
+\begin{abstract}
+
+A comunicação transparente entre webconferência - videoconferência executada em um navegador web - e outros sistemas de videoconferência - sejam eles hardwares dedicados ou sistemas desktop - é uma tarefa dificultada pelo fato de que o primeiro, muitas vezes, implementa diferentes padrões para a sinalização, transmissão e codificação de áudio e vídeo. Outro fator complicador é que soluções para interoperação resolvem apenas parcialmente o problema, de forma que é preciso integrá-las em uma arquitetura para alcançar um nível maior de interoperabilidade.
+
+O objetivo deste trabalho, portanto, é a análise de soluções \textit{open source} e o desenvolvimento de uma arquitetura que permita a interoperabilidade entre webconferência e sistemas de videoconferência em geral (equipamentos e softfones).
+
+Para tal, primeiramente, é feito o levantamento de protocolos, codecs, e demais padrões e tecnologias do contexto de video e webconferência. Após, apresentação de soluções \textit{open source} que possibilitem a comunicação transparente dos padrões estudados. Finalmente, projeto e desenvolvimento de uma arquitetura utilizando essas soluções. Será utilizado o sistema de webconferência open source \textit{Mconf} para efetuar a implementação e validação. A validação deverá permitir a interoperabilidade da webconferência com softfones e equipamentos de videoconferência, como um equipamento comercial da Polycom, por exemplo.
+
+
+
+\end{abstract}
+
+% resumo na outra lÃ­ngua
+% como parametros devem ser passados o titulo e as palavras-chave
+% na outra lÃ­ngua, separadas por vÃ­rgulas
+\begin{englishabstract}{Open Source Solutions for Interoperability of Video Conference and Web Conference Systems}{interoperability, video conference, web conference, open source, Mconf}
+
+Transparent communication among web conference - video conference executed in a web browser - and other video conference systems - dedicated hardwares or desktop applications - is a task made difficult by the fact that the first one often implements different standards for media signaling, transmission and encoding. Another complicating matter is that interoperability solutions only partially resolve the problem, so we need to integrate them into an architecture to achieve a higher level of interoperability.
+
+Thus the objective of this work is to analyze open source solutions and to develop an architecture allowing interoperability of web conference and different video conference systems (equipments and softphones).
+
+To do so, firstly we study protocols, codecs and further standards and technologies of video and web conferencing context. Afterwards, we present open source solutions that allow transparent communication of studied standards. Finally, we develop an architecture utilizing those solutions. Implementation and validation will be performed by using the open source web conference system \textit{Mconf}. Through validation, the web conference must interoperate with softphones and commercial video conference equipments (for instance, a Polycom equipment).
+\end{englishabstract}
+
+% aqui comeca o texto propriamente dito
+
+\input{chapters/1-introducao.tex}
+\input{chapters/2-padroes-e-tecnologias.tex}
+\input{chapters/3-solucoes.tex}
+\input{chapters/4-arquitetura.tex}
+\input{chapters/5-resultados.tex}
+
+
+\bibliography{kreismann}
+\nocite{adobeConnect}
+\bibliographystyle{abnt}
+
+\end{document}
+

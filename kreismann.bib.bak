@@ -1,0 +1,109 @@
+% This file was created with JabRef 2.9.
+% Encoding: UTF-8
+
+@ARTICLE{apel2009overview,
+  author = {Apel, Sven and K{\"a}stner, Christian},
+  title = {An Overview of Feature-Oriented Software Development.},
+  journal = {Journal of Object Technology},
+  year = {2009},
+  volume = {8},
+  pages = {49--84},
+  number = {5}
+}
+
+@BOOK{clements2002software,
+  title = {Software product lines: practices and patterns},
+  publisher = {Addison-Wesley Reading},
+  year = {2002},
+  author = {Clements, Paul and Northrop, Linda},
+  volume = {59}
+}
+
+@BOOK{czarnecki2000generative,
+  title = {Generative Programming: Methods, Tools, and Applications},
+  publisher = {Addison Wesley},
+  year = {2000},
+  author = {Czarnecki, K. and Eisenecker, U.},
+  isbn = {9780201309775},
+  lccn = {00028389},
+  url = {http://books.google.com.br/books?id=4CPmr3qcVvYC}
+}
+
+@TECHREPORT{kang1990feature,
+  author = {Kang, Kyo C and Cohen, Sholom G and Hess, James A and Novak, William
+	E and Peterson, A Spencer},
+  title = {Feature-oriented domain analysis (FODA) feasibility study},
+  institution = {DTIC Document},
+  year = {1990}
+}
+
+@INCOLLECTION{krueger2002easing,
+  author = {Krueger, CharlesW},
+  title = {Easing the transition to software mass customization},
+  booktitle = {Software Product-Family Engineering},
+  publisher = {Springer},
+  year = {2002},
+  pages = {282--293}
+}
+
+@INPROCEEDINGS{machado2014splconfig,
+  author = {Machado, Lucas and Pereira, Juliana and Garcia, Lucas and Figueiredo,
+	Eduardo},
+  title = {SPLConfig: Product Configuration in Software Product Line},
+  booktitle = {Brazilian Congress on Software (CBSoft), Tools Session},
+  year = {2014},
+  pages = {1--8}
+}
+
+@ARTICLE{mendonca2010decision,
+  author = {Mendonca, Marcilio and Cowan, Donald},
+  title = {Decision-making coordination and efficient reasoning techniques for
+	feature-based configuration},
+  journal = {Science of Computer Programming},
+  year = {2010},
+  volume = {75},
+  pages = {311--332},
+  number = {5},
+  publisher = {Elsevier}
+}
+
+@INPROCEEDINGS{jacob,
+  author = {Stein, Jacob and Nunes, Ingrid and Cirilo, Elder},
+  title = {Preference-based feature model configuration with multiple stakeholders},
+  booktitle = {Proceedings of the 18th International Software Product Line Conference-Volume
+	1},
+  year = {2014},
+  pages = {132--141},
+  organization = {ACM}
+}
+
+@ARTICLE{Thum:2014:FEF:2537169.2537315,
+  author = {Th\"{u}m, Thomas and K\"{a}stner, Christian and Benduhn, Fabian and
+	Meinicke, Jens and Saake, Gunter and Leich, Thomas},
+  title = {FeatureIDE: An Extensible Framework for Feature-oriented Software
+	Development},
+  journal = {Sci. Comput. Program.},
+  year = {2014},
+  volume = {79},
+  pages = {70--85},
+  month = jan,
+  acmid = {2537315},
+  address = {Amsterdam, The Netherlands, The Netherlands},
+  doi = {10.1016/j.scico.2012.06.002},
+  issn = {0167-6423},
+  issue_date = {January, 2014},
+  keywords = {Aspect-oriented programming, Delta-oriented programming, Feature modeling,
+	Feature-oriented programming, Feature-oriented software development,
+	Preprocessors, Software product lines, Tool support},
+  numpages = {16},
+  publisher = {Elsevier North-Holland, Inc.},
+  url = {http://dx.doi.org/10.1016/j.scico.2012.06.002}
+}
+
+@MISC{van2005software,
+  author = {VAN DER LINDEN, Frank and Pohl, Klaus},
+  title = {Software Product Line Engineering: Foundations, Principles, and Techniques},
+  year = {2005},
+  publisher = {Stuttgart: Springer}
+}
+

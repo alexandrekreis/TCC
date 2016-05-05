@@ -1,0 +1,46 @@
+This is BibTeX, Version 0.99d (TeX Live 2013/Debian)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: kreismann.aux
+The style file: abnt.bst
+Database file #1: kreismann.bib
+You've used 9 entries,
+            2371 wiz_defined-function locations,
+            617 strings with 5276 characters,
+and the built_in function-call counts, 7214 in all, are:
+= -- 761
+> -- 39
+< -- 109
++ -- 442
+- -- 10
+* -- 349
+:= -- 609
+add.period$ -- 32
+call.type$ -- 9
+change.case$ -- 88
+chr.to.int$ -- 1
+cite$ -- 9
+duplicate$ -- 967
+empty$ -- 380
+format.name$ -- 93
+if$ -- 1543
+int.to.chr$ -- 1
+int.to.str$ -- 0
+missing$ -- 0
+newline$ -- 21
+num.names$ -- 40
+pop$ -- 146
+preamble$ -- 1
+purify$ -- 9
+quote$ -- 0
+skip$ -- 441
+stack$ -- 0
+substring$ -- 353
+swap$ -- 627
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 73
+warning$ -- 0
+while$ -- 50
+width$ -- 0
+write$ -- 11

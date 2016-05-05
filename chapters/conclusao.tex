@@ -1,0 +1,18 @@
+\chapter{Conclusão}\label{cha:conclusao}
+
+	Configuração de modelos de \textit{features} é uma atividade importante para o desenvolvimento de produtos em uma Linha de Produto de Software. O envolvimento de múltiplos \textit{stakeholders} nesse processo pode torná-lo difícil devido aos possíveis conflitos entre suas preferências. Neste trabalho apresentamos a ferramenta SACRES 2.0, um plug-in para o Eclipse que funciona de maneira integrada com o FeatureIDE, e que visa dar suporte à recomendação de configurações considerando múltiplos \textit{stakeholders}. A ferramenta utiliza sete estratégias de escolha social para buscar configurações que melhor satisfaçam o grupo de \textit{stakeholders}. 
+
+	O foco deste trabalho não foi a análise de cada estratégia usada, e sim as funcionalidades fornecidas pela ferramenta. Detalhes mais aprofundados sobre o desempenho das estratégias, bem como uma avaliação do resultado das recomendações, podem ser encontrado em \cite{jacob}.
+	
+	De maneira geral os resultados obtidos pela ferramenta foram satisfatórios. A integração com a interface do FeatureIDE através da nova \textit{view} do SACRES 2.0 fornece uma interação intuitiva ao usuário e de fácil usabilidade. As funcionalidades de exibição de modelos de \textit{features} e de configurações de \textit{stakeholders} providas pelo FeatureIDE encaixaram perfeitamente nas etapas necessárias envolvendo todo o processo de recomendação.
+	
+	Os testes realizados mostraram que não é necessário muito tempo para a obtenção de resultados ótimos para o problema. O aumento do tempo necessário é causado principalmente pela complexidade do modelo de \textit{features} e pela quantidade de preferências que os \textit{stakeholders} do grupo expressam em suas configurações.
+
+
+%\section{Trabalhos Futuros}
+
+	Futuramente, possíveis melhorias podem ser adicionadas à ferramenta. Uma possibilidade seria considerar pesos para determinadas preferências dos \textit{stakeholders} de acordo com sua expertise ou preferências sobre grupos de \textit{features}. 
+	
+	Poderiam também ser realizados estudos de avaliação de usabilidade da ferramenta. Um possível teste contaria com grupos de \textit{stakeholders} definindo preferências sobre um modelo de \textit{features} e após a recomendação das configurações os usuários avaliariam os resultados obtidos. Estudos envolvendo cenários reais poderiam ser realizados de modo a validar a eficiência e usabilidade tanto do plug-in quanto da abordagem proposta, através de experimentos com os funcionários de uma empresa.	Por se tratar de um plug-in para o Eclipse não seria muito complicado realizar possíveis extensões para este trabalho, seja adicionando funcionalidades diretamente no código do projeto ou criando um novo plug-in para realizar interações com os resultados gerados.
+
+

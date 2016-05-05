@@ -1,0 +1,169 @@
+\chapter{SACRES 2.0: Projeto e Implementação}\label{cha:implementacao}
+
+	Nossa ferramenta realizou uma integração dos trabalhos descritos anteriormente chamados FeatureIDE e SACRES, unindo as suas funcionalidades com o objetivo de criar um plug-in que consiga cobrir todo o processo de recomendação de configurações desde a criação do modelo de \textit{features} até a exibição dos resultados das recomendações das estratégias usadas. Decidimos chamá-la de SACRES 2.0 por se tratar de uma evolução do protótipo original. Assim sendo, o FeatureIDE e a nossa ferramenta dividem os trabalhos entre si, ou seja, cada um é responsável por um conjunto de etapas no processo. Ao longo deste capítulo mostraremos as funções exercidas individualmente por eles, juntamente com detalhes da nossa implementação, incluindo elementos da interface, os arquivos envolvidos na execução do plug-in e resultados obtidos.
+	
+\section{Criação de Modelos de \textit{Features} com o FeatureIDE}\label{sec:criacaofm}
+	
+	O FeatureIDE é responsável principalmente pelas primeiras etapas do processo. Podemos utilizar um projeto previamente criado com o FeatureIDE contendo um modelo de \textit{features} associado a ele ou partir do zero e seguir os passos descritos abaixo.
+	
+	\begin{enumerate}
+		\item \textbf{Criação de um projeto do FeatureIDE.} Para utilizar a ferramenta é necessário um projeto no Eclipse no formato padrão do FeatureIDE. Ele contém um arquivo no formato XML que é usado para armazenar o modelo de \textit{features} associado ao projeto.
+		\item \textbf{Criação das \textit{features}.} Após a criação do projeto deve-se criar o modelo de \textit{features}. Nessa etapa o usuário cria os nodos da árvore e seleciona suas características, incluindo tipos das \textit{features}, relação entre elas e possivelmente realiza a criação de grupos de \textit{features}.
+		\item \textbf{Criação das restrições.} Também podem ser criadas restrições entre as \textit{features} do modelo. O FeatureIDE provê um editor para facilitar essa etapa ao usuário que é capaz de checar a sintaxe e a semântica das expressões lógicas que representam as restrições. 
+	\end{enumerate} 
+	
+	Após a execução destes passos temos como resultado um projeto do FeatureIDE contendo um modelo de \textit{features}. Esse modelo é armazenado em um arquivo no formato XML que contém as informações sobre todas as \textit{features} presentes no modelo e também sobre suas restrições, caso existam. É possível observar seu conteúdo textual através da mesma \textit{view} que exibe a árvore do modelo graficamente, entretanto não é aconselhável fazer alterações diretamente nele, pois isso pode tornar o modelo inválido. O usuário pode fazer suas edições através da interface gráfica disponibilizada pelo FeatureIDE caso deseje alterar algo após a criação do modelo, e assim as mudanças serão refletidas no arquivo XML.
+	
+	Dentro de qualquer projeto do FeatureIDE existe uma pasta chamada por padrão de ``configs'' que tem o objetivo de armazenar configurações. Um arquivo com o nome de ``default.config'' é criado nessa pasta e ele representa uma configuração para o modelo de \textit{features} associado ao projeto. Podemos visualizar e editar o conteúdo desse tipo de arquivo através de uma \textit{view} própria do FeatureIDE que exibe as \textit{features} do modelo e também quadrados que indicam a sua presença ou ausência na configuração (ver o exemplo na Figura~\ref{fig:configurations}, mostrada no Capítulo~\ref{cha:revisao}). Iremos utilizar essa funcionalidade para a visualização das configurações recomendadas pelo nosso plug-in ao final do processo. Analogamente ao caso do arquivo do modelo de \textit{features} podemos observar o conteúdo textual desse arquivo na \textit{view} usada para a sua exibição gráfica, mas não é aconselhável a alteração diretamente por ali. O arquivo de configuração que o FeatureIDE utiliza é simplesmente uma lista de todas as \textit{features} presentes na configuração distribuídas na forma de uma \textit{feature} por linha.
+	
+	%O FeatureIDE permite a escrita de código para cada uma de suas \textit{features} através de arquivos com a extensão ``.jak''. Também é possível criar um outro tipo de arquivo com a extensão ``.equation'' e definir nele quais classes estarão presentes na construção do projeto.
+	
+	\section{Funcionalidades e Arquitetura}
+	
+	Agora que já descrevemos algumas das funcionalidades oferecidas pelo FeatureIDE que são utilizadas pela nossa ferramenta, iremos discutir a arquitetura do SACRES 2.0, o algoritmo de execução da ferramenta e as funcionalidades implementadas.
+	
+	A Figura~\ref{fig:arq} mostra a arquitetura do plug-in desenvolvido com a interação entre as partes envolvidas. Nela, podemos ver que o FeatureIDE é o responsável pela criação e edição do modelo de \textit{features} e pela visualização das configurações recomendadas, como foi mostrado na seção anterior. O SACRES 2.0 contém as classes com suporte ao metamodelo e a implementação dos algoritmos de recomendação para as estratégias de escolha social usadas. Além disso, o plug-in também é responsável pelo gerenciamento dos arquivos, desde os novos arquivos com as configurações de \textit{stakeholder} baseadas no metamodelo até os resultados das recomendações que podem ser visualizados no FeatureIDE. O SACRES 2.0 faz o uso do CSP Solver CHOCO\footnote{\url{http://choco-solver.org/?q=Choco3}} de forma a eliminar de maneira mais eficiente as configurações consideradas inválidas pelas restrições do tipo \textit{hard}, gerando o chamado conjunto de consideração, utilizado pelas estratégias de escolha social para buscar as configurações ótimas.
+		
+	\begin{figure}[h]
+	\centering
+	\includegraphics[width=.75\linewidth]{img/arq.jpg}
+	\caption{Arquitetura da ferramenta.}
+	\label{fig:arq}
+	\end{figure}
+	
+	O processo de recomendação de configurações de produtos realizado pelo SACRES 2.0 pode ser descrito em sete passos, considerando que nenhum grupo contendo configurações de \textit{stakeholders} foi previamente criado. Caso já existam grupos e configurações no projeto podemos pular os passos 3 e 5. Algumas destas funcionalidades serão melhor detalhadas juntamente com sua interface na próxima seção. Os passos para o processo de recomendação são descritos a seguir.
+	 
+	\begin{enumerate}
+		\item \textbf{Leitura do modelo de \textit{features}.} O arquivo XML do FeatureIDE que representa o modelo de \textit{features} atual é aberto e seu conteúdo é lido. Isto é realizado através de um clique em cima da \textit{view} que exibe o modelo.
+		\item \textbf{Construção do modelo de \textit{features}.} Após a leitura do arquivo XML o modelo é construído e armazenado durante a execução da ferramenta para ser utilizado nas partes de criação e recomendação de configurações.
+		\item \textbf{Criação de grupo de \textit{stakeholders}.} Grupos podem ser criados através de novas pastas localizadas dentro da pasta ``configs'' do projeto. Cada subpasta representa um grupo de \textit{stakeholders}.
+		\item \textbf{Seleção de grupo de \textit{stakeholders}.} Um grupo deve ser selecionado na \textit{view} da ferramenta para ser possível a criação de configurações para esse grupo ou a recomendação de configurações para ele.
+		\item \textbf{Criação de configuração de \textit{stakeholder}.} Após a seleção de um grupo é possível a criação de configurações baseadas no metamodelo utilizado pelo SACRES. Também podemos visualizar o conteúdo de configurações criadas previamente. Os arquivos são salvos dentro da pasta de seu grupo na forma de uma preferência por linha, que contém o nome da \textit{feature}, tipo da restrição e seu valor, todos separados por vírgula.
+		\item \textbf{Recomendação de configurações ótimas.} Quando um grupo contendo mais de uma configuração de \textit{stakeholder} é selecionado, podemos executar o algoritmo de recomendação de configurações ótimas, que por sua vez é dividido em quatro etapas.
+			\begin{enumerate}
+				\item \textbf{Leitura das configurações.} Os arquivos contendo as configurações dos \textit{stakeholders} do grupo baseadas no metamodelo são carregadas.
+				%\item Tradução:  CSP.
+				\item \textbf{Geração de configurações válidas.} O CHOCO é o responsável pela geração de configurações válidas, resultando no conjunto de consideração. As restrições do tipo \textit{hard} são analisadas para excluir configurações inválidas. Caso nenhuma configuração válida exista a execução é interrompida nesta etapa e um erro é exibido.
+				\item \textbf{Geração das configurações ótimas.} É feita a seleção da configuração ótima dentre as soluções viáveis de acordo com o critério de cada estratégia.
+				\item \textbf{Geração dos arquivos de resultados.} As configurações ótimas para cada estratégia são traduzidas para arquivos de configuração seguindo o padrão do FeatureIDE. Também é criado um arquivo texto com algumas informações sobre a satisfação dos \textit{stakeholders} e número de preferências satisfeitas. 
+			\end{enumerate} 
+		\item \textbf{Visualização dos resultados.} As configurações podem ser visualizadas através da \textit{view} específica do FeatureIDE. Além disso o arquivo texto de resultados pode ser aberto pelo editor de texto do Eclipse.
+	\end{enumerate} 
+	
+	\begin{figure}[h]
+	\centering
+	\includegraphics[width=.5\linewidth]{img/bpmn.jpg}
+	\caption{Ilustração do processo.}
+	\label{fig:bpmn}
+	\end{figure}
+	
+	A Figura~\ref{fig:bpmn} ilustra o processo descrito nos passos acima (incluindo os três necessários para a criação do modelo de \textit{features} com o FeatureIDE mostrados na Seção~\ref{sec:criacaofm}) indicando quem é o responsável por cada um deles. A maioria das ações do usuário refletem na execução de alguma tarefa por parte dos componentes integrados.
+	
+	Como apresentado anteriormente foram utilizadas sete estratégias baseadas na teoria da escolha social para a recomendação das configurações. Cada uma delas gera uma configuração de produto, de acordo com suas características. Sendo assim, após a execução do algoritmo da ferramenta, teremos até sete configurações distintas como resultado, visto que estratégias diferentes podem gerar a mesma configuração.
+	
+	O plug-in precisa do acesso ao modelo de \textit{features} do FeatureIDE através da interface gráfica para realizar o passo número 1 descrito acima. Para isso foi adicionada uma dependência ao projeto, incluindo o pacote ``de.ovgu.featureide.fm.ui'' pertencente ao FeatureIDE. Outras dependências presentes no projeto são ``org.eclipse.ui'' e ``org.eclipse.core.resources'', que servem para possibilitar a criação da nova \textit{view} da ferramenta e o gerenciamento dos arquivos utilizados por ela. 
+
+
+\section{Interface}
+
+	Nesta seção apresentaremos a interface com o usuário oferecida pelo SACRES 2.0. A interação com o plug-in acontece principalmente através de uma \textit{view} que conta com grande parte das funcionalidades implementadas. A \textit{view} padrão do Eclipse utilizada para exibir os arquivos do projeto também faz parte do funcionamento da ferramenta, visto que os grupos de \textit{stakeholders} são gerenciados diretamente nas pastas do projeto. A interface oferecida pelo FeatureIDE também é utilizada no processo, pois é através dela que criamos o modelo de \textit{features} e visualizamos as configurações recomendadas.
+
+	\begin{figure}[h]
+	\centering
+	\includegraphics[width=.5\linewidth]{img/view.jpg}
+	\caption{\textit{View} do SACRES 2.0.}
+	\label{fig:interface1}
+	\end{figure}
+
+	A Figura~\ref{fig:interface1} mostra a \textit{view} da ferramenta durante sua execução com o modelo da Figura~\ref{fig:exmodelofeatures} associado ao projeto atual e exibindo uma configuração salva. A \textit{view} pode ser dividida em três partes: (i) a seção que seleciona as pastas e arquivos; (ii) a tabela com as \textit{features} para alteração de configurações de \textit{stakeholder}; e (iii) os botões de funcionalidade.
+	
+	Grupos de \textit{stakeholders} são representados por pastas dentro de um projeto do FeatureIDE e configurações de \textit{stakeholders} são representadas por arquivos dentro dessas pastas. Na \textit{view} primeiramente deve-se selecionar um grupo pertencente à lista de grupos associados ao modelo de \textit{features}. Depois é possível abrir configurações salvas dentro desse grupo ou criar uma nova configuração.
+	
+	A tabela de configuração é dividida em três colunas, que listam o nome das \textit{features}, o tipo da restrição associada a ela e o valor dessa restrição. O modelo de exemplo possui dez nodos na árvore, porém apenas oito estão sendo listados na tabela, pois o nodo raiz é abstrato não sendo uma \textit{feature} propriamente dita e o nodo F1 representa uma \textit{feature} obrigatória, assim sendo não é possível expressar preferências sobre ele. Ao estabelecer preferências, primeiramente o usuário seleciona o tipo (\textit{hard} ou \textit{soft}), e depois escolhe seu valor. O tipo é selecionado através de uma \textit{combobox}. Caso a restrição seja do tipo \textit{hard}, o usuário escolhe o valor da mesma maneira que o tipo foi escolhido, ou seja, através de uma \textit{combobox}, e caso o tipo seja \textit{soft}, o usuário digita o valor numérico na célula correspondente.
+	
+	No canto superior direito da \textit{view} encontram-se quatro botões com as seguintes funções.
+	
+	\begin{itemize}
+		\item Reset Current Configuration: Apaga a configuração atual. Todos os campos da tabela são limpos e o usuário pode começar do zero a criação de uma nova configuração.
+		\item Save Configuration: Salva a configuração atual. Ao salvar uma configuração, o usuário deve escolher um nome para ela, digitando na caixa ``Configuration". As configurações são salvas com a extensão ``.cfg''.
+		\item Refresh: Atualiza as informações da \textit{view}, incluindo o conteúdo das \textit{comboboxes} de grupos e configurações.
+		\item Get Optimal Configurations: Executa os algoritmos de recomendação de configurações. Quando executamos os algoritmos de recomendação uma pasta com os resultados é criada, e caso não existam configurações válidas para serem recomendadas uma mensagem de erro é exibida.
+	\end{itemize} 
+	
+	Após a execução das recomendações os arquivos de resultado são gerados, como podemos observar na Figura~\ref{fig:interface2}. Uma pasta chamada ``recommendations'' é criada dentro da pasta do grupo. Ela contém sete arquivos que representam as configurações recomendadas pelas estratégias de escolha social no formato padrão do FeatureIDE ``.config''. O nome de cada arquivo é referente à estratégia usada para a sua geração, e como foi dito anteriormente, podemos visualizar essas configurações resultantes através da \textit{view} própria do FeatureIDE.
+	
+	\begin{figure}[h]
+	\centering
+	\includegraphics[width=.9\linewidth]{img/arqs+fideconfig.jpg}
+	\caption{Arquivos resultantes.}
+	\label{fig:interface2}
+	\end{figure}
+	
+	Além dos arquivos de configuração presentes na pasta criada após a execução do algoritmo, também é criado um arquivo texto chamado ``Results.txt''. Nele podemos coletar diversas informações a respeito das recomendações geradas. Na seção a seguir discutiremos melhor os resultados, incluindo o conteúdo deste arquivo texto, através de um exemplo simples.
+
+
+\section{Resultados}\label{sec:implresults}
+
+	Para exemplificar os resultados de uma execução do algoritmo da ferramenta criamos um grupo contendo três \textit{stakeholders}. O modelo de \textit{features} ao qual o grupo foi associado foi exibido na Figura~\ref{fig:exmodelofeatures}. A Tabela~\ref{tab:configs} mostra as preferências dos três \textit{stakeholders}. Lembrando que os símbolos + e - representam restrições do tipo \textit{hard} positivas e negativas, respectivamente, e que os valores numéricos representam restrições do tipo \textit{soft}.		
+
+\begin{table}[h]
+\begin{center}
+    \begin{tabular}{| c | c | c | c |}    \hline
+    Feature & SH1 & SH2 & SH3   \\ \hline \hline
+    F2 & + & 0.6 & + \\ \hline
+    F3 &  &  & 0.3       \\ \hline
+	F4 & - &  &        \\ \hline
+    F5 & -0.1 &  &        \\ \hline
+    F6 &  &  & -0.15     \\ \hline
+	F7 & 0.25 & + & 0.1\\ \hline
+    F8 & 0.5 & 0.2 &      \\ \hline
+    F9 &  &  &          \\ \hline
+    \end{tabular}
+	\caption{Configurações do exemplo.}
+	\label{tab:configs}
+\end{center}
+\end{table}
+
+	 Como mencionado na seção anterior, após a execução da recomendação de configurações um arquivo texto chamado ``Results.txt'' é criado. A primeira linha dele contém o nome do grupo responsável pela sua geração e o restante é dividido em sete blocos, um para cada estratégia. Cada bloco começa com o nome da estratégia, e logo abaixo temos uma sequência de informações a respeito da satisfação dos \textit{stakeholders} do grupo.
+
+\begin{table}[h]
+\begin{center}
+    \begin{tabular}{| c | c | c | c | c | c | c | c |}    \hline
+    Satisfação   & AVG & ANP & BC & CR  & LM  & MP & MUL  \\ \hline \hline
+    Total   & 2.2& 2.2& 2.1& 2.2& 2.1& 2.05& 2.2  \\ \hline
+    Mínima  & 0.55  & 0.55  & 0.55 & 0.55  & 0.55  & 0.4 & 0.55      \\ \hline
+    Máxima   & 0.85  & 0.85  & 0.8 & 0.85  & 0.8   & 0.85 & 0.85   \\ \hline
+    Média   & 0.73  & 0.73  & 0.7 & 0.73  & 0.7   & 0.68 & 0.73   \\ \hline
+    Desvio padrão & 0.13  & 0.13  & 0.11 & 0.13 & 0.11  & 0.2 & 0.13 \\ \hline
+    \end{tabular}
+	\caption{Resultados referentes à satisfação de \textit{stakeholder}.}
+	\label{tab:resultadossat}
+\end{center}
+\end{table}
+
+	 A Tabela~\ref{tab:resultadossat} apresenta o conteúdo do arquivo de resultados referente à satisfação dos \textit{stakeholders}. Relembrando que as abreviações na primeira linha da tabela correspondem aos nomes das estratégias, \textit{Average, Average Number of Preferences, Borda Count, Copeland Rule, Least Misery, Most Pleasure e Multiplicative}, respectivamente. A segunda linha corresponde ao total das satisfações, ou seja, a soma da satisfação individual de cada um deles. A terceira e quarta linhas correspondem à satisfação individual mínima e à satisfação individual máxima alcançadas, respectivamente. A quinta corresponde à média aritmética das satisfações e a sexta linha ao desvio padrão. 
+
+\begin{table}[h]
+\begin{center}
+    \begin{tabular}{| c | c | c | c | c | c | c | c |}    \hline
+    Preferências   & AVG & ANP & BC & CR  & LM  & MP & MUL  \\ \hline \hline
+    Total   & 8& 8& 7& 8& 7& 7 & 8 \\ \hline
+    Mínima  & 2  & 2  & 2 & 2  & 2  & 2 & 2      \\ \hline
+    Máxima   & 3  & 3  & 3 & 3  & 3   & 3 & 3   \\ \hline
+    Média   & 2.6  & 2.6  & 2.3 & 2.6  & 2.3   & 2.3 & 2.6   \\ \hline
+    Desvio padrão & 0.47  & 0.47  & 0.47 & 0.47 & 0.47  & 0.47 & 0.47 \\ \hline
+    \end{tabular}
+	\caption{Resultados referentes ao número de preferências satisfeitas.}
+	\label{tab:resultadospref}
+\end{center}
+\end{table}
+
+	Após os dados no arquivo sobre satisfação de \textit{stakeholder}, se encontram as informações referentes ao número de preferências satisfeitas, ou seja, à quantidade de restrições do tipo \textit{soft} atendidas. Os tipos de informação são análogas às da parte de satisfação de \textit{stakeholder}, como podemos observar na Tabela~\ref{tab:resultadospref}. Ela contém o total de preferências satisfeitas, os \textit{stakeholders} com o mínimo e o máximo de preferências satisfeitas, a média delas e o desvio padrão.
+	
+	Agora que já coletamos todas informações do arquivo, podemos analisar os resultados. Como o modelo utilizado não conta com uma grande quantidade de \textit{features} e foram criadas apenas três configurações de \textit{stakeholder} tivemos resultados parecidos para estratégias diferentes, e até mesmo recomendações iguais para algumas delas. Podemos observar que neste caso tivemos quatro estratégias (AVG, ANP, CR, MUL) que conseguiram satisfazer todas as oito restrições \textit{soft} do grupo, alcançando o total de 2.2 no valor de satisfação de \textit{stakeholder}. Nesses casos a configuração selecionada foi a que contém apenas as \textit{features} F1, F2, F3, F7 e F8. Outras estratégias não tiveram resultados tão bons, e satisfizeram apenas sete das restrições (BC, LM, MP). O funcionamento de algumas estratégias fica evidente quando olhamos para alguns dados das tabelas, como por exemplo, a LM alcançou o maior valor possível no quesito satisfação mínima. Na MP o maior valor possível para o quesito satisfação máxima foi alcançado. A estratégia AVG obteve a maior média possível, e a ANP conseguiu a maior média na quantidade de preferências satisfeitas.
+	
+	Não podemos afirmar qual estratégia se enquadra como ótima, pois dependendo do caso uma pode se tornar mais adequada para uma situação enquanto uma estratégia diferente pode ter melhor desempenho para outra situação. Os melhores resultados a serem alcançados variam de acordo com o objetivo do grupo a ser analisado, dessa forma uma melhor compreensão do funcionamento de uma determinada estratégia pode poupar o trabalho de executar o algoritmo para todas elas.
+	
+	Neste capítulo detalhamos a implementação da ferramenta chamada SACRES 2.0, mostrando suas funcionalidades e arquitetura juntamente com o algoritmo para a recomendação de configurações, os elementos principais da sua interface e uma breve análise dos resultados obtidos para um exemplo simples. 
+
+

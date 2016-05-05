@@ -1,0 +1,196 @@
+\chapter{Revisão Bibliográfica}\label{cha:revisao}
+
+	Para melhor compreensão do trabalho desenvolvido, a seguir apresentamos a definição de alguns conceitos fundamentais sobre os assuntos tratados. O conteúdo deste capítulo foi dividido em três partes: (i) linhas de produto de software, (ii) modelo de \textit{features} e (iii) recomendação de configurações baseada em preferências.
+
+
+\section{Linhas de Produto de Software}\label{sec:linhas}
+
+	A motivação por trás de uma linha de produto é a possibilidade de reúso de componentes de uma mesma arquitetura. Essa ideia não é nova, pois pode ser observada sendo posta em prática na humanidade desde os tempos antigos, e como exemplo podemos citar a construção das pirâmides do Egito. Atualmente podemos compreender melhor a ideia através de um exemplo bem comum: uma linha de produção de carros. Quando vamos comprar um carro, podemos escolher o tipo de motor (1.0, 1.6, etc.), transmissão automática ou manual, a quantidade de portas, optar por ar-condicionado ou não, dentre várias outras opções. Neste caso, se pensarmos no conjunto de carros de um determinado modelo e de uma determinada marca de automóveis, podemos observar que eles constituem uma família de produtos, pois possuem algumas características comuns e algumas características variáveis. 
+	
+	A possibilidade de decisão do consumidor entre essas características variáveis caracteriza uma customização em massa, que proporciona uma produção em larga escala de produtos adaptados às necessidades individuais de cada consumidor. Quando combinamos essa customização em massa com desenvolvimento baseado em plataformas (uma plataforma é uma base tecnológica usada para a construção de outras tecnologias ou processos) alcançamos o reúso de uma base tecnológica comum. Assim podemos entregar ao consumidor um carro com as características que ele deseja, ou muito próximas delas de uma maneira mais fácil e mais barata do que projetar e construir desde o início um modelo de carro específico para o cliente.
+	
+	Essas ideias foram utilizadas na área de desenvolvimento de software, e assim chegamos na criação de Linhas de Produto de Software (LPS). Segundo \cite{van2005software} Linhas de Produto de Software referem-se a técnicas de engenharia para a criação de sistemas de software similares a partir de um conjunto compartilhado de partes do software, usando uma forma sistemática para a construção de aplicações. Algumas das abordagens que botam em prática essas técnicas serão detalhadas ao longo dessa seção. Seguindo a mesma referência, a engenharia de LPS é um paradigma para desenvolver aplicações de software (sistemas intensivos de software e produtos de software) usando plataformas e customização em massa, como já vimos anteriormente.
+
+	A definição de \cite{clements2002software} diz que uma LPS é um conjunto de sistemas intensivos de software que compartilham um conjunto comum de \textit{features} gerenciáveis, as quais satisfazem necessidades específicas de um segmento específico de mercado ou missão, que são desenvolvidos a partir de um conjunto de recursos comuns segundo um processo definido. De acordo com \cite{czarnecki2000generative}, uma \textit{feature} (neste contexto, usualmente traduzida como ``característica'') é uma propriedade do sistema que é relevante para algum \textit{stakeholder} e que é usada para capturar pontos em comum ou para discriminar entre produtos em uma linha de produtos. Esse conceito e sua importância serão discutidos mais detalhadamente na próxima seção. 
+
+	Complementando a definição dada anteriormente, um \textit{stakeholder} é um indivíduo que tem um interesse no domínio, como por exemplo: gerentes técnicos e de marketing, programadores, usuários finais e clientes. Um domínio por sua vez é um corpo especializado de conhecimento, ou uma área de especialização, ou uma coleção de funcionalidades relacionadas. Na Seção~\ref{sec:config} discutiremos a influência dos \textit{stakeholders} no processo de configuração de produtos em uma LPS.
+
+	A Figura~\ref{fig:lps} ilustra a ideia básica do processo de desenvolvimento de uma LPS: a partir de uma base de recursos e através de um conjunto de decisões de produtos, passando pela fase de produção propriamente dita, temos como resultado um grupo de produtos especializados de acordo com as características escolhidas pelo(s) cliente(s). 
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=25em]{img/lps.jpg}
+\caption{Processo de geração de produtos em uma LPS.}%Introduction to the Emerging Practice of Software Product Line Development Charles W. Krueger %http://www.methodsandtools.com/archive/archive.php?id=45
+\label{fig:lps}
+\end{figure}
+
+	As principais vantagens do uso de LPS são: menor custo de desenvolvimento (é necessário um investimento inicial, porém seu retorno é obtido em uma média de três sistemas), melhora na qualidade do software (devido ao reúso) e redução de \textit{time-to-market} (tempo entre a concepção de um produto e a sua disponibilização para venda, devido a menores ciclos de desenvolvimento). Dentre outras vantagens podemos citar: redução de esforço para manutenção, melhor estimação de custos e os benefícios aos consumidores (melhor qualidade e menor preço).
+
+	Entretanto, existem algumas desvantagens na utilização dessas técnicas: alto risco devido ao investimento inicial (que pode ser inútil se requerimentos importantes mudarem), maior \textit{time-to-market} para o primeiro produto baseado na arquitetura da LPS e a necessidade de engenheiros especializados, junto com um gerenciamento técnico e organizacional.
+
+	Existem três atividades essenciais para o desenvolvimento de LPS \cite{clements2002software}. Estas são detalhadas a seguir.
+\begin{itemize}
+	\item Desenvolvimento de Recursos de Núcleo (\textit{Core Asset Development}): Recursos de núcleo são os artefatos e recursos reusáveis que formam a base da LPS e podem incluir: a arquitetura, documentação, especificações, componentes reusáveis de software e casos de teste, entre outros. O objetivo desta atividade é o estabelecimento de uma capacidade de produção de produtos. Também é chamado de engenharia de domínio.
+	\item Desenvolvimento de Produto (\textit{Product Development}): O objetivo dessa atividade, como seu nome sugere, é o desenvolvimento de um produto que atenda a um nicho de consumidores ou de mercado. Ela depende de três fatores: do escopo da linha de produção (descrição dos produtos que constituem a linha de produção ou que a linha de produção é capaz de incluir), da base de recursos de núcleo (todos recursos de núcleo que formam a base para a produção dos produtos) e do plano de produção (determina como os produtos são produzidos a partir dos recursos de núcleo). Também é chamado de engenharia de aplicação.
+	\item Gerenciamento (\textit{Management}): Seu objetivo principal é a distribuição de recursos, coordenação e supervisionamento das outras atividades, e é dividido em dois tipos. O gerenciamento organizacional identifica as restrições de produção e determina a estratégia de produção. O gerenciamento técnico (ou de projeto) por sua vez supervisiona as outras duas atividades para garantir que os responsáveis pela construção dos recursos de núcleo e dos produtos estão envolvidos nas atividades necessárias, seguem os processos definidos pela linha de produção e coletam dados suficientes para controlar o progresso.
+\end{itemize} 
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=20em]{img/atividadesessenciaislps.jpg}
+\caption{As três atividades essenciais para o desenvolvimento de uma LPS.}% \cite{clements2002software}}
+\label{fig:atividadesessenciaislps}
+\end{figure}
+
+	Na Figura~\ref{fig:atividadesessenciaislps} retirada de \cite{clements2002software}, cada círculo representa uma das atividades essenciais. Todas as três atividades são conectadas entre si e estão em movimento constante. Elas são altamente iterativas e podem ocorrer em qualquer ordem.
+
+	Existem três abordagens para o desenvolvimento de LPS \cite{krueger2002easing}:
+\begin{itemize}
+	\item Proativa: Considera todos os sistemas desenvolvidos anteriormente e começa a produção com o desenvolvimento dos recursos de núcleo. 
+	\item Reativa: A linha de produto aumenta incrementalmente devido à demanda por novos produtos ou novos requisitos para produtos existentes.
+	\item Extrativa: Características comuns e variáveis são extraídas de sistemas existentes para formar uma nova LPS. 
+\end{itemize} 
+	
+	Essas abordagens podem ser atacadas incrementalmente e raramente são lineares. Além disso, elas não são necessariamente mutualmente exclusivas, como por exemplo, podemos iniciar utilizando a abordagem extrativa e depois mudarmos para a reativa, a fim de evoluir a linha de produto ao longo do tempo.
+
+	
+\section{Modelo de Features}\label{sec:modelo}
+
+	Para representarmos o conjunto de \textit{features} disponíveis em uma LPS, é comum usarmos um modelo de \textit{features} (ou modelo de características) \cite{kang1990feature}. Seu objetivo é a modelagem das propriedades comuns e variáveis dos produtos possíveis de uma LPS, incluindo suas interdependências. Complementando a descrição dada na seção anterior, uma \textit{feature} é uma característica do sistema que é visível para um \textit{stakeholder}. Ela permite a expressão de partes comuns e variáveis entre as instâncias e representa requisitos reusáveis e configuráveis. Uma \textit{feature} pode ser \cite{czarnecki2000generative}:
+\begin{itemize}
+	\item obrigatória: Deve estar presente em todos os produtos;
+	\item opcional: Pode ou não estar presente em um produto;
+	\item alternativa: Deve estar presente de forma exclusiva (analogamente à operação lógica \textit{XOR}), ou seja, apenas uma entre um conjunto de \textit{features} deve ser escolhida;
+	\item relação de Ou: Deve estar presente de forma inclusiva (analogamente à operação lógica \textit{OR}), isto é, pelo menos uma deve ser escolhida, mas podemos incluir até o conjunto todo.
+\end{itemize} 
+	
+	Além disso, podemos definir restrições entre certas combinações de \textit{features} existentes. Desse modo podemos garantir que uma determinada \textit{feature} não poderá estar presente no produto se uma outra \textit{feature} não estiver. Também podemos criar relações entre \textit{features} de maneira que as tornem mutualmente excludentes. Esses são apenas dois exemplos do que podemos garantir com a criação de restrições.
+	
+	Como uma \textit{feature} pode ter \textit{sub-features} (ou seja, ter \textit{features} que sejam suas filhas), esse conjunto das \textit{features} de um produto é organizado na forma de uma árvore e é chamado de modelo de \textit{features}. A Figura~\ref{fig:exmodelofeatures} apresenta algumas possibilidades de relacionamento entre as \textit{features} através de um exemplo abstrato contendo \textit{features} com nomes não significativos, porém para um modelo de produtos concretos o funcionamento seria o mesmo, mudando apenas o nome dos nodos. Ela foi gerada utilizando um plug-in para a IDE (\textit{Integrated Development Environment}) Eclipse chamado FeatureIDE\footnote{\url{http://wwwiti.cs.uni-magdeburg.de/iti_db/research/featureide/}}, que será detalhado no capítulo seguinte, junto com outras tecnologias relacionadas.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=22em]{img/exmodelofeatures.jpg}
+\caption{Exemplo de um Modelo de \textit{Features}.}
+\label{fig:exmodelofeatures}
+\end{figure}
+
+	No exemplo descrito na Figura~\ref{fig:exmodelofeatures} podemos observar uma árvore composta de nodos e arestas. O nodo mais acima (chamado de Exemplo), isto é, a raiz da árvore, representa um conceito. Ele é abstrato e não é uma \textit{feature} propriamente dita, e normalmente serve de referência para a LPS representada no modelo. O restante dos nodos são concretos e representam todas as \textit{features} contidas no modelo. A relação definida pelas arestas é intuitiva: se um nodo está abaixo de outro e ligado a ele através de uma aresta, significa que ele é considerado filho do nodo que está acima. Assim sendo, para o nodo filho estar presente no produto, o nodo pai também deve estar presente. Além disso, um nodo pode ter mais de um filho, isto é, ser pai de um grupo de \textit{features}.	
+
+	\textit{Features} obrigatórias são marcadas com um círculo preenchido em cima de seu nome (nodo F1), e as opcionais, por sua vez, são marcadas com um círculo vazio (nodos F2, F8 e F9). Um conjunto de \textit{features} alternativas é representado por um arco não preenchido que conecta todas as \textit{features} do grupo (nodos F3 e F4). De maneira semelhante, um conjunto de \textit{features} ligadas entre si através de uma relação de ou é expresso com um arco conectando as \textit{features} do grupo, porém diferentemente do grupo de \textit{features} alternativas, este arco é preenchido (nodos F5, F6 e F7).
+
+	Abaixo da árvore estão listadas as restrições presentes no modelo. Foram usados alguns símbolos nestas notações: o símbolo de implicação ($\Rightarrow$), o operador se e somente se ($\Leftrightarrow$), o de ou lógico ($\vee$) e o negativo ($\neg$). Também é possível usar o operador de e lógico ($\wedge$), porém ele não está presente nesse exemplo. Através de algumas restrições podemos garantir várias relações entre as \textit{features} presentes no modelo.
+
+	A primeira restrição nos diz que os nodos F8 e F6 devem ambos estar presentes, ou nenhum deles pode estar presente. É importante ressaltar que para o nodo F8 estar presente, o seu nodo pai (F3) também deve estar presente. Desse modo, caso selecionarmos o nodo F6, isso implicará na inclusão dos nodos F8 e F3, e além disso, na exclusão do nodo F4, pois ele possui uma relação de alternativa com o nodo F3. Devido a essas relações, os nodos F4 e F8 são conflitantes, pois apenas um deles pode estar presente nesse exemplo. A segunda restrição garante uma relação de dependência entre os nodos F7 e F9, de modo que o nodo F9 só pode estar presente se o nodo F7 também estiver. Entretanto, o contrário não é verdadeiro, pois podemos selecionar o nodo F7 e não selecionar o nodo F9. Uma forma de lermos essa restrição pode ser: a ausência do nodo F7 implica na ausência do nodo F9. A terceira e última restrição define que caso o nodo F3 seja selecionado, obrigatoriamente devemos selecionar o nodo F6, ou o nodo F7, ou ambos. Caso a operação entre os dois nodos fosse a de e lógico ($\wedge$), isso implicaria que necessariamente os dois nodos deveriam estar presentes.
+
+	O objetivo desse pequeno exemplo foi mostrar como podemos representar o conjunto de \textit{features} de uma LPS de uma maneira de fácil compreensão. Também mostramos algumas das relações que podemos garantir entre as \textit{features} presente no modelo, seja por meio da escolha do tipo delas ou pela criação de restrições.
+
+
+\section{Recomendação de Configurações baseada em Preferências}\label{sec:config}
+
+	Agora que já mostramos a organização e o funcionamento de um modelo de \textit{features}, podemos falar sobre a configuração de produtos a partir de um modelo definido. Uma configuração de um modelo de \textit{features} é a seleção de um conjunto de \textit{features} contidas nesse modelo. Quando esta seleção de \textit{features} respeita as restrições presentes no modelo ela é chamada de configuração válida, caso contrário é chamada de inválida. Os indivíduos responsáveis pelas configurações são denominados \textit{stakeholders}, que podem ser clientes que financiam o produto, usuários, entre outros (como mencionado na Seção~\ref{sec:linhas}). Dado que modelos de \textit{features} podem ter um grande número de \textit{features} disponíveis para seleção e um número exponencial de configurações possíveis, escolher uma configuração adequada pode ser não trivial e requer suporte computacional \cite{mendonca2010decision}. Isso nos sugere que a quantidade de configurações possíveis que podemos ter com modelos mais complexos pode tornar o processo de configuração muito custoso computacionalmente.
+	
+	A ferramenta apresentada neste trabalho permite a especificação de configurações associadas a uma LPS. Entretanto, essas configurações não são as usualmente utilizadas, mas configurações onde novos tipos de preferências baseadas no metamodelo da nova abordagem \cite{jacob} são especificadas. Além disso, recomendações são realizadas que resultam nessas configurações tradicionais. %Assim, o SACRES 2.0 tem como parte de sua infraestrutura uma ferramenta para o gerenciamento de modelos de \textit{features}. 
+	%Foram analisadas diversas ferramentas a fim de encontrar o melhor candidato para a integração com o nosso plug-in, entre elas citamos: SPLOT\footnote{\url{http://www.splot-research.org/}}, XFeature\footnote{\url{http://www.pnp-software.com/XFeature/}}, FMP\footnote{\url{http://gsd.uwaterloo.ca/fmp}} e FeatureIDE\footnote{\url{http://wwwiti.cs.uni-magdeburg.de/iti_db/research/featureide/}}. As três primeiras carecem de algumas funcionalidades desejadas na nossa implementação, por isso foram descartadas e o FeatureIDE foi escolhido. Dessa maneira, o SACRES 2.0 tem como objetivo a integração das funcionalidades do protótipo SACRES com o ambiente de gerenciamento de modelos de \textit{features} fornecido pelo FeatureIDE.
+		
+	O plug-in SPLConfig \cite{machado2014splconfig} também visa a recomendação automática de configurações ótimas maximizando a satisfação dos clientes e foi implementado de forma integrada com o FeatureIDE, porém não suporta a participação de múltiplos \textit{stakeholders} no processo de configuração de um mesmo produto. Ele mantém o foco em outros requisitos e limitações, como custo, benefício do consumidor e orçamento, e utiliza um algoritmo baseado em busca para encontrar a melhor solução. Em outras palavras, procura ajudar os negócios da empresa através da busca de um conjunto de \textit{features} que equilibra custo e satisfação de consumidor dado um determinado orçamento.
+
+%citar os trabalhos relacionados? ou citar na introdução e apenas relembrar aqui? <-
+	Neste trabalho usaremos o conceito da existência de múltiplos \textit{stakeholders} envolvidos no processso de configuração de um mesmo produto. A ideia básica é um cenário onde temos um modelo de \textit{features} e múltiplos \textit{stakeholders} que expressam suas preferências através de configurações desse modelo, e o resultado esperado é uma configuração final que satisfaça da melhor maneira os \textit{stakeholders} envolvidos. A participação de mais de um \textit{stakeholder} nesse processo o torna mais complicado, pois alguns problemas podem surgir, como a ocorrência de preferências conflitantes entre eles, como por exemplo, quando a configuração de um \textit{stakeholder} contém uma feature que um segundo \textit{stakeholder} gostaria que não estivesse presente no produto.
+
+	Um simples exemplo de modelo mostrado na Figura~\ref{fig:exmodelofeatures} criado no FeatureIDE com nove \textit{features} (excluindo a raiz da árvore) e com três restrições, possui 13 possibilidades de configuração válidas. Essa quantidade de configurações, por menor que possa parecer, pode gerar uma dificuldade na recomendação de uma configuração única que satisfaça razoavelmente todos os \textit{stakeholders} envolvidos. Na Figura~\ref{fig:configurations} podemos obervar algumas configurações que foram geradas a partir desse modelo. 
+	
+%\begin{figure}[h]
+%\centering
+%\includegraphics[width=35em]{img/configurations.jpg}
+%\caption{Algumas configurações possíveis do Exemplo dado na Figura~\ref{fig:exmodelofeatures}.}
+%\label{fig:configurations}
+%\end{figure}
+
+\begin{figure}[h]
+\center
+\subfigure[\label{fig:c1}]{\includegraphics[width=4.8cm]{img/c1.jpg}}
+~
+\subfigure[\label{fig:c2}]{\includegraphics[width=4.8cm]{img/c2.jpg}}
+~
+\subfigure[\label{fig:c3}]{\includegraphics[width=4.8cm]{img/c3.jpg}}
+\caption{Algumas configurações possíveis do Exemplo dado na Figura~\ref{fig:exmodelofeatures}.}
+\label{fig:configurations}
+\end{figure}
+
+	A configuração da Figura~\ref{fig:c1} está em branco, isto é, não sofreu nenhum tipo de configuração (assinaladas através do símbolo $\checkmark$ ou de um quadrado azul preenchido) por parte de um \textit{stakeholder}, e nela podemos observar que o FeatureIDE calculou que este modelo possui 13 configurações válidas. Entretanto essa configuração não é válida (notar a palavra \textit{invalid} entre os parênteses), pois nenhuma \textit{feature} dos grupos de alternativas e de relação de ou foi escolhida. As configurações da Figura~\ref{fig:c2} e da Figura~\ref{fig:c3} são válidas, porém teríamos problemas em recomendar uma única configuração que satisfaça esses dois \textit{stakeholders}, porque elas possuem preferências conflitantes, por exemplo: o \textit{stakeholder} da Figura~\ref{fig:c2} prefere a \textit{feature} F3, enquanto o da a Figura~\ref{fig:c3} prefere a F4, e essas duas \textit{features} não podem estar presentes na configuração ao mesmo tempo devido a relação de alternativa entre elas. Do modo como foram expressas essas preferências, qualquer configuração proposta para satisfazer ambos os \textit{stakeholders} não seria suficiente, pois um deles teria que abrir mão de uma ou mais preferências que ele exigiu que fossem selecionadas.
+
+\subsection{Metamodelo Utilizado}\label{sec:metamodelo}
+	
+	Uma solução para o problema de configuração de modelos de \textit{features} a partir de preferências de múltiplos \textit{stakeholders} foi proposta como trabalho desenvolvido \cite{jacob}. O trabalho recém citado foi usado amplamente como base para a escrita deste capítulo, de modo que resolvemos omitir todas ocorrências de referências a ele ao longo do texto a seguir para facilitar a legibilidade. A implementação do protótipo desenvolvido no trabalho mencionado será discutida mais detalhadamente na Seção~\ref{sec:sacres}.
+	
+	Existem duas maneiras principais de expressar preferências: qualitativa, definindo uma ordem de importância entre as preferências, e quantitativa, definindo um grau de preferência para as \textit{features}. O metamodelo definido no trabalho citado possibilita que os \textit{stakeholders} expressem suas preferências quantitativas através de um valor numérico que representa o quanto eles desejam que uma \textit{feature} esteja ou não presente no produto.
+
+	Temos dois tipos de restrições definidas: \textit{hard} e \textit{soft}. Ambas podem ser tanto positivas quanto negativas. As restrições do tipo \textit{hard} positivas indicam que o \textit{stakeholder} deseja que uma determinada \textit{feature} faça parte da configuração. Quando um \textit{stakeholder} deseja que a \textit{feature} não faça parte da configuração, ele expressa uma restrição \textit{hard} negativa. Já as restrições do tipo \textit{soft} são descritas como um número real no intervalo [-1,1]. Elas representam o grau de preferência do \textit{stakeholder} sobre uma \textit{feature}, ou seja, é indicado o quanto esse \textit{stakeholder} gostaria que essa \textit{feature} estivesse presente na configuração, no caso de uma restrição \textit{soft} positiva, ou o quanto ele gostaria que não estivesse presente na configuração, no caso de uma restrição \textit{soft} negativa. Quanto maior o valor escolhido, ou seja, quanto mais próximo de 1, maior é a intenção de que a \textit{feature} faça parte da configuração e quanto mais próximo de -1, maior é a intenção de que ela não faça parte da configuração. O valor zero indica indiferença. 
+
+	Dessa forma podemos dizer que uma configuração de um \textit{stakeholder} é composta por um conjunto de restrições \textit{hard} positivas e negativas e por um conjunto de restrições \textit{soft} positivas e negativas associados a um modelo de \textit{features}. Em outras palavras, uma configuração de um \textit{stakeholder} é uma tupla $\mathnormal{sh\char`_cfg = \langle fm, HC^+, HC^-, sc \rangle}$ onde $\mathnormal{fm}$ é o modelo de \textit{features} associado com a configuração do \textit{stakeholder}, $HC^+$ é o conjunto de \textit{features} que devem estar presentes na configuração, $HC^-$ é o conjunto de \textit{features} que não devem estar presentes e $\mathnormal{sc:Feature \rightarrow}$ [-1,1] é uma função que especifica o grau de preferência sobre as \textit{features}, usando restrições do tipo \textit{soft}. É válido ressaltar que as preferências definidas nessas configurações devem obedecer as restrições definidas no modelo de \textit{features}.
+	
+\begin{table}[h]
+\begin{center}
+    \begin{tabular}{| c | c | c | c | c || c |}
+    \hline
+    Feature & SH1 & SH2 & NSH1 & NSH2 & Recomendação \\ \hline \hline
+    F1 & + & + & + & + & $\checkmark$  \\ \hline
+    F2 & + & + & + & + & $\checkmark$ \\ \hline
+    F3 & + &  & + & & $\checkmark$ \\ \hline
+	F4 &  & + & & 0.6 &  \\ \hline
+    F5 &  & + & -0.5 & 0.75 & $\checkmark$ \\ \hline
+    F6 & + &  & 0.4 & - &  \\ \hline
+	F7 & + & + & 0.75 & + & $\checkmark$ \\ \hline
+    F8 & + &  & 0.25 & -0.1 & \\ \hline
+    F9 &  & + & & + & $\checkmark$ \\ \hline
+    \end{tabular}
+	%\caption{Recomendação de configuração após adaptação das preferências do exemplo anterior}
+	%\caption{Recomendação de configuração com preferências adaptadas do exemplo anterior}
+	\caption{Recomendação de configuração após adaptação de preferências.}
+	\label{tab:tabmodelo}
+\end{center}
+\end{table}
+
+	A Tabela~\ref{tab:tabmodelo} visa unir os exemplos mostrados até agora, através da apresentação das configurações dos dois \textit{stakeholders} da Figura~\ref{fig:configurations} como um grupo de \textit{stakeholders} que expressaram preferências sobre o modelo da Figura~\ref{fig:exmodelofeatures}. As colunas SH1 e SH2 se referem às preferências do \textit{stakeholder} da Figura~\ref{fig:c2} e do \textit{stakeholder} da a Figura~\ref{fig:c3}, respectivamente. O símbolo + representa restrições do tipo \textit{hard} positivas, enquanto o símbolo - representa restrições do tipo \textit{hard} negativas. Foram atribuídas restrições \textit{hard} às preferências definidas na Figura~\ref{fig:configurations}, porém é impossível encontrar uma configuração que satisfaça ambos \textit{stakeholders} devido à existência de conflitos entre as preferências (as \textit{features} F3 e F4 são mutuamente excludentes). Então as configurações foram refeitas (colunas NSH1 e NSH2) adaptando as preferências utilizando também o conceito de restrições do tipo \textit{soft}, representadas por um número positivo ou negativo. Assim sendo, foi possível recomendar um conjunto de \textit{features} (representadas por $\checkmark$ na última coluna) que constitui uma configuração válida.
+	
+\subsection{Satisfação de Stakeholder}\label{sec:shsat}
+
+	Agora que definimos o metamodelo utilizado, temos que pensar em como vamos identificar uma configuração que seja ótima levando em consideração as preferências selecionadas individualmente pelo grupo de \textit{stakeholders} envolvidos. Para isso, devemos estabelecer o quanto uma configuração satisfaz um \textit{stakeholder}. Primeiramente, vamos excluir as configurações válidas que não podem ser consideradas soluções ótimas para o nosso problema. Fazemos isso a partir do uso das restrições do tipo \textit{hard} descritas anteriormente. Uma configuração é excluída caso: tenha pelo menos uma \textit{feature} associada a uma restrição \textit{hard} positiva que não esteja no conjunto de \textit{features} selecionadas e/ou tenha pelo menos uma \textit{feature} associada a uma restrição \textit{hard} negativa que esteja no conjunto de \textit{features} selecionadas. Isso elimina conflitos entre configurações de \textit{stakeholders} cujas preferências \textit{hard} escolhidas impossibilitariam a satisfação de preferências \textit{hard} de outro(s) \textit{stakeholder(s)}, como no caso de um deles requerer uma determinada \textit{feature} e o outro achar inaceitável sua presença na configuração.
+
+	Após o processo de exclusão de configurações, obtemos um conjunto cujos membros são todas configurações válidas, com exceção das configurações que para as preferências de pelo menos um \textit{stakeholder} existam restrições \textit{hard} insatisfeitas. Desse modo, qualquer configuração desse conjunto está apta a ser recomendada como configuração ótima. Denominamos esse conjunto como conjunto de consideração. 
+	
+	Para medirmos o nível de satisfação de um \textit{stakeholder} em relação à uma configuração desse conjunto usaremos as restrições do tipo \textit{soft}. Uma restrição \textit{soft} pode ser satisfeita de duas maneiras: quando o grau de preferência for positivo e a \textit{feature} associada a ela está presente no conjunto de \textit{features} selecionadas ou quando o grau de preferência for negativo e a \textit{feature} associada a ela não está presente no conjunto de \textit{features} selecionadas. Detalhando melhor a definição, um conjunto de \textit{features} $\mathnormal{SC_{Sat}(cfg, sh\char`_cfg)}$ $\subseteq$  $\mathnormal{sh\char`_cfg[fm[Features]]}$ é denominado de conjunto de restrições \textit{soft} satisfeitas de um \textit{stakeholder} quando para todo $\mathnormal{f \in SC_{Sat}}$, ou $\mathnormal{f \in cfg[F]}$ e $\mathnormal{sc(f) >}$ 0, ou  $\mathnormal{f \notin cfg[F]}$ e $\mathnormal{sc(f) <}$ 0. 
+	
+	A partir desse novo conjunto de restrições \textit{soft} satisfeitas podemos definir o que será chamado de satisfação de \textit{stakeholder}: é uma função $\mathnormal{sh\char`_sat: Cfg \times SH\char`_Cfg \rightarrow \mathbb{R}}$ que indica o quanto uma determinada configuração $\mathnormal{cfg \in Cfg}$ é satisfeita por uma configuração de \textit{stakeholder} $\mathnormal{sh\char`_cfg \in SH\char`_Cfg}$. A satisfação é a soma de todas restrições \textit{soft} satisfeitas, como mostrado abaixo.
+	
+	\begin{center}$\mathnormal{sh\char`_sat(sh\char`_cfg,cfg)}$ = $\displaystyle \sum_{f \in SC_{Sat}(sh\char`_cfg, cfg)} |sc(f)|$\end{center}
+
+%A partir desse novo conjunto de restrições \textit{soft} satisfeitas podemos calcular, através da soma dessas restrições \textit{soft} satisfeitas, um número que indica o quão satisfeito um determinado \textit{stakeholder} está em relação a uma determinada configuração, que será chamado de satisfação de \textit{stakeholder}.
+	
+%A partir desse novo conjunto de restrições \textit{soft} satisfeitas podemos calcular o quão satisfeito um \textit{stakeholder} ficará com uma configuração. Isso é feito através da soma das restrições \textit{soft} satisfeitas, e o resultado é um número que indica o grau de satisfação de um determinado \textit{stakeholder} atribuído a uma determinada configuração. 
+	
+\subsection{Estratégias de Escolha Social}\label{sec:escolhasocial}
+
+	Já sabemos o modo como cada \textit{stakeholder} avalia uma configuração do conjunto de consideração. Essa informação é expressa através de um número entre zero e a quantidade de \textit{features} existentes no modelo. Portanto, esse número pode ser interpretado de duas maneiras: como classificação para cada configuração (através da atribuição de pontos) e como ordenação entre as configurações. Apenas com esses dados não podemos garantir a recomendação de uma configuração que satisfaça suficientemente um grupo de \textit{stakeholders}, então foram usadas sete estratégias de escolha social diferentes para resolver esse problema. Todas elas escolhem apenas uma solução dentre todas configurações contidas no conjunto de consideração, que será classificada como ótima. A seguir descrevemos brevemente cada estratégia.
+
+\begin{itemize}
+	\item \textit{Average (AVG)}: Se preocupa em encontrar a satisfação global máxima dos \textit{stakeholders}. É calculada a média das satisfações individuais dos \textit{stakeholders}, então a maior média entre elas é selecionada.
+	\begin{center}max $\displaystyle \sum_{sh\char`_cfg \in SH\char`_Cfg} \frac{sh\char`_sat(cfg,sh\char`_cfg)}{|SH\char`_Cfg|}$\end{center}	
+	\item \textit{Multiplicative (MUL)}: Também se preocupa em encontrar a satisfação global máxima dos \textit{stakeholders}, porém ela multiplica as satisfações individuais dos \textit{stakeholders} e seleciona a maior multiplicação calculada.
+	\begin{center}max $\displaystyle \prod_{sh\char`_cfg \in SH\char`_Cfg} sh\char`_sat(cfg,sh\char`_cfg)$\end{center}
+	\item \textit{Most Pleasure (MP)}: Se preocupa em encontrar a melhor satisfação de \textit{stakeholder} possível, então ela seleciona o máximo entre o máximo de satisfações individuais de \textit{stakeholders}.
+	\begin{center}max max $\mathnormal{sh\char`_sat(cfg,sh\char`_cfg)}$\end{center}
+	\item \textit{Least Misery (LM)}: Se preocupa em não deixar os \textit{stakeholders} muito insatisfeitos, o que pode ocorrer com as três estratégias acima. Para isso, ela seleciona o máximo entre o mínimo de satisfações individuais de \textit{stakeholders}.
+	\begin{center}max min $\mathnormal{sh\char`_sat(cfg,sh\char`_cfg)}$\end{center}
+	\item \textit{Borda Count (BC)}: Usa a satisfação do \textit{stakeholder} para ordenar as configurações. Assim temos uma classificação de configurações da satisfação mais alta (melhor) até a satisfação mais baixa (pior), e baseando-se nessa classificação cada configuração recebe um número de pontos. A pior configuração recebe 0 pontos, a segunda pior recebe 1 ponto e assim sucessivamente. Finalmente, os pontos de cada configuração individual de \textit{stakeholder} são somados e o máximo é selecionado.
+	\begin{center}max $\displaystyle \sum_{sh\char`_cfg \in SH\char`_Cfg} rank(cfg,sh\char`_cfg)$\end{center}
+	\item \textit{Copeland Rule (CR)}: Também considera a relação de ordenação dada pela satisfação do \textit{stakeholder}. Ela seleciona a configuração que tem a máxima diferença entre o quão frequente uma configuração ganha de outras configurações e o quão frequente ela perde. $\mathnormal{Win(cfg)}$ é o conjunto de outras possíveis configurações $\mathnormal{cfg'}$ tais que $\mathnormal{cfg}$ ganha de $\mathnormal{cfg'}$ segundo a maioria de votos levando em conta todos os \textit{stakeholders}, isto é, de acordo com a concordância da maioria dos \textit{stakeholders} de que $\mathnormal{cfg}$ ganha de  $\mathnormal{cfg'}$. Uma $\mathnormal{cfg}$ ganha de uma $\mathnormal{cfg'}$ de acordo com uma configuração de \textit{stakeholder} $\mathnormal{sh\char`_cfg}$ se $\mathnormal{sh\char`_sat(sh\char`_cfg, cfg) > sh\char`_sat(sh\char`_cfg,cfg')}$. $\mathnormal{Lose(cfg)}$, por sua vez, é o conjunto das outras configurações possíveis $\mathnormal{cfg'}$ tal que $\mathnormal{cfg'}$ ganha de $\mathnormal{cfg}$.
+	\begin{center}max $\mathnormal{|Win(cfg)| - |Lose(cfg)|}$\end{center}
+	\item \textit{Average Number of Preferences (ANP)}: Considera apenas a satisfação das restrições \textit{soft}, ignorando os graus de preferência dos \textit{stakeholders}. Seleciona a configuração com o número máximo de restrições \textit{soft} satisfeitas.
+	\begin{center}max $\displaystyle \sum_{sh\char`_cfg \in SH\char`_Cfg} \frac{SC\char`_sat(cfg,sh\char`_cfg)}{|SH\char`_Cfg|}$\end{center}
+\end{itemize}
+
+	No caso de empate entre configurações dentro de uma mesma estratégia, nos levando a mais de uma solução ótima, é escolhida a configuração com o menor número de \textit{features} selecionadas. Os \textit{stakeholders} podem ser indiferentes a certas \textit{features}, então quando não existe nenhuma preferência sobre uma \textit{feature}, isso indica que provavelmente ela não é necessária. Se persistir o empate, uma configuração é escolhida aleatoriamente. Também é válido comentar que cada estratégia funciona de uma maneira diferente das outras, porém uma mesma configuração ótima pode ser selecionada por mais de uma estratégia.
+	
+	Agora que apresentamos os fundamentos teóricos necessários para o entendimento do trabalho desenvolvido, seguimos com o próximo capítulo, que tem como objetivo a discussão das tecnologias (e das escolhas feitas sobre elas) que tornaram possível a realização deste trabalho.

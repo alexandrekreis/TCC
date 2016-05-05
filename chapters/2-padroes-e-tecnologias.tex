@@ -1,0 +1,492 @@
+\chapter{Padrões e Tecnologias de Videoconferência}\label{cha:padroes-e-tecnologias}
+
+	Segundo \cite{conferencingFundamentals}, as principais camadas de um sistema de conferência são:
+	
+	\begin{itemize}
+		\item Interface de usuário e de administrador;
+		\item Controle de Conferência: controle de criação/finalização de sessões, de roteamento de ligações e de alocações de recursos em geral;
+		\item Plano de Controle: controle de chegada/saída de conexões e da negociação de parâmetros da sessão de acordo com a capacidade do servidor de mídia;
+		\item Plano de Mídia: controle das \textit{streams} de mídia, administrando o transporte e a mixagem de áudio e vídeo.
+	\end{itemize}
+	
+	O principal desafio para interoperabilidade entre sistemas de videoconferência é considerar os diferentes Planos de Controle e de Mídia existentes. São essas camadas que definem de que maneira um sistema envia e recebe requisições para entrada e saída de usuários, bem como o modo no qual ele irá transmitir e receber áudio e vídeo. Um sistema de conferência com Plano de Controle e de Mídia flexíveis permitem que usuários utilizando diferentes equipamentos ou softwares de videoconferência - os chamados \textit{endpoints} - se conectem e se comuniquem de maneira transparente em uma sessão desse sistema.
+	
+	Como afirmado em \cite{kurose}, com a popularização das aplicações de tempo real, importantes órgãos, como o IETF e ITU, estabeleceram (e continuam estabelecendo) padrões para essa classe de aplicações. No contexto de videoconferência, padrões amplamente usados no Plano de Controle são os protocolos de sinalização SIP e H.323, os quais veremos na Seção~\ref{sec:sinalização}. Já no Plano de Mídia, dependemos tanto de padrões de transporte como de codificação de mídia (Seções~\ref{sec:transporte},~\ref{sec:codecs-audio} e~\ref{sec:codecs-video}). Já em termos de webconferência, a tecnologia que compõe o sistema determinará o escopo de padrões usados, como será detalhado na Seção~\ref{sec:tecnologias-webconf}.
+	
+	A seguir, portanto, são apresentados os principais padrões e tecnologias para sistemas de conferência.
+	
+
+\section{Protocolos de Sinalização}\label{sec:sinalização}
+
+    Os protocolos de sinalização têm como papel a implementação do Plano de Controle. 
+    Para isso:
+    
+    \begin{enumerate}
+         \item Determinam-se as portas onde o sistema irá aguardar conexões de \textit{endpoints}. Tais portas definem o \textbf{canal de sinalização} de um sistema de conferência;
+         
+         \item No momento em que um \textit{endpoint} se conecta no canal de sinalização, o Plano de Controle envia informações da capacidade de mídia do sistema, as quais o \textit{endpoint} deve respeitar. Esse passo estabelece a \textbf{negociação de mídia};
+         
+         \item Após essa negociação (bem-sucedida), o Plano de Controle e o \textit{endpoint} abrem um canal lógico para \textit{streaming} de mídia, e o \textit{endpoint} passa a se comunicar, então, com o Plano de Mídia, para enviar e/ou receber áudio/vídeo. O Plano de Controle será responsável por administrar esse canal lógico, avisando o Plano de Mídia se o endpoint sair da sessão, ou algum erro de conexão ocorrer.
+         
+    \end{enumerate}
+    
+     Como dito na introdução desse capítulo, existem dois principais padrões para a sinalização. O primeiro, H.323, foi estabelecido pelo ITU em 1996. O segundo, SIP, foi projetado pelo IETF e primeiramente definido no RFC 2543 em 1999.
+     
+     
+\subsection{Padrão H.323}\label{sec:h.323}
+	
+     Como afirmado em \cite{tanenbaum}, H.323, mais do que um protocolo específico, é uma visão geral da arquitetura de telefonia da Internet, bem como um encapsulador de diversos outros protocolos (que veremos no decorrer desse trabalho).
+     O padrão, primeiramente, define quatro tipos de unidades:
+     
+		\begin{itemize}
+			  \item \textbf{Terminais}: são os \textit{endpoints}, emissores e receptores de mídia. É a única unidade obrigatória;
+			  
+			  \item \textbf{\textit{Gatekeeper}}: define a \textit{zona} - conjunto de terminais que o gatekeeper irá administrar -, controlando quais \textit{endpoints} podem se comunicar entre si, provendo acesso e controlando a largura de banda utilizada pelos terminais;
+			  
+			  \item \textbf{\textit{Gateway}}: permite a interoperação com terminais que utilizam redes de telefonia ou outros tipos de rede (que não a internet). Na prática, ainda permite a interoperabilidade com terminais que utilizem SIP, em vez de H.323, para sinalização;
+			  
+			  \item \textbf{\textit{MCU}} \textit{(Multipoint Control Unit)}: sistema que permite que múltiplos terminais se conectem em uma sessão de conferência, distribuindo e mixando a mídia para os participantes.
+			  
+		 \end{itemize}
+		 
+		 \begin{figure}[h]
+			\centering
+			\includegraphics[width=24em, height=9em]{img/unidades-h323.png}
+			\caption{Unidades H.323}
+			\label{fig:unidades-h323}
+		 \end{figure}
+		  
+
+     \subsubsection{\textbf{H.225}}\label{sec:h225}
+     
+      	O protocolo H.225 define o canal de sinalização de uma sessão H.323, descrevendo, portanto, como uma chamada é iniciada, estabelecida e finalizada. 
+      	Um terminal iniciando uma chamada (daqui para frente chamado de \textit{caller}), deve, primeiramente, abrir uma conexão TCP com a unidade que se quer chamar (respectivamente, \textit{callee}), que estará esperando conexões na porta 1720. Um pacote H.225 é definido da seguinte forma:
+      	
+ 		 \begin{figure}[h]
+ 			\centering
+ 			\includegraphics[width=22em, height=8em]{img/pacote-h225.png}
+ 			\caption{Pacote H.225}
+ 			\label{fig:pacote-h225}
+ 		 \end{figure}
+ 		 
+ 		 \begin{itemize}
+ 		    \item \textit{Protocol Discriminator}: Número que identifica a mensagem como uma mensagem H.225. O valor desse campo é 8.
+ 		    \item \textit{Length of Call Reference Value}: comprimento do CRV, que pode ser 1 ou 2 bytes;
+ 		    \item \textit{Call Reference Value}: CRV é o número identificador único da chamada;
+ 		    \item \textit{Message Type}: tipo da mensagem que o pacote H.225 carrega (\textit{Setup Message, Connect, Alerting}, etc - definidos mais adiante).
+ 		    \item \textit{Information Elements}: espaço para parâmetros adicionais. Dependem do \textit{Message Type}.
+ 		 \end{itemize}
+ 		 
+ 		 A figura abaixo demonstra o estabelecimento de uma chamada H.323 básica:
+ 		 
+ 		 \begin{figure}[h]
+ 			\centering
+ 			\includegraphics[width=27em, height=19.6em]{img/conexao-h323-basica.png}
+ 			\caption{Estabelecimento de uma chamada H.323 básica}
+ 			\label{fig:conexao-h323-basica}
+ 		 \end{figure}
+ 		 
+ 		 \begin{enumerate}
+ 		    \item Após o estabelecimento da conexão TCP, o caller inicia a chamada, mandando um H.225 \textit{Setup Message}. Esse tipo de \textit{Message Type} carrega como parâmetro obrigatório o \textit{Bearer Capability}, que define a natureza da chamada: se é apenas de áudio ou uma chamada audiovisual.
+ 		    
+ 		    \item O \textit{callee} responde o \textit{Setup Message}, com um H.225 \textit{Alerting}, indicando ao \textit{caller} que o dispositivo chamado já iniciou o procedimento de alerta de que uma nova chamada chegou - em outras palavras, que o dispositivo está "tocando" (como um telefone; em inglês, \textit{Ringing}). Antes do \textit{Alerting}, outro tipo de \textit{Message Type} pode ocorrer (não é obrigatório) do \textit{callee} para o \textit{caller}: o \textit{Call Proceeding}. CP tem o objetivo de informar o caller que a chamada está em processo de ser estabelecida e que não será mais aceito novas mensagens para estabelecimento de chamada.
+ 		    
+ 		    \item O \textit{callee} também responde um \textit{Setup ACK}, indicando que o \textit{Setup Message} foi devidamente recebido.
+ 		    
+ 		    \item Quando a chamada é finalmente atendida, é mandado um H.225 \textit{Connect} para o \textit{caller}. É nesse momento que a conexão H.225 foi completamente estabelecida.
+ 		    
+ 		    \item Mensagens H.225 \textit{Notify} servem para troca de informações gerais entre \textit{caller} e \textit{callee} durante a chamada. Um uso é para o \textit{callee} indicar ao \textit{caller} o seu próprio \textit{Bearer Capability}, como indicado na Figura~\ref{fig:conexao-h323-basica}. 	
+ 		    
+ 		    \item Quando uma das partes envolvidas encerra a chamada, é enviado um H.225 \textit{Release Complete}. Com isso, o CRV, identificador único da chamada, é desalocado - assim como quaisquer outros recursos alocados - e pode ser reusado em outra chamada. O H.225 \textit{Release Complete} carrega consigo um código que determina qual foi o motivo do encerramento da chamada (a Recomendação ITU-T H.225.0 \cite{h225-recommendation} contém uma lista de todos os códigos de encerramento e seus significados).		     		    
+ 		 \end{enumerate}
+ 		 
+      \subsubsection{\textbf{H.245}}\label{sec:h245}
+      
+         O protocolo H.245 provê o mecanismo para a negociação de mídia e para a abertura dos canais RTP, onde os dados multimídia serão transmitidos/recebidos. Após o H.225 \textit{Setup Message}, o \textit{callee} pode usar o H.225 \textit{Call Proceeding}, \textit{Alerting} ou \textit{Connect} para enviar ao \textit{called} o IP e a porta para a abertura da sessão H.245. Quando o \textit{caller} recebe essas informações, é aberta uma conexão TCP entre as partes envolvidas, onde haverá, então, a negociação de mídia.
+      
+         Na figura abaixo, é demonstrado como é feita a negociação de mídia via sessão H.245:
+         \newline \newline \newline \newline \newline \newline \newline \newline
+         \newline \newline 
+      
+  		 \begin{figure}[h]
+  			\centering
+  			\includegraphics[width=26em, height=38em]{img/negociacao-h323-basica.png}
+  			\caption{Negociação de mídia H.323}
+  			\label{fig:negociacao-h323-basica}
+  		 \end{figure}     
+      
+  		 \begin{enumerate}
+  		    \item Após o estabelecimento da chamada - como visto anteriormente na Seção~\ref{sec:h225} - e da conexão TCP para a Sessão H.245, \textit{caller} e \textit{callee} trocam, primeiramente, 2 tipos de mensagens H.245: \textit{TCS} (\textit{Terminal Capability Set}) e \textit{MSD} (\textit{Master-Slave Determination}).
+  		    
+  		    \item \textit{TCS} contém a descrição da capacidade de mídia do remetente da mensagem. Inclui a lista de todos os codecs de áudio e vídeo suportados e suas características (tipos de payload, tempos de packetização, perfis e resoluções de vídeo, taxa de bits e de frames, etc - itens que veremos em~\ref{sec:codecs-audio} e~\ref{sec:codecs-video}). Também contém o \textit{Simultaneous Capability Set}, que define quais grupos de codecs podem ser usados simultaneamente. A parte que recebe o H.245 \textit{TCS} informa ao transmissor da mensagem o recebimento da mesma com um \textit{TCS ACK}.
+  		    		 		 
+	 		\item A troca de mensagens \textit{MSD} define quem irá ser o 'mestre' e o 'escravo' da sessão. O mestre será responsável por atribuir um ID para o canal lógico, gerar uma chave quando há encriptação de mídia, entre outras tarefas de admnistração do canal lógico. Uma mensagem \textit{MSD} contém um \textit{Terminal Type} (um número) e um aleatoriamente escolhido \textit{Determination Number}. Cada parte envolvida compara os números recebidos na mensagem \textit{MSD} com os seus próprios números e quem tiver o maior \textit{Terminal Type} será o mestre. Em caso de empate, o mestre será quem tiver o maior \textit{Determination Number}. Caso haja novamente um empate, ocorre uma nova negociação, com novas mensagens \textit{MSD}.
+	 		
+	 		\item Posteriormente à determinação do mestre e escravo, o \textit{caller} envia o H.245 \textit{OpenLogicalChannel} (\textit{OLC}), requisitando a abertura do canal lógico. O canal lógico, no contexto H.323, representa o caminho usado para a transmissão de mídia. A mensagem \textit{OLC} carrega consigo o codec de áudio e de vídeo que o \textit{caller} usará na transmissão, bem como as características de cada codec (como explicado no item 2).
+	 		Outros dados importantes do H.245 \textit{OLC} são as portas RTCP (mais detalhes na Seção~\ref{sec:rtp}) que serão usadas no contexto RTP e o \textit{LCN} (\textit{Logical Channel Number}), identificador único do canal lógico.
+	 		No exemplo da Figura~\ref{fig:negociacao-h323-basica}, tanto o \textit{caller} quanto o \textit{callee} enviam um \textit{OLC} requisitando um canal para transmitir áudio usando o codec G.722, e um outro \textit{OLC} requisitando um canal para transmitir vídeo H.264. \textit{Generic Video Capability}, transportada na mensagem \textit{OLC}, é uma estrutura H.245 específica para informar características do codec H.264.
+	 		Existem, ainda, outras mensagens H.245 específicas para controle de vídeo, como o \textit{Flow Control}, usado para reajustar a taxa de bits máxima, e o \textit{Miscellaneous Command}, utilizado para pausar, congelar, avançar a stream de vídeo, bem como fazer outros ajustes, como, por exemplo, alterar a resolução ou a taxa de frames.
+	 		
+	 		\item Quem recebe o \textit{OLC} deve examinar os detalhes do pedido de abertura do canal lógico, alocar os recursos necessários e responder com um H.245 \textit{OLC ACK}, contendo os IPs e as portas RTP e RTCP que serão usados para receber a mídia.
+	 		
+	 		\item Quando uma das partes envolvidas encerra a chamada, é enviado um H.245 \textit{Close Logical Channel} (\textit{CLC}), que deverá ser respondido com um \textit{CLC ACK}.
+	 		
+	 		\item H.245 \textit{End Session} é a mensagem que indica o fim da sessão. Após essa mensagem, não há mais trocas de nenhuma outra mensagem H.245 (portanto, não há ACK para \textit{End Session}).
+  		 \end{enumerate}
+  		 
+      \subsubsection{\textbf{H.323 \textit{Fast Connect Mode}}}\label{sec:h323-fast}
+      
+         No H.323 versão 2 existe a opção do \textit{Fast Connect Mode}. O \textit{caller} manda um H.245 \textit{OLC} com um codec sugerido dentro do H.225 \textit{Setup Message}. Se o \textit{callee} suportar \textit{Fast Connect Mode} e aceitar a sugestão do codec, será respondido um H.225 \textit{Connect} também tranportando um H.245 \textit{OLC}. Com isso, as partes envolvidas já têm as informações necessárias para estabelecer a conexão de mídia, diminuindo significantemente o número de mensagens requeridas para estabelecer a sessão H.323. Segundo \cite{conferencingFundamentals}, equipamentos de video H.323 geralmente não suportam \textit{Fast Connect Mode}.
+         
+ 		 \begin{figure}[H]
+ 			\centering
+ 			\includegraphics[width=26em, height=18em]{img/h323-fast.png}
+ 			\caption{H.323 \textit{Fast Connect Mode}}
+ 			\label{fig:h323-fast}
+ 		 \end{figure}        
+
+      \subsubsection{\textbf{Mais informações sobre H.323}}\label{sec:h323-mais infos}
+      
+         Para mais informações sobre o protocolo H.323, consulte \cite{h225-recommendation}, \cite{h323-recommendation}, \cite{h245-recommendation} e também \cite{conferencingFundamentals} (detalhes nas Referências deste trabalho).                     
+    
+\subsection{Padrão SIP}\label{sec:sip}
+	
+	Segundo \cite{tanenbaum}, muitos viam o H.323 como um típico produto de uma companhia de telecomunicação: grande, complexo e inflexível. Nessa situação, o IETF projeta o padrão SIP, que, em vez de uma suíte de protocolos, é um módulo único. O protocolo SIP é \textit{text-based}, apresentando todas as suas mensagens, atributos e métodos em ASCII. 
+	 O padrão, primeiramente, define os seguintes elementos:
+	
+		\begin{itemize}
+			  \item \textbf{\textit{User Agent}}: podem ser tanto os \textit{endpoints}, emissores e receptores de mídia, quanto servidores de controle de chama (abordados nos próximos itens). 
+			  Todo \textit{UA} é formado por um \textit{User Agent Client} (\textit{UAC}) - responsável por iniciar as transações (que também definiremos mais adiante)- e por um \textit{User Agent Server} (\textit{UAS}) - responsável pelas respostas dessas transações;
+			  
+			  \item \textbf{\textit{Proxy Server}}: Entidade que faz o roteamento de mensagens SIP. É responsável por determinar para onde mensagens SIP vão ser direcionadas (quais \textit{endpoints} ou servidores receberão determinada mensagem), provendo também autenticação e autorização de mensagens. Um PS \textit{stateful} armazena o histórico de todas as mensagens de uma transação, a fim de levantar dados para distribuição de sessões SIP em diferentes servidores e/ou para geração de estatísticas. Já um PS \textit{stateless} faz o roteamento de mensagens sem guardar quaisquer informações.
+			  
+			  \item \textbf{\textit{Redirect Server}}: Entidade que informa UAs para onde uma mensagem SIP deve ser encaminha. Um UA manda uma mensagem SIP, que deve ser entregue a outro UA, para o \textit{Redirect Server}. Este, então, retorna para o UA de origem o endereço alternativo do UA destino. Em posse da nova informação, o UA remetente remanda a mensagem SIP diretamente para o UA destino. Portanto, não é o \textit{Redirect Server} que faz o roteamento da mensagem (como o \textit{Proxy Sever} faria): o trabalho de fazer a nova ligação - utilizando o endereço certo advindo da resposta do RS - é do UA de origem.
+			  
+			  \item \textbf{\textit{Registrar Server}}: Entidade para onde os usuários enviam o pedido de registro. Usuários são registrados como URIs em um banco de dados, onde cada URI é associado com uma localização (normalmente o endereço IP desse usuário). Com isso, \textit{Proxy Servers} ou \textit{Redirect Servers} podem usar essa base de dados para executar suas tarefas.
+		\end{itemize}	
+	
+	Na figura abaixo, é demonstrado um diálogo SIP:
+	
+ 		\begin{figure}[h]
+ 			\centering
+ 			\includegraphics[width=30em, height=19.5em]{img/sip-dialog.png}
+ 			\caption{Diálogo SIP}
+ 			\label{fig:sip-dialog}
+ 		\end{figure}
+ 		
+ 		\begin{enumerate}
+ 			\item Começamos com o UA callee recebendo um \textit{INVITE} do UA Caller, para o início de uma chamada. Tipicamente, a porta que define o canal de sinalização SIP é a porta 5060 (podemos encontrar ambientes onde se usa a porta 5070 ou 5061 - esta última para sinalizações encriptadas). Um \textit{INVITE} tem a seguinte estrutura:
+ 			\newline \newline \newline \newline \newline \newline \newline \newline \newline \newline \newline \newline \newline
+			\begin{figure}[h]
+			    \centering
+			    \adjustbox{margin=1em,width=10.3cm,frame,center}
+			    {\begin{minipage}{1.05\linewidth}
+			        INVITE sip:UAcallee@172.27.14.53 SIP/2.0 \newline
+			        
+			        ! As linhas abaixos são os \textit{headers} SIP: \newline
+			        Via: SIP/2.0/UDP 172.27.14.4:5060;branch=8dJXAX9MDw \newline
+			        Max-Forwards: 70 \newline
+			        To: <sip:UAcallee@172.27.14.53> \newline
+			        From: <sip:UAcaller@172.27.14.4>;tag=ds17aa9bd4 \newline
+			        Call-ID: 11022705439144@172.27.14.4 \newline
+			        CSeq: 1 INVITE \newline
+			        Allow: INVITE, ACK, CANCEL, OPTIONS, BYE \newline
+			        Content-Length: 251 \newline
+			        Content-Type: application/sdp \newline
+			        
+			        ! Já as linhas abaixo estão no \textit{body} do INVITE SIP:\newline 
+			        v=0 \newline
+			        o=UACaller 1549546120 0 IN IP4 172.27.14.4 \newline
+			        s=ExampleSession \newline
+			        c=IN IP4 172.27.14.4 \newline
+			        t=0 0 \newline
+			        m=audio 49220 RTP/AVP 118 \newline
+			        a=rtpmap:118 Speex/16000/1 \newline
+			        m=video 5068 RTP/AVP 104 \newline
+			        a=rtpmap:104 H264/90000 \newline
+			        a=fmtp:104 max-fs=6336;max-mbps=190080;profile-level-id=42801e
+			    \end{minipage}}
+			    \caption{SIP Invite}
+			    \label{fig:sip-invite}
+			\end{figure}
+			
+			O INVITE é acompanhado do endereço de destino (no caso, o usuário 'UAcalle' que está no endereço IP 172.27.14.53) e tem os seguintes cabeçalhos:
+			
+			\begin{enumerate}
+			   \item \textit{Via}: indica como transportar a mensagem (no caso, usando UDP) e para onde as respostas dessa mensagem devem ir (IP e porta de destino). Ainda contém o \textit{branch}, identificador único da transação SIP. Uma transação, no contexto SIP, significa um \textit{Request} - requisição - seguido de suas \textit{Responses} - respostas (pode ser visto na Figura~\ref{fig:sip-dialog} que o ACK não está incluído na Transação 1, isso pois, em geral, ACK não é considerado parte de transações). Já um diálogo SIP é o conjunto de todas as transações entre 2 UAs. Nas Tabelas~\ref{tab:sip-requests} e~\ref{tab:sip-responses} são definidos os SIP \textit{Requests} e os SIP \textit{Responses} mais comuns segundo \cite{conferencingFundamentals};		   
+			  
+			   \begin{table}[h]
+				\begin{center}
+				 \resizebox{15.5cm}{!} {
+				    \begin{tabular}{| c | l |}    \hline
+				    \textbf{SIP Request} & \textbf{Descrição}   \\ \hline \hline
+				    INVITE &  Convida um UA para uma chamada.     \\ \hline
+				    BYE & Termina o diálogo SIP entre 2 UAs.       \\ \hline
+				    OPTIONS & Solicita informações das capacidades do UA remoto.      \\ \hline
+				    MESSAGE & Manda mensagens instantâneas (não faz parte de um diálogo).     \\ \hline
+					ACK & \makecell[l]{Confirma que o UA \textit{caller} recebeu uma \textit{Response} \\ definitiva (que não é da classe \textit{1xx}) sobre o seu pedido de INVITE.}     \\ \hline
+				    REGISTER & Solicitação para ser registrado em um servidor de registro.       \\ \hline
+				    CANCEL & Cancela um \textit{Request} corrente.       \\ \hline
+				    INFO & Método para UAs trocarem informações gerais durante uma sessão SIP.       \\ \hline
+				    PRACK & \makecell[l]{Age como um ACK temporário, onde um UA confirma que recebeu \\ alguma \textit{Response} provisória (da classe \textit{1xx})}       \\ \hline
+				    UPDATE & Atualiza o estado da sessão SIP.      \\ \hline
+				    SUBSCRIBE & \makecell[l]{Solicita inscrição para receber notificações da ocorrência de \\ determinado(s) evento(s) SIP.}      \\ \hline
+				    NOTIFY & Envia um evento de notificação para UAs inscritos.     \\ \hline
+				    REFER & \makecell[l]{Indica que um UA deve usar o endereço contido no REFER para refazer um \\ determinado \textit{Request}.}      \\ \hline
+				    \end{tabular}}
+					\caption{SIP Requests}
+					\label{tab:sip-requests}
+				 \end{center}
+				\end{table}
+				
+
+			   \begin{table}[h]
+				\begin{center}
+				    \begin{tabular}{| c | c | c |}    \hline
+				    \textbf{SIP Response Code} & \textbf{Reason} & \textbf{Response Class}  \\ \hline \hline
+				    100 & Trying & 1xx     \\ \hline
+				    180 & Ringing & 1xx       \\ \hline
+				    200 & OK & 2xx      \\ \hline
+				    301 & Moved permanently & 3xx     \\ \hline
+					302 & Moved temporarily & 3xx      \\ \hline
+				    400 & Bad Request & 4xx       \\ \hline
+				    600 & Busy & 6xx       \\ \hline
+				    603 & Decline & 6xx       \\ \hline
+				    604 & Does not exist & 6xx       \\ \hline				    				 
+				    \end{tabular}
+					\caption{SIP Responses}
+					\label{tab:sip-responses}
+				 \end{center}
+				\end{table}
+			   
+			   
+			   \item \textit{Max-Forwards}: usado para evitar \textit{loops}. Toda vez que um \textit{Request} é redirecionado, o \textit{proxy} que recebe esse \textit{Request} decrementa o \textit{Max-Forwards} em 1. Se um \textit{proxy} recebe um \textit{Request} com \textit{Max-Forwards} igual a 0, ele responde com uma mensagem de erro para o UA de origem;
+			   
+			   \item \textit{To}: identificador do destino: usuário seguido do seu endereço IP;
+			   
+			   \item \textit{From}: identificador da origem: usuário seguido do seu endereço IP. O parâmetro \textit{tag} é usado para identificar o diálogo SIP;
+			   
+			   \item \textit{Call-ID}: identificador único da chamada SIP;
+			   
+			   \item \textit{Cseq}: o \textit{Command Sequence} é um identificador de transação, sendo um número (que pode ser arbitrário) acompanhado do nome da \textit{Request} que originou a transação. Todas as \textit{Requests} e \textit{Responses} de uma transação devem usar o mesmo \textit{Cseq};
+			   
+			   \item \textit{Allow}: lista de \textit{Requests} que o UA pode enviar e receber;
+			   
+			   \item \textit{Content-Length}: número de caracteres do \textit{body}; 
+			   
+			   \item \textit{Content-Type}: do que consiste o body; no caso, do SDP.
+			   
+			\end{enumerate}
+			
+			O SDP (\textit{Session Description Protocol}) define a sintaxe da descrição da sessão SIP de mídia. É através da troca de SDPs entre origem e destino que é feita a negociação de mídia.	
+			No exemplo da Figura~\ref{fig:sip-invite}, o SDP contém os seguintes parâmetros:
+			\begin{enumerate}
+				\item \textit{v}: versão do SDP;
+				\item \textit{o}: identificador do criador da sessão;
+				\item \textit{s}: nome da sessão;
+				\item \textit{c}: informação da conexão. Basicamente, de qual IP virá a mídia. Esse é um exemplo de atributo que pode ser tanto: 
+				      \begin{itemize}
+				         \item \textit{session-level}: vale para toda a sessão. Para isso, o atributo deve estar listado antes da descrição das mídias. No exemplo da Figura~\ref{fig:sip-invite}, o parâmetro \textit{"c="} está justamente como atributo de sessão, ou seja, todas as mídias que serão descritas posteriormente virão do mesmo IP;
+				         
+				         \item \textit{media-level}: vale apenas para uma mídia específica. Para isso, o atributo deve estar listado depois de uma descrição de mídia (\textit{"m="}). Com isso, por exemplo, poderíamos declarar diferentes informações da conexão para diferentes mídias (assim, áudio e vídeo poderiam vir de IPs distintos).
+				      \end{itemize}
+				      
+				\item \textit{t}: define o tempo de início e o tempo de fim da sessão SIP. Os valores de \textit{t} são representações decimais dos valores de tempo do \textit{Network Time Protocol} (NTP), que, por sua vez, são os valores de tempo em segundos desde 1900. No exemplo da Figura~\ref{fig:sip-invite}, ambos os valores são zero, significando que o começo da sessão é imediato (assim que negociação de mídia terminar) e sem tempo de término (sessão só será encerrada quando uma das partes envolvidas desligar a chamada);
+				
+				\item \textit{m}: descreve as mídias que serão usadas. No nosso exemplo, tanto áudio, quanto vídeo. A linha \textit{"m="} ainda define a porta de destino da mídia (49220 para áudio e 5068 para vídeo), o protocolo de transporte usado na transmissão da mídia (RTP sob AVP para ambos) e a lista de \textit{payload types} (mais detalhes nas Seções~\ref{sec:codecs-audio} e~\ref{sec:codecs-video}) de cada codec de mídia;
+				
+				\item \textit{a}: descrição de um atributo. Atributos podem ser \textit{session-level} (atributos de sessão) ou \textit{media-level} (atributos de mídia).
+				Um uso importante desse parâmetro é descrever os codecs de mídia que um UA suporta, logo após a descrição de mídia (\textit{"m="}). Na Figura~\ref{fig:sip-invite}, é estabelecido que o UACaller só suporta Speex a 16kHz como codec de áudio e H.264 a 90kHz como codec de vídeo. Ao final do SDP, há ainda alguns atributos específicos do codec H.264, como tamanho máximo de frame, taxa máxima de bits por segundo e \textit{profile} de vídeo (ver Seção~\ref{sec:h264}). Vale a menção que há diversos outros usos para atributos e existe uma lista extensa definida em \cite{sip-rfc}.
+			\end{enumerate}
+			
+			\item Quando o \textit{callee} recebe a chamada e entra em processo para determinar se a aceitará ou não, é mandado um 100 Trying para o \textit{caller}:
+			
+			\begin{figure}[h]
+			    \centering
+			    \adjustbox{margin=1em,width=10.3cm,frame,center}
+			    {\begin{minipage}{1.1\linewidth}
+			        SIP/2.0 100 Trying \newline \newline
+			        Via: SIP/2.0/UDP 172.27.14.53:5060;branch=8dJXAX9MDw \newline
+			        To: <sip:UAcaller@172.27.14.4> \newline
+			        From: <sip:UAcallee@172.27.14.53>;tag=ds17aa9bd4 \newline
+			        Call-ID: 11022705439144@172.27.14.4 \newline
+			        CSeq: 1 INVITE \newline
+			        Content-Length: 0
+			    \end{minipage}}
+			    \caption{SIP 100 Trying}
+			    \label{fig:sip-trying}
+			\end{figure}
+			
+			\item Assim que o \textit{callee} aceita a chamada, este manda um 200 OK para o \textit{caller}. Nele, há o SDP descrevendo quais codecs de mídia, do conjunto que o \textit{caller} enviou no SDP do INVITE, que o \textit{callee} também suporta (no caso, o \textit{callee} também suporta Speex e H.264). Há também, como importante atributo de mídia (tanto para áudio, quanto para vídeo), o IP e as portas RTCP que o \textit{callee} usará para o controle do recebimento dos fluxos RTP (áudio e vídeo).
+			\newline \newline		
+			\begin{figure}[h]
+			    \centering
+			    \adjustbox{margin=1em,width=10.3cm,frame,center}
+			    {\begin{minipage}{1.05\linewidth}
+			        SIP/2.0 200 OK \newline
+			        
+			        Via: SIP/2.0/UDP 172.27.14.53:5060;branch=8dJXAX9MDw \newline
+			        To: <sip:UAcaller@172.27.14.4> \newline
+			        From: <sip:UAcallee@172.27.14.53>;tag=ds17aa9bd4 \newline
+			        Call-ID: 11022705439144@172.27.14.4 \newline
+			        CSeq: 1 INVITE \newline
+			        Content-Length: 317 \newline
+			        Content-Type: application/sdp \newline
+			        
+			        v=0 \newline
+			        o=UACaller 1549568353 0 IN IP4 172.27.14.53 \newline
+			        s=ExampleSession \newline
+			        c=IN IP4 172.27.14.53 \newline
+			        t=0 0 \newline
+					m=audio 31818 RTP/AVP 118 \newline
+					a=rtpmap:118 Speex/16000 \newline
+					a=rtcp:31819 IN IP4 172.27.14.53 \newline
+					m=video 29240 RTP/AVP 104 \newline
+					a=rtpmap:104 H264/90000 \newline
+					a=fmtp:104 max-fs=6336;max-mbps=190080;profile-level-id=42801e \newline
+					a=rtcp:29241 IN IP4 172.27.14.53			           
+			    \end{minipage}}
+			    \caption{SIP 200 OK}
+			    \label{fig:sip-ok}
+			\end{figure}			
+				
+			\item Quando o \textit{caller} finalmente recebe o 200 OK, ele transmite o ACK. A partir daí, ambos os UAs estão numa chamada estabelecida e prontos para enviarem e receberem áudio e vídeo.
+
+			\begin{figure}[h]
+			    \centering
+			    \adjustbox{margin=1em,width=10.3cm,frame,center}
+			    {\begin{minipage}{1.05\linewidth}
+			        ACK sip:UAcallee@172.27.14.53 SIP/2.0 \newline
+			        
+			        Via: SIP/2.0/UDP 172.27.14.4:5060;branch=8dJXAX9MDw \newline
+			        Max-Forwards: 70 \newline
+			        To: <sip:UAcallee@172.27.14.53> \newline
+			        From: <sip:UAcaller@172.27.14.4>;tag=ds17aa9bd4 \newline
+			        Call-ID: 11022705439144@172.27.14.4 \newline
+			        CSeq: 1 ACK \newline
+			        Content-Length: 0
+			    \end{minipage}}
+			    \caption{SIP ACK}
+			    \label{fig:sip-ack}
+			\end{figure}			
+			
+			\item Quando uma das partes desliga a chamada, é enviado um BYE. No caso da Figura~\ref{fig:sip-invite}, quem o faz é o \textit{callee}: 
+			
+			\begin{figure}[h]
+			    \centering
+			    \adjustbox{margin=1em,width=10.3cm,frame,center}
+			    {\begin{minipage}{1.05\linewidth}
+			        BYE sip:UAcaller@172.27.14.4 SIP/2.0\newline
+			        
+			        Via: SIP/2.0/UDP 172.27.14.53:5060;branch=8dJXAX9MDv \newline
+			        To: <sip:UAcaller@172.27.14.4> \newline
+			        From: <sip:UAcallee@172.27.14.53>;tag=ds17aa9bd4 \newline
+			        Call-ID: 11022705439144@172.27.14.4 \newline
+			        CSeq: 5 BYE \newline
+			        Content-Length: 0
+			    \end{minipage}}
+			    \caption{SIP BYE}
+			    \label{fig:sip-bye}
+			\end{figure}			
+			
+			\item No momento em que o \textit{caller} recebe o BYE, é enviado o 200 OK para o \textit{callee} e, desse modo, a chamada é encerrada.
+			\newline \newline
+			
+			\begin{figure}[h]
+			    \centering
+			    \adjustbox{margin=1em,width=10.3cm,frame,center}
+			    {\begin{minipage}{1.05\linewidth}
+			        SIP/2.0 200 OK \newline
+   
+			        Via: SIP/2.0/UDP 172.27.14.4:5060;branch=8dJXAX9MDv \newline
+			        Max-Forwards: 70 \newline
+			        To: <sip:UAcallee@172.27.14.53> \newline
+			        From: <sip:UAcaller@172.27.14.4>;tag=ds17aa9bd4 \newline
+			        Call-ID: 11022705439144@172.27.14.4 \newline
+			        CSeq: 5 BYE \newline
+			        Content-Length: 0
+			    \end{minipage}}
+			    \caption{SIP 200 OK}
+			    \label{fig:sip-ok-final}
+			\end{figure}			
+ 		\end{enumerate}		
+	
+      \subsubsection{\textbf{Mais informações sobre SIP}}\label{sec:sip-mais infos}
+      
+         Para mais informações sobre o protocolo SIP, consulte \cite{sip-rfc} e \cite{conferencingFundamentals} (detalhes nas Referências deste trabalho). 	
+
+
+
+
+\section{Protocolos de Transporte de Mídia}\label{sec:transporte}
+
+    *Intro*
+    
+\subsection{Padrão RTP}\label{sec:rtp}
+	
+	*Explica SIP*
+	
+\subsection{Padrão RTMP}\label{sec:rtmp}
+	
+	*Explica RTMP*	
+	
+	
+	
+
+\section{Codificação de áudio}\label{sec:codecs-audio}
+
+    *Intro*
+    
+\subsection{Padrão PCMA}\label{sec:pcma}
+	
+	*Explica PCMA*
+	
+\subsection{Padrão PCMU}\label{sec:pcmu}
+	
+	*Explica PCMU*
+	
+\subsection{Padrão G.711}\label{sec:g711}
+	
+	*Explica G.711*
+	
+\subsection{Padrão Speex}\label{sec:speex}
+	
+	*Explica Speex*
+    
+\subsection{Padrão OPUS}\label{sec:opus}
+	
+	*Explica OPUS*
+	
+	
+	
+	
+\section{Codificação de vídeo}\label{sec:codecs-video}
+
+	*Intro*
+	
+\subsection{Padrão H.263}\label{sec:h263}
+	
+	*Explica H.263*
+	
+\subsection{Padrão H.264}\label{sec:h264}
+	
+	*Explica H.264*
+	
+\subsection{Padrão VP8}\label{sec:vp8}
+	
+	*Explica VP8*
+
+	
+	
+		
+\section{Tecnologias para Webconferência}\label{sec:tecnologias-webconf}
+
+    *Intro*
+    
+\subsection{Flash}\label{sec:flash}
+	
+	*Explica Flash*
+	
+\subsection{WebRTC}\label{sec:webrtc}
+	
+	*Explica WebRTC*	

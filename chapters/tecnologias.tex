@@ -1,0 +1,90 @@
+\chapter{Tecnologias}\label{cha:tecnologias}
+
+	Neste capítulo apresentaremos as tecnologias envolvidas no desenvolvimento do trabalho e nos aprofundaremos em alguns pontos importantes que servirão para facilitar o entendimento da ferramenta desenvolvida.
+
+	Descrevendo sucintamente: a ferramenta desenvolvida é um plug-in para o Eclipse. Ela foi desenvolvida usando a linguagem de programação Java, uma linguagem orientada a objetos muito utilizada atualmente. Também foi usada a IDE Eclipse, que é um ambiente de desenvolvimento integrado amplamente utilizado para a criação de aplicações em diversas linguagens, principalmente em Java. O Eclipse permite que desenvolvedores contribuam com suas próprias funcionalidades à IDE na forma de plug-ins, e essa possibilidade de extensão é um dos motivos de seu alto uso entre eles. 
+
+	Plug-ins são componentes de software que adicionam uma funcionalidade a uma aplicação existente. Através deles podemos aprimorar aplicações de várias maneiras diferentes, como por exemplo permitir novos formatos de arquivos para um reprodutor de vídeo e acrescentar novas funções a navegadores web. Existem muitos plug-ins disponíveis para o Eclipse, os quais proporcionam várias melhorias e novas funcionalidades à IDE, desde pequenas alterações na interface até grandes aplicações com os mais diversos propósitos.
+
+	Dentro do contexto deste trabalho podemos citar algumas ferramentas existentes com funcionalidades relacionadas à nossa abordagem. De caráter comercial, as duas principais são pure::variants\footnote{\url{http://www.pure-systems.com/Variant_Management.49.0.html}} e Gears\footnote{\url{http://www.biglever.com/solution/product.html}}. Ambas oferecem as possibilidades de criação de modelos de \textit{features} com notações gráficas e de criação de configurações válidas, porém necessitam da compra de uma licença para seu uso. De caráter acadêmico, temos o SPLOT\footnote{\url{http://www.splot-research.org/}} (Software Product Lines Online Tools), que possibilita a criação, edição e configuração de modelos de \textit{features} na forma de árvore, entre outras funcionalidades. Esse projeto é apresentado na forma de um \textit{website} com centenas de modelos disponíveis para os usuários, entretanto ele não fornece a possibilidade de integração com código.
+
+	Ainda de caráter acadêmico, ressaltamos três ferramentas que foram desenvolvidas como plug-ins para o Eclipse: XFeature\footnote{\url{http://www.pnp-software.com/XFeature/}}, FMP\footnote{\url{http://gsd.uwaterloo.ca/fmp}} e FeatureIDE\footnote{\url{http://wwwiti.cs.uni-magdeburg.de/iti_db/research/featureide/}}. O XFeature suporta a modelagem de famílias de produtos e permite que seus usuários definam seus próprios metamodelos de \textit{features}, porém não é possível realizar configurações de produtos. O FMP possui características similares ao XFeature, incluindo a ausência da possibilidade de criação de configurações. Já o FeatureIDE dispõe das mesmas funcionalidades (além de outras adicionais) e diferentemente dos demais, ele permite criar e editar configurações de produtos. Dentre as opções citadas escolhemos o FeatureIDE para servir como base da nossa ferramenta, por se enquadrar melhor com os nossos objetivos e ter os requisitos necessários para possibilitar o desenvolvimento do nosso plug-in, além de possuir uma documentação detalhando possíveis pontos de extensão. A seguir mostramos algumas das características do FeatureIDE, seu funcionamento e alguns detalhes do plug-in.
+	
+
+\section{FeatureIDE}\label{sec:featureide}
+
+	O FeatureIDE \cite{Thum:2014:FEF:2537169.2537315} é um framework baseado no Eclipse que suporta FOSD (Feature-Oriented Software Development\cite{apel2009overview}). Seu foco principal é a cobertura de todo o processo de desenvolvimento e a incorporação de ferramentas para a implementação de LPS em um ambiente de desenvolvimento integrado (IDE). O objetivo do FeatureIDE é a redução de esforços para a construção de ferramentas para novas e existentes técnicas de implementações de LPS providenciando análise de domínio, implementação de domínio, análise de requisitos e geração de software em um framework extensível. %A ideia é reusar views, editores e estruturas o máximo possível entre diferentes técnicas de implementação de LPS.
+	
+	FOSD pode ser usado para planejar e implementar LPS (processo chamado de Desenvolvimento de Recursos de Núcleo ou engenharia de domínio na Seção~\ref{sec:linhas}) e também para selecionar \textit{features} e gerar programas customizados (processo chamado de Desenvolvimento de Produto ou engenharia de aplicação na Seção~\ref{sec:linhas}). Os autores dividiram o processo FOSD em quatro fases, as quais foram citadas no parágrafo anterior:
+
+\begin{itemize}
+	\item Análise de domínio (\textit{Domain analysis}): O objetivo é a captura das variabilidades e semelhanças de um domínio de sistema de software, que resulta em um modelo de \textit{features}.
+	\item Implementação de domínio (\textit{Domain implementation}): Implementação de todos sistemas de software do domínio ao mesmo tempo, enquanto os recursos de núcleo são mapeados para \textit{features}.
+	\item Análise de requisitos (\textit{Requirements analysis}): Requisitos são mapeados para as \textit{features} do domínio, e as \textit{features} necessárias para um sistema de software customizado são selecionadas, resultando em uma configuração.
+	\item Geração de software (\textit{Software generation}): Um sistema de software é construído automaticamente, dadas a configuração e a implementação do domínio.
+\end{itemize} 
+	
+	O FeatureIDE está em constante desenvolvimento, e algumas de suas características e funcionalidades implementadas são: (i) total integração com o Eclipse, (ii) editor de modelo de \textit{features} gráfico e baseado em texto (como visto no modelo gráfico construído na Figura~\ref{fig:exmodelofeatures}), (iii) editor de restrições com assistente de conteúdo e checagem de semântica e sintaxe, (iv) editor de configurações com suporte a derivação de configuração válida (mostrado parcialmente na Figura~\ref{fig:configurations}), (v) uma seção exibindo estatísticas sobre a LPS, além de (vi) integração com diversas linguagens e ferramentas já existentes. A Figura~\ref{fig:perspectiva} mostra uma captura de tela do Eclipse exibindo a perspectiva do FeatureIDE, nela podemos notar algumas de suas principais funcionalidades mencionadas neste parágrafo. 
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=35em]{img/perspectivafeatureide.jpg}
+\caption{Perspectiva do FeatureIDE.}
+\label{fig:perspectiva}
+\end{figure}
+
+	Podemos ressaltar alguns outros pontos positivos, a facilidade de uso sendo um dos seus principais. Primeiramente, o plug-in pode ser baixado e instalado de maneira simples diretamente através do Eclipse. O \textit{website} do FeatureIDE dispõe de tutoriais e documentação na forma de slides, vídeo de demonstração, capturas de tela, entre outros, com o propósito de ajudar seus usuários desde a instalação do plug-in e criação de um pequeno exemplo até a sua possível extensão por outros desenvolvedores. Essa documentação inclui uma descrição de como é possível adicionar funcionalidades ao plug-in através de pontos de extensão, indicando quais pontos devem ser estendidos para alcançar as alterações desejadas.
+	
+	Esta seção não entrou em detalhes muito específicos, principalmente na parte de implementação do FeatureIDE, pois seu propósito é apenas dar uma visão geral do plug-in. No próximo capítulo nos aprofundaremos um pouco mais nos detalhes de algumas de suas funcionalidades e mostraremos como usá-lo juntamente com a nossa implementação. A seção a seguir mostra, também superficialmente, o SACRES, que possui uma implementação da solução proposta por \cite{jacob}. Ele foi desenvolvido como um protótipo para viabilizar um experimento com o objetivo de avaliar diferentes estratégias da teoria da escolha social.
+	
+
+\section{SACRES}\label{sec:sacres}
+
+	SACRES \cite{jacob} é uma ferramenta independente desenvolvida em Java baseada no metamodelo da Seção~\ref{sec:metamodelo}, no conceito de satisfação de \textit{stakeholder} da Seção~\ref{sec:shsat} e nas estratégias de escolha social da Seção~\ref{sec:escolhasocial} que tem como finalidade a recomendação de configurações para grupos de stakeholders. Diferentemente do FeatureIDE, o SACRES não permite a criação e edição de modelos de \textit{features}, então ele usa uma biblioteca de modelos de \textit{features} que oferece persistência para um banco de dados, e os modelos propriamente ditos estão presentes nesse banco. O restante das informações como grupos de \textit{stakeholders} e configurações de \textit{stakeholders} também são armazenadas no banco de dados.  
+	
+\begin{figure}[h]
+\centering
+\includegraphics[width=15em]{img/sacresinicial.jpg}
+\caption{Tela inicial do SACRES.}
+\label{fig:sacresinicial}
+\end{figure}
+
+	A Figura~\ref{fig:sacresinicial} mostra a tela de interface inicial do SACRES, e nela podemos observar suas três principais funcionalidades:
+	
+\begin{itemize}
+	\item Criação de Grupo de \textit{Stakeholder} (\textit{Create Stakeholder Group}): Permite a criação de grupos de \textit{stakeholders}. O usuário escolhe o nome do grupo e associa um modelo de \textit{features} a esse grupo, como mostrado na Figura~\ref{fig:t1}.
+	\item Criação de Configuração de \textit{Stakeholder} (\textit{Create Stakeholder Configuration}): Permite a criação de configurações de \textit{stakeholders}. O usuário escolhe o nome da configuração e associa um grupo de \textit{stakeholders} (que por sua vez está associado a um modelo de \textit{features}) à essa configuração, como mostrado na Figura~\ref{fig:t2}.
+	\item Obter Configurações Ótimas (\textit{Get Optimal Configurations}): O usuário seleciona um grupo de \textit{stakeholders} conforme a Figura~\ref{fig:t3} e o resultado da recomendação de configurações é exibido.
+\end{itemize} 	
+	
+\begin{figure}[h]
+\center
+\subfigure[\label{fig:t1}Create Stakeholder Group]{\includegraphics[width=4.8cm]{img/createshgroup.jpg}}
+~
+\subfigure[\label{fig:t2}Create Stakeholder Configuration]{\includegraphics[width=4.8cm]{img/createshconfig.jpg}}
+~
+\subfigure[\label{fig:t3}Get Optimal Configurations]{\includegraphics[width=4.8cm]{img/getoptimalconfigs.jpg}}
+\caption{Telas das funções do SACRES.}
+\label{fig:imgsinterface}
+\end{figure}
+
+	Quando o usuário está selecionando suas preferências na configuração o modelo de \textit{features} é exibido de uma maneira semelhante à do mesmo processo no FeatureIDE (Figura~\ref{fig:configurations}), e quando uma \textit{feature} é selecionada é exibida ao usuário uma janela com três opções: definir como restrição \textit{hard} positiva, definir como restrição \textit{hard} negativa e definir como restrição \textit{soft} escolhendo um valor numérico entre -1 e 1. As restrições positivas ficam assinaladas com a cor verde, enquanto que as restrições negativas ficam assinaladas com a cor vermelha. Já as restrições do tipo \textit{soft} são acompanhadas com o valor numérico ao lado do nome da \textit{feature}. \textit{Features} sem preferências definidas são escritas em preto. A Figura~\ref{fig:interfaceconstraint} exemplifica a interface da etapa de criação/edição de configuração detalhada nesse parágrafo.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=15em]{img/interfaceconstraint.jpg}
+\caption{Tela de seleção de preferências do SACRES.}
+\label{fig:interfaceconstraint}
+\end{figure}
+
+	Caso as configurações de um determinado grupo de \textit{stakeholders} resultem em uma recomendação de configurações válidas (configurações válidas envolvendo restrições dos tipos \textit{hard} e \textit{soft} foram discutidas na Seção~\ref{sec:shsat}) uma nova tela com as recomendações é exibida. A Figura~\ref{fig:resultadossacres} mostra a tela de resultados do SACRES, e nela podemos encontrar diversas informações relevantes: as configurações definidas pelo grupo de \textit{stakeholders} (abas SH1 C, SH2 C e SH3 C), as configurações recomendadas para as sete estratégias de escolha social (restantante das abas) e uma pequena seção com algumas outras informações. Na parte debaixo da tela, onde está escrito \textit{SATISFACTION}, são exibidos os seguintes dados: valor total das satisfações dos \textit{stakeholders}, quantidade de configurações envolvidas, valor mínimo de satisfação de \textit{stakeholder}, valor máximo de satisfação de \textit{stakeholder}, média dos valores de satisfação de \textit{stakeholder} e desvio padrão dos valores de satisfação de \textit{stakeholder}. Mais abaixo na seção \textit{PREFERENCES} os dados exibidos são análogos aos da seção \textit{SATISFACTION}, porém desta vez levam em consideração a quantidade de restrições do tipo \textit{soft} em vez do valor de satisfação de \textit{stakeholder} que elas representam.
+	
+\begin{figure}[h]
+\centering
+\includegraphics[width=15em]{img/resultadossacres.jpg}
+\caption{Tela de resultados do SACRES.}
+\label{fig:resultadossacres}
+\end{figure}
+	
+	Nesta seção apresentamos a ferramenta chamada SACRES, mostrando suas funcionalidades e sua interface. Como a ferramenta que desenvolvemos se trata de uma integração do plug-in FeatureIDE com o trabalho realizado no SACRES esse capítulo teve o propósito de dar uma ideia geral sobre esses dois tópicos, mostrando o que cada um deles pode nos proporcionar e também o que não proporcionam, pois desse modo a união dos dois se mostra útil a fim de conseguirmos realizar todas etapas envolvidas na recomendação de configurações em uma única ferramenta. No capítulo a seguir nos aprofundaremos na parte de implementação da ferramenta e em alguns detalhes técnicos.
+	
