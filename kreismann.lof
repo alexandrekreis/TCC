@@ -16,7 +16,7 @@
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {Figura\nobreakspace 2.1:}{\ignorespaces Unidades H.323}}{17}
 \contentsline {figure}{\numberline {Figura\nobreakspace 2.2:}{\ignorespaces Pacote H.225}}{18}
-\contentsline {figure}{\numberline {Figura\nobreakspace 2.3:}{\ignorespaces Estabelecimento de uma chamada H.323 b\'asica}}{19}
+\contentsline {figure}{\numberline {Figura\nobreakspace 2.3:}{\ignorespaces Estabelecimento de uma chamada H.323 b\'asica}}{18}
 \contentsline {figure}{\numberline {Figura\nobreakspace 2.4:}{\ignorespaces Negocia\c c\~ao de m\IeC {\'\i }dia H.323}}{20}
 \contentsline {figure}{\numberline {Figura\nobreakspace 2.5:}{\ignorespaces H.323 \textit {Fast Connect Mode}}}{22}
 \contentsline {figure}{\numberline {Figura\nobreakspace 2.6:}{\ignorespaces Di\'alogo SIP}}{23}
@@ -26,7 +26,25 @@
 \contentsline {figure}{\numberline {Figura\nobreakspace 2.10:}{\ignorespaces SIP ACK}}{27}
 \contentsline {figure}{\numberline {Figura\nobreakspace 2.11:}{\ignorespaces SIP BYE}}{27}
 \contentsline {figure}{\numberline {Figura\nobreakspace 2.12:}{\ignorespaces SIP 200 OK}}{28}
+\contentsline {figure}{\numberline {Figura\nobreakspace 2.13:}{\ignorespaces Pacote RTP}}{28}
+\contentsline {figure}{\numberline {Figura\nobreakspace 2.14:}{\ignorespaces OPUS vs outros codecs de \'audio}}{34}
+\contentsline {figure}{\numberline {Figura\nobreakspace 2.15:}{\ignorespaces Vis\~ao geral da arquitetura da plataforma Flash}}{36}
+\contentsline {figure}{\numberline {Figura\nobreakspace 2.16:}{\ignorespaces Vis\~ao geral da arquitetura do WebRTC}}{37}
 \addvspace {10\p@ }
+\contentsline {figure}{\numberline {Figura\nobreakspace 3.1:}{\ignorespaces Exemplo de um dialplan em XML}}{38}
+\contentsline {figure}{\numberline {Figura\nobreakspace 3.2:}{\ignorespaces Registo de usu\'ario b\'asico}}{39}
+\contentsline {figure}{\numberline {Figura\nobreakspace 3.3:}{\ignorespaces Ponte H323-SIP do Freeswitch}}{39}
+\contentsline {figure}{\numberline {Figura\nobreakspace 3.4:}{\ignorespaces Ponte H323-SIP do Freeswitch}}{40}
+\contentsline {figure}{\numberline {Figura\nobreakspace 3.5:}{\ignorespaces Vari\'avel \textit {global\_codec\_prefs} em \textit {vars.xml}}}{42}
+\contentsline {figure}{\numberline {Figura\nobreakspace 3.6:}{\ignorespaces Mixagem de \'audio do Freeswitch}}{42}
+\contentsline {figure}{\numberline {Figura\nobreakspace 3.7:}{\ignorespaces Switching de v\IeC {\'\i }deo do Freeswitch}}{43}
+\contentsline {figure}{\numberline {Figura\nobreakspace 3.8:}{\ignorespaces Exemplo de composi\c c\~ao de v\IeC {\'\i }deo do Freeswitch}}{44}
+\contentsline {figure}{\numberline {Figura\nobreakspace 3.9:}{\ignorespaces Exemplos de \textit {layouts} de v\IeC {\'\i }deo do Freeswitch 1.6}}{44}
+\contentsline {figure}{\numberline {Figura\nobreakspace 3.10:}{\ignorespaces Formato do comando \textit {ffmpeg}}}{45}
+\contentsline {figure}{\numberline {Figura\nobreakspace 3.11:}{\ignorespaces Formato do comando \textit {ffmpeg}}}{45}
+\contentsline {figure}{\numberline {Figura\nobreakspace 3.12:}{\ignorespaces Formato do comando \textit {ffmpeg}}}{46}
+\contentsline {figure}{\numberline {Figura\nobreakspace 3.13:}{\ignorespaces Red5 como servidor de m\IeC {\'\i }dia Flash}}{47}
+\contentsline {figure}{\numberline {Figura\nobreakspace 3.14:}{\ignorespaces Red5 e Freeswitch conectando m\'ultiplos usu\'arios}}{48}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }

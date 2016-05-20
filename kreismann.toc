@@ -18,30 +18,33 @@
 \contentsline {subsubsection}{\numberline {2.1.1.4}\textbf {Mais informa\c c\~oes sobre H.323}}{22}
 \contentsline {subsection}{\numberline {2.1.2}Padr\~ao SIP}{22}
 \contentsline {subsubsection}{\numberline {2.1.2.1}\textbf {Mais informa\c c\~oes sobre SIP}}{28}
-\contentsline {section}{\numberline {2.2}Protocolos de Transporte de M\IeC {\'\i }dia}{28}
+\contentsline {section}{\numberline {2.2}Protocolos de Transporte de M\IeC {\'\i }dia em Tempo Real}{28}
 \contentsline {subsection}{\numberline {2.2.1}Padr\~ao RTP}{28}
-\contentsline {subsection}{\numberline {2.2.2}Padr\~ao RTMP}{28}
-\contentsline {section}{\numberline {2.3}Codifica\c c\~ao de \'audio}{28}
-\contentsline {subsection}{\numberline {2.3.1}Padr\~ao PCMA}{28}
-\contentsline {subsection}{\numberline {2.3.2}Padr\~ao PCMU}{28}
-\contentsline {subsection}{\numberline {2.3.3}Padr\~ao G.711}{28}
-\contentsline {subsection}{\numberline {2.3.4}Padr\~ao Speex}{28}
-\contentsline {subsection}{\numberline {2.3.5}Padr\~ao OPUS}{28}
-\contentsline {section}{\numberline {2.4}Codifica\c c\~ao de v\IeC {\'\i }deo}{28}
-\contentsline {subsection}{\numberline {2.4.1}Padr\~ao H.263}{29}
-\contentsline {subsection}{\numberline {2.4.2}Padr\~ao H.264}{29}
-\contentsline {subsection}{\numberline {2.4.3}Padr\~ao VP8}{29}
-\contentsline {section}{\numberline {2.5}Tecnologias para Webconfer\^encia}{29}
-\contentsline {subsection}{\numberline {2.5.1}Flash}{29}
-\contentsline {subsection}{\numberline {2.5.2}WebRTC}{29}
-\contentsline {chapter}{\numberline {3}Solu\c c\~oes \textit {Open Source} para Interoperabilidade}{30}
-\contentsline {section}{\numberline {3.1}Freeswitch}{30}
-\contentsline {section}{\numberline {3.2}Asterisk}{30}
-\contentsline {section}{\numberline {3.3}Red5}{30}
-\contentsline {section}{\numberline {3.4}FFMPEG}{30}
-\contentsline {chapter}{\numberline {4}Arquitetura}{31}
-\contentsline {section}{\numberline {4.1}Mconf}{31}
-\contentsline {subsection}{\numberline {4.1.1}Arquitetura anterior}{31}
-\contentsline {subsection}{\numberline {4.1.2}Arquitetura modificada}{31}
-\contentsline {chapter}{\numberline {5}Resultados}{32}
-\contentsline {chapter}{Refer{\^e}ncias}{33}
+\contentsline {subsubsection}{\numberline {2.2.1.1}\textbf {RTCP}}{30}
+\contentsline {subsubsection}{\numberline {2.2.1.2}\textbf {Mais informa\c c\~oes sobre RTP e RTCP}}{30}
+\contentsline {subsection}{\numberline {2.2.2}Padr\~ao RTMP}{30}
+\contentsline {subsubsection}{\numberline {2.2.2.1}\textbf {Mais informa\c c\~oes sobre RTMP}}{31}
+\contentsline {section}{\numberline {2.3}Codifica\c c\~ao de M\IeC {\'\i }dia}{31}
+\contentsline {subsection}{\numberline {2.3.1}Padr\~oes para Codifica\c c\~ao de \'Audio}{32}
+\contentsline {subsubsection}{\numberline {2.3.1.1}\textbf {Padr\~ao G.7xx}}{32}
+\contentsline {subsubsection}{\numberline {2.3.1.2}\textbf {Padr\~ao Speex e Padr\~ao OPUS}}{33}
+\contentsline {subsubsection}{\numberline {2.3.1.3}\textbf {Padr\~ao iLBC e Padr\~ao iSAC}}{34}
+\contentsline {subsection}{\numberline {2.3.2}Padr\~oes para Codifica\c c\~ao de V\IeC {\'\i }deo}{35}
+\contentsline {subsubsection}{\numberline {2.3.2.1}\textbf {Padr\~ao H.26x}}{35}
+\contentsline {subsubsection}{\numberline {2.3.2.2}\textbf {Padr\~ao VPx}}{35}
+\contentsline {section}{\numberline {2.4}Tecnologias para Webconfer\^encia}{36}
+\contentsline {subsection}{\numberline {2.4.1}Plataforma Flash}{36}
+\contentsline {subsection}{\numberline {2.4.2}WebRTC}{37}
+\contentsline {chapter}{\numberline {3}Solu\c c\~oes \textit {Open Source} para Interoperabilidade}{38}
+\contentsline {section}{\numberline {3.1}Freeswitch}{38}
+\contentsline {subsubsection}{\numberline {3.1.0.1}\textbf {mod\_conference}}{42}
+\contentsline {subsubsection}{\numberline {3.1.0.2}\textbf {Freeswitch 1.6}}{43}
+\contentsline {section}{\numberline {3.2}FFMPEG}{44}
+\contentsline {section}{\numberline {3.3}Red5}{47}
+\contentsline {section}{\numberline {3.4}Outras Solu\c c\~oes para Trabalhos Futuros}{48}
+\contentsline {chapter}{\numberline {4}Arquitetura}{49}
+\contentsline {section}{\numberline {4.1}Mconf}{49}
+\contentsline {subsection}{\numberline {4.1.1}Arquitetura anterior}{49}
+\contentsline {subsection}{\numberline {4.1.2}Arquitetura modificada}{49}
+\contentsline {chapter}{\numberline {5}Resultados}{50}
+\contentsline {chapter}{Refer{\^e}ncias}{51}

@@ -6,14 +6,14 @@
 		\item Interface de usuário e de administrador;
 		\item Controle de Conferência: controle de criação/finalização de sessões, de roteamento de ligações e de alocações de recursos em geral;
 		\item Plano de Controle: controle de chegada/saída de conexões e da negociação de parâmetros da sessão de acordo com a capacidade do servidor de mídia;
-		\item Plano de Mídia: controle das \textit{streams} de mídia, administrando o transporte e a mixagem de áudio e vídeo.
+		\item Plano de Mídia: controle das \textit{streams} de mídia, administrando o transporte, codificação/decodificação e a mixagem de áudio e vídeo.
 	\end{itemize}
 	
 	O principal desafio para interoperabilidade entre sistemas de videoconferência é considerar os diferentes Planos de Controle e de Mídia existentes. São essas camadas que definem de que maneira um sistema envia e recebe requisições para entrada e saída de usuários, bem como o modo no qual ele irá transmitir e receber áudio e vídeo. Um sistema de conferência com Plano de Controle e de Mídia flexíveis permitem que usuários utilizando diferentes equipamentos ou softwares de videoconferência - os chamados \textit{endpoints} - se conectem e se comuniquem de maneira transparente em uma sessão desse sistema.
 	
-	Como afirmado em \cite{kurose}, com a popularização das aplicações de tempo real, importantes órgãos, como o IETF e ITU, estabeleceram (e continuam estabelecendo) padrões para essa classe de aplicações. No contexto de videoconferência, padrões amplamente usados no Plano de Controle são os protocolos de sinalização SIP e H.323, os quais veremos na Seção~\ref{sec:sinalização}. Já no Plano de Mídia, dependemos tanto de padrões de transporte como de codificação de mídia (Seções~\ref{sec:transporte},~\ref{sec:codecs-audio} e~\ref{sec:codecs-video}). Já em termos de webconferência, a tecnologia que compõe o sistema determinará o escopo de padrões usados, como será detalhado na Seção~\ref{sec:tecnologias-webconf}.
+	Como afirmado em \cite{kurose}, com a popularização das aplicações de tempo real, importantes órgãos, como o IETF e ITU, estabeleceram (e continuam estabelecendo) padrões para essa classe de aplicações. No contexto de videoconferência, padrões amplamente usados no Plano de Controle são os protocolos de sinalização SIP e H.323, os quais veremos na Seção~\ref{sec:sinalização}. Já no Plano de Mídia, dependemos tanto de padrões de transporte como de codificação de mídia (Seções~\ref{sec:transporte} e~\ref{sec:codecs}). Já em termos de webconferência, a tecnologia que compõe o sistema determinará o escopo de padrões usados, como será detalhado na Seção~\ref{sec:tecnologias-webconf}.
 	
-	A seguir, portanto, são apresentados os principais padrões e tecnologias para sistemas de conferência.
+	A seguir, portanto, são apresentados alguns dos principais padrões e tecnologias para sistemas de conferência.
 	
 
 \section{Protocolos de Sinalização}\label{sec:sinalização}
@@ -26,7 +26,7 @@
          
          \item No momento em que um \textit{endpoint} se conecta no canal de sinalização, o Plano de Controle envia informações da capacidade de mídia do sistema, as quais o \textit{endpoint} deve respeitar. Esse passo estabelece a \textbf{negociação de mídia};
          
-         \item Após essa negociação (bem-sucedida), o Plano de Controle e o \textit{endpoint} abrem um canal lógico para \textit{streaming} de mídia, e o \textit{endpoint} passa a se comunicar, então, com o Plano de Mídia, para enviar e/ou receber áudio/vídeo. O Plano de Controle será responsável por administrar esse canal lógico, avisando o Plano de Mídia se o endpoint sair da sessão, ou algum erro de conexão ocorrer.
+         \item Após essa negociação (bem-sucedida), o Plano de Controle e o \textit{endpoint} abrem um canal lógico para \textit{streaming} de mídia, e o \textit{endpoint} passa a se comunicar, então, com o Plano de Mídia, para enviar e/ou receber áudio/vídeo. O Plano de Controle será responsável por administrar esse canal lógico, avisando o Plano de Mídia se o \textit{endpoint} sair da sessão, ou algum erro de conexão ocorrer.
          
     \end{enumerate}
     
@@ -81,7 +81,7 @@
  		 
  		 \begin{figure}[h]
  			\centering
- 			\includegraphics[width=27em, height=19.6em]{img/conexao-h323-basica.png}
+ 			\includegraphics[width=27em, height=18.3em]{img/conexao-h323-basica.png}
  			\caption{Estabelecimento de uma chamada H.323 básica}
  			\label{fig:conexao-h323-basica}
  		 \end{figure}
@@ -89,7 +89,7 @@
  		 \begin{enumerate}
  		    \item Após o estabelecimento da conexão TCP, o caller inicia a chamada, mandando um H.225 \textit{Setup Message}. Esse tipo de \textit{Message Type} carrega como parâmetro obrigatório o \textit{Bearer Capability}, que define a natureza da chamada: se é apenas de áudio ou uma chamada audiovisual.
  		    
- 		    \item O \textit{callee} responde o \textit{Setup Message}, com um H.225 \textit{Alerting}, indicando ao \textit{caller} que o dispositivo chamado já iniciou o procedimento de alerta de que uma nova chamada chegou - em outras palavras, que o dispositivo está "tocando" (como um telefone; em inglês, \textit{Ringing}). Antes do \textit{Alerting}, outro tipo de \textit{Message Type} pode ocorrer (não é obrigatório) do \textit{callee} para o \textit{caller}: o \textit{Call Proceeding}. CP tem o objetivo de informar o caller que a chamada está em processo de ser estabelecida e que não será mais aceito novas mensagens para estabelecimento de chamada.
+ 		    \item O \textit{callee} responde o \textit{Setup Message}, com um H.225 \textit{Alerting}, indicando ao \textit{caller} que o dispositivo chamado já iniciou o procedimento de alerta de que uma nova chamada chegou - em outras palavras, que o dispositivo está 'tocando' (como um telefone; em inglês, \textit{Ringing}). Antes do \textit{Alerting}, outro tipo de \textit{Message Type} pode ocorrer (não é obrigatório) do \textit{callee} para o \textit{caller}: o \textit{Call Proceeding}. CP tem o objetivo de informar o \textit{caller} que a chamada está em processo de ser estabelecida e que não será mais aceito novas mensagens para estabelecimento de chamada.
  		    
  		    \item O \textit{callee} também responde um \textit{Setup ACK}, indicando que o \textit{Setup Message} foi devidamente recebido.
  		    
@@ -118,9 +118,9 @@
   		 \begin{enumerate}
   		    \item Após o estabelecimento da chamada - como visto anteriormente na Seção~\ref{sec:h225} - e da conexão TCP para a Sessão H.245, \textit{caller} e \textit{callee} trocam, primeiramente, 2 tipos de mensagens H.245: \textit{TCS} (\textit{Terminal Capability Set}) e \textit{MSD} (\textit{Master-Slave Determination}).
   		    
-  		    \item \textit{TCS} contém a descrição da capacidade de mídia do remetente da mensagem. Inclui a lista de todos os codecs de áudio e vídeo suportados e suas características (tipos de payload, tempos de packetização, perfis e resoluções de vídeo, taxa de bits e de frames, etc - itens que veremos em~\ref{sec:codecs-audio} e~\ref{sec:codecs-video}). Também contém o \textit{Simultaneous Capability Set}, que define quais grupos de codecs podem ser usados simultaneamente. A parte que recebe o H.245 \textit{TCS} informa ao transmissor da mensagem o recebimento da mesma com um \textit{TCS ACK}.
+  		    \item \textit{TCS} contém a descrição da capacidade de mídia do remetente da mensagem. Inclui a lista de todos os codecs de áudio e vídeo suportados e suas características (tipos de payload, perfis e resoluções de vídeo, taxa de bits e de frames, etc - itens que veremos nas próximas seções). Também contém o \textit{Simultaneous Capability Set}, que define quais grupos de codecs podem ser usados simultaneamente. A parte que recebe o H.245 \textit{TCS} informa ao transmissor da mensagem o recebimento da mesma com um \textit{TCS ACK}.
   		    		 		 
-	 		\item A troca de mensagens \textit{MSD} define quem irá ser o 'mestre' e o 'escravo' da sessão. O mestre será responsável por atribuir um ID para o canal lógico, gerar uma chave quando há encriptação de mídia, entre outras tarefas de admnistração do canal lógico. Uma mensagem \textit{MSD} contém um \textit{Terminal Type} (um número) e um aleatoriamente escolhido \textit{Determination Number}. Cada parte envolvida compara os números recebidos na mensagem \textit{MSD} com os seus próprios números e quem tiver o maior \textit{Terminal Type} será o mestre. Em caso de empate, o mestre será quem tiver o maior \textit{Determination Number}. Caso haja novamente um empate, ocorre uma nova negociação, com novas mensagens \textit{MSD}.
+	 		\item A troca de mensagens \textit{MSD} define quem irá ser o 'mestre' e o 'escravo' da sessão. O mestre será responsável por atribuir um ID para o canal lógico, gerar uma chave quando há encriptação de mídia, entre outras tarefas de administração do canal lógico. Uma mensagem \textit{MSD} contém um \textit{Terminal Type} (um número) e um aleatoriamente escolhido \textit{Determination Number}. Cada parte envolvida compara os números recebidos na mensagem \textit{MSD} com os seus próprios números e quem tiver o maior \textit{Terminal Type} será o mestre. Em caso de empate, o mestre será quem tiver o maior \textit{Determination Number}. Caso haja novamente um empate, ocorre uma nova negociação, com novas mensagens \textit{MSD}.
 	 		
 	 		\item Posteriormente à determinação do mestre e escravo, o \textit{caller} envia o H.245 \textit{OpenLogicalChannel} (\textit{OLC}), requisitando a abertura do canal lógico. O canal lógico, no contexto H.323, representa o caminho usado para a transmissão de mídia. A mensagem \textit{OLC} carrega consigo o codec de áudio e de vídeo que o \textit{caller} usará na transmissão, bem como as características de cada codec (como explicado no item 2).
 	 		Outros dados importantes do H.245 \textit{OLC} são as portas RTCP (mais detalhes na Seção~\ref{sec:rtp}) que serão usadas no contexto RTP e o \textit{LCN} (\textit{Logical Channel Number}), identificador único do canal lógico.
@@ -136,7 +136,7 @@
   		 
       \subsubsection{\textbf{H.323 \textit{Fast Connect Mode}}}\label{sec:h323-fast}
       
-         No H.323 versão 2 existe a opção do \textit{Fast Connect Mode}. O \textit{caller} manda um H.245 \textit{OLC} com um codec sugerido dentro do H.225 \textit{Setup Message}. Se o \textit{callee} suportar \textit{Fast Connect Mode} e aceitar a sugestão do codec, será respondido um H.225 \textit{Connect} também tranportando um H.245 \textit{OLC}. Com isso, as partes envolvidas já têm as informações necessárias para estabelecer a conexão de mídia, diminuindo significantemente o número de mensagens requeridas para estabelecer a sessão H.323. Segundo \cite{conferencingFundamentals}, equipamentos de video H.323 geralmente não suportam \textit{Fast Connect Mode}.
+         No H.323 versão 2 existe a opção do \textit{Fast Connect Mode}. O \textit{caller} manda um H.245 \textit{OLC} com um codec sugerido dentro do H.225 \textit{Setup Message}. Se o \textit{callee} suportar \textit{Fast Connect Mode} e aceitar a sugestão do codec, será respondido um H.225 \textit{Connect} também transportando um H.245 \textit{OLC}. Com isso, as partes envolvidas já têm as informações necessárias para estabelecer a conexão de mídia, diminuindo significantemente o número de mensagens requeridas para estabelecer a sessão H.323. Segundo \cite{conferencingFundamentals}, equipamentos de vídeo H.323 geralmente não suportam \textit{Fast Connect Mode}.
          
  		 \begin{figure}[H]
  			\centering
@@ -183,7 +183,7 @@
 			    {\begin{minipage}{1.05\linewidth}
 			        INVITE sip:UAcallee@172.27.14.53 SIP/2.0 \newline
 			        
-			        ! As linhas abaixos são os \textit{headers} SIP: \newline
+			        ! As linhas abaixo são os \textit{headers} SIP: \newline
 			        Via: SIP/2.0/UDP 172.27.14.4:5060;branch=8dJXAX9MDw \newline
 			        Max-Forwards: 70 \newline
 			        To: <sip:UAcallee@172.27.14.53> \newline
@@ -293,10 +293,10 @@
 				      
 				\item \textit{t}: define o tempo de início e o tempo de fim da sessão SIP. Os valores de \textit{t} são representações decimais dos valores de tempo do \textit{Network Time Protocol} (NTP), que, por sua vez, são os valores de tempo em segundos desde 1900. No exemplo da Figura~\ref{fig:sip-invite}, ambos os valores são zero, significando que o começo da sessão é imediato (assim que negociação de mídia terminar) e sem tempo de término (sessão só será encerrada quando uma das partes envolvidas desligar a chamada);
 				
-				\item \textit{m}: descreve as mídias que serão usadas. No nosso exemplo, tanto áudio, quanto vídeo. A linha \textit{"m="} ainda define a porta de destino da mídia (49220 para áudio e 5068 para vídeo), o protocolo de transporte usado na transmissão da mídia (RTP sob AVP para ambos) e a lista de \textit{payload types} (mais detalhes nas Seções~\ref{sec:codecs-audio} e~\ref{sec:codecs-video}) de cada codec de mídia;
+				\item \textit{m}: descreve as mídias que serão usadas. No nosso exemplo, tanto áudio, quanto vídeo. A linha \textit{"m="} ainda define a porta de destino da mídia (49220 para áudio e 5068 para vídeo), o protocolo de transporte usado na transmissão da mídia (RTP para ambos) e a lista de \textit{payload types} (Seção~\ref{sec:rtp}) de cada codec de mídia;
 				
 				\item \textit{a}: descrição de um atributo. Atributos podem ser \textit{session-level} (atributos de sessão) ou \textit{media-level} (atributos de mídia).
-				Um uso importante desse parâmetro é descrever os codecs de mídia que um UA suporta, logo após a descrição de mídia (\textit{"m="}). Na Figura~\ref{fig:sip-invite}, é estabelecido que o UACaller só suporta Speex a 16kHz como codec de áudio e H.264 a 90kHz como codec de vídeo. Ao final do SDP, há ainda alguns atributos específicos do codec H.264, como tamanho máximo de frame, taxa máxima de bits por segundo e \textit{profile} de vídeo (ver Seção~\ref{sec:h264}). Vale a menção que há diversos outros usos para atributos e existe uma lista extensa definida em \cite{sip-rfc}.
+				Um uso importante desse parâmetro é descrever os codecs de mídia que um UA suporta, logo após a descrição de mídia (\textit{"m="}). Na Figura~\ref{fig:sip-invite}, é estabelecido que o UACaller só suporta Speex como codec de áudio e H.264 como codec de vídeo. Ao final do SDP, há ainda alguns atributos específicos do codec H.264, como tamanho máximo de frame, taxa máxima de bits por segundo e \textit{profile} de vídeo (ver Seção~\ref{sec:codecs}). Vale a menção que há diversos outros usos para atributos e existe uma lista extensa definida em \cite{sip-rfc}.
 			\end{enumerate}
 			
 			\item Quando o \textit{callee} recebe a chamada e entra em processo para determinar se a aceitará ou não, é mandado um 100 Trying para o \textit{caller}:
@@ -304,7 +304,7 @@
 			\begin{figure}[h]
 			    \centering
 			    \adjustbox{margin=1em,width=10.3cm,frame,center}
-			    {\begin{minipage}{1.1\linewidth}
+			    {\begin{minipage}{0.9\linewidth}
 			        SIP/2.0 100 Trying \newline \newline
 			        Via: SIP/2.0/UDP 172.27.14.53:5060;branch=8dJXAX9MDw \newline
 			        To: <sip:UAcaller@172.27.14.4> \newline
@@ -318,7 +318,7 @@
 			\end{figure}
 			
 			\item Assim que o \textit{callee} aceita a chamada, este manda um 200 OK para o \textit{caller}. Nele, há o SDP descrevendo quais codecs de mídia, do conjunto que o \textit{caller} enviou no SDP do INVITE, que o \textit{callee} também suporta (no caso, o \textit{callee} também suporta Speex e H.264). Há também, como importante atributo de mídia (tanto para áudio, quanto para vídeo), o IP e as portas RTCP que o \textit{callee} usará para o controle do recebimento dos fluxos RTP (áudio e vídeo).
-			\newline \newline		
+			\newline		
 			\begin{figure}[h]
 			    \centering
 			    \adjustbox{margin=1em,width=10.3cm,frame,center}
@@ -418,75 +418,286 @@
 
 
 
-\section{Protocolos de Transporte de Mídia}\label{sec:transporte}
+\section{Protocolos de Transporte de Mídia em Tempo Real}\label{sec:transporte}
 
-    *OLÁ TUDO BEM*
+    Assim que os canais de mídia são estabelecidos através do Plano de Controle (durante as negociações H.323 ou SIP), é função do Plano de Mídia de uma conferência administrá-las, controlando como áudio e o vídeo serão transmitidos/recebidos e como serão tocados em um \textit{endpoint}. Padrões específicos para o transporte de mídia em tempo real são necessários, visto que essa tarefa necessita de certos controles que protocolos de transporte comuns, como UDP e TCP, não oferecem. Neste trabalho, veremos dois desses padrões. O primeiro, RTP, definido no RFC 3550, é o protocolo de transporte em tempo real mais utilizado em aplicações multimídias atualmente. O segundo, RTMP, é o protocolo de transporte em tempo real da Adobe, usado em aplicações multimídias que utilizam a tecnologia Flash.
     
 \subsection{Padrão RTP}\label{sec:rtp}
 	
-	*Explica SIP*
+	RTP - \textit{Real-Time Protocol} - é um protocolo de nível de aplicação e, no contexto de videoconferência, é o principal padrão para a transmissão de áudio e vídeo em tempo real. O protocolo possui propriedades que auxiliam na fluidez da streaming, na sincronização e nos ajustes de qualidade e de taxa de transmissão de mídias.
+	Um pacote RTP é composto pelo cabeçalho mais o pedaço da mídia a ser transmitido. O envio de pacotes RTP é através de um \textit{socket} UDP, portanto todo pacote RTP é encapsulado em um segmento UDP.	
+	O cabeçalho tem a seguinte estrutura:
 	
+ 		 \begin{figure}[h]
+ 			\centering
+ 			\includegraphics[width=22em, height=9em]{img/rtp-pacote.png}
+ 			\caption{Pacote RTP}
+ 			\label{fig:rtp-pacote}
+ 		 \end{figure}	
+ 		 
+   Destacam-se os seguintes campos no cabeçalho RTP:
+   
+   \begin{itemize}
+   	 \item \textit{M}: é um bit de marcação. Muito usado para informar que o pedaço de áudio sendo transmitido é o começo de uma fala ou que é o início de um \textit{frame}, caso o pacote RTP esteja transportando vídeo;
+   	 
+   	 \item \textit{Payload Type}: indica qual algoritmo de codificação de mídia está sendo usado. Existem tanto algoritmos que possuem valores fixos de \textit{Payload Type} (por exemplo, para G.722 - um tipo de codificação de áudio - o \textit{Payload Type} é sempre 9), quanto os que possuem valores dinâmicos (que é o caso do H.264, citado nas seções anteriores), que tipicamente variam de 97 a 127. O valor do PT pode ser alterado no meio de uma transmissão de mídia, e dessa forma o receptor saberá que o algoritmo de codificação mudou. A seguir, mostramos alguns codecs e seus RTP \textit{Payload Types}: 
+   	 
+ 			   \begin{table}[h]
+ 				\begin{center}
+ 				 %\resizebox{15.5cm}{!} {
+ 				    \begin{tabular}{| c | c | c |}    \hline
+ 				    \textbf{Codec} & \textbf{Tipo} & \textbf{Payload Type}   \\ \hline \hline
+ 				    PCMU  &  Áudio &   0   \\ \hline
+ 				    PCMA &  Áudio &   8   \\ \hline
+ 				    G.722 &  Áudio &   9   \\ \hline
+ 				    Speex &  Áudio &   Dinâmico   \\ \hline
+ 				    OPUS &  Áudio &   Dinâmico   \\ \hline
+ 				    H.261 &  Vídeo &  31    \\ \hline
+ 				    H.263 &  Vídeo &  34    \\ \hline
+ 				    H.264 &  Vídeo &  Dinâmico    \\ \hline
+				    VP8 &  Vídeo &  Dinâmico    \\ \hline			    
+ 				    \end{tabular} %}
+ 					\caption{RTP Payload Types}
+ 					\label{tab:rtp-payload-types}
+ 				 \end{center}
+ 				\end{table}  	 
+   	 
+   	 \item \textit{Sequence Number}: é um contador de pacotes. A cada novo pacote RTP gerado, o \textit{Sequence Number} é incrementado em 1. Assim, o receptor dos pacotes consegue identificar quais pedaços de mídia foram perdidos ou estão atrasados e restaurar a ordem correta desses.
+   	 
+   	 \item \textit{Timestamp}: Número que define o instante de tempo em que o pacote RTP foi construído. O \textit{Timestamp} dita o ritmo de utilização da mídia (de quanto em quanto tempo um pedaço de mídia deve ser tocado em um player, por exemplo) e ele existe pois o ritmo de recebimento dos pacotes (de quanto em quanto tempo um pedaço de mídia chega no receptor) dificilmente coincide com o de utilização.
+   	    	 
+   	 \item \textit{Synchronization Source Identifier}: O \textit{SSRC} é o identificador único da stream de mídia. Com isso, o receptor sabe a qual \textit{stream} o pacote recebido pertence.
+   	 
+   	 \item \textit{Contributing Source Identifiers}: O \textit{CSRC} é a lista de identificadores que contribuíram na construção do conteúdo do pedaço de mídia que o pacote RTP carrega. Com esse campo RTP, é possível adicionar um mecanismo de mixagem em uma sessão, que é uma das tarefas do Plano de Mídia. Por exemplo, numa conferência de múltiplos usuários, um \textit{mixer} receberá os pacotes de áudio dos vários participantes da sessão, e mixará cada \textit{stream} de forma que cada um dos participantes receberá de volta pacotes com o áudio composto dos outros usuários (nessa composição, só não haverá o áudio do próprio participante, para ele não ouvir a si mesmo junto dos outros). Quantos identificadores existem na lista \textit{CSRC} é definido no campo \textit{CC} (\textit{CSRC count}), localizado no começo do cabeçalho RTP.  	 	 
+   \end{itemize}
+   
+   \subsubsection{\textbf{RTCP}}\label{sec:rtp-rtcp}
+   
+		O RTCP - \textit{RTP Control Protocol} - é o protocolo irmão do RTP, atuando juntamente deste. Tem como principal função fornecer aos usuários \textit{feedback} sobre atrasos de pacotes e suas variações, uso e congestionamento de banda, e outras propriedades da rede. Também pode atuar em sincronização de mídia, nomeações de \textit{streams} e identificação de participantes. RTP e RTCP atuam em portas diferentes, a fim da identificação do que é um dado de mídia (no contexto de videoconferência), e o que é um dado de controle.
+		
+		Tais \textit{feedbacks} são úteis para adaptações nas transmissões. Se pacotes RTCP indicam que a rede não está enfrentando nenhum problema, o transmissor da mídia tem a oportunidade de, por exemplo, trocar para algum codec que ofereça mais qualidade mas que ocupe mais banda, ou simplesmente, utilizando o mesmo codec, elevar a taxa de transmissão a fim de aumentar a qualidade da mídia. Da mesma forma, caso o transmissor receba informações RTCP que apontam problemas na rede, é possível diminuir o uso de banda, alterando codecs e taxas de transmissão (o que provavelmente irá diminuir a qualidade da mídia). O uso alternado e \textit{on-the-fly} de codecs durante a sessão é possível modificando o \textit{Payload Type} dos pacotes RTP.		
+		
+		\textit{Feedbacks} RTCP também são úteis para geração de relatórios que apontam dados importantes como porcentagem de pacotes perdidos, flutuação da qualidade da mídia durante o andamento da sessão, entre outros.
+		
+		Uma questão envolvendo RTCP é o uso de banda pelo próprio. Pacotes RTCP são enviados para todos os participantes de uma sessão, de forma que o aumento do grupo de usuários pode também levar a um rápido crescimento do uso de banda pelo protocolo RTCP. Diminuir a taxa de envio de \textit{feedbacks} de forma que o envio de mensagens RTCP não ocupe mais que 5 \% da banda é a norma para evitar tal situação.
+		
+      \subsubsection{\textbf{Mais informações sobre RTP e RTCP}}\label{sec:rtp-mais infos}
+      
+         Para mais informações sobre esses protocolos, consulte \cite{schulz} (detalhes nas Referências deste trabalho). 	  
+   
+ 		 
 \subsection{Padrão RTMP}\label{sec:rtmp}
 	
-	*Explica RTMP*	
+	\textit{Adobe's Real Time Messaging Protocol} (RTMP) é o protocolo de transporte usado para \textit{streaming} de áudio, vídeo e outros tipos de dados da plataforma Flash. Inicialmente um padrão proprietário da Macromedia, a Adobe - assim que comprou	a empresa - tornou a especificação do padrão pública, visando a interoperação de outros sistemas com seus produtos.
+	Mensagens RTMP são utilizadas somente no nível de aplicação e, diferentemente de RTP - que roda sobre UDP - pacotes RTMP são enviados através de uma conexão TCP, normalmente usando a porta 1935.
+	Uma mensagem RTMP é formado pelo cabeçalho e pelo pedaço de mídia a ser transmitido (no contexto de videoconferência). O cabeçalho de uma mensagem RTMP deve conter:
 	
+	\begin{itemize}
+	   \item \textit{Timestamp};
+	   \item \textit{Length}: tamanho do \textit{payload} (que contém os dados de mídia);
+	   \item \textit{Type Id}: tipo da mensagem que o pacote RTMP carrega. Define se o conteúdo é áudio (\textit{Type Id} = 8), vídeo (\textit{Type Id} = 9), ou controle (há um conjunto de \textit{Type Ids} específicos para o controle de \textit{streaming}).
+	   \item \textit{Message Stream ID}: número arbitrário que define o identificador único da \textit{stream}.
+	\end{itemize}
 	
+	Após a montagem da mensagem, ele sofre o processo de \textit{chunking}, onde a mensagem é fragmentada em pedaços menores, os \textit{chunks}. \textit{Chunks} possuem cabeçalho e \textit{payload} variáveis, diminuindo, assim, o \textit{overhead} gerado por pacotes de tamanho fixo (pequenos dados a serem transmitidos em pacotes de tamanho fixo às vezes devem preencher o payload ou cabeçalhos com \textit{dummy bits} apenas para respeitar o tamanho fixo ; assim, parte do pacote a ser transmitido é inútil, e, desse modo, se usa mais banda que o necessário). O receptor, por sua vez, agrupa os \textit{chunks} de uma mesma mensagem através do \textit{Chunk Stream Id}, campo do cabeçalho do \textit{chunk}, montando, assim, a mensagem original.
 	
+      \subsubsection{\textbf{Mais informações sobre RTMP}}\label{sec:rtmp-mais infos}
+      
+         Para mais informações sobre o protocolo RTMP, consulte \cite{adobe} (detalhes nas Referências deste trabalho). 
+		
 
-\section{Codificação de áudio}\label{sec:codecs-audio}
 
-    *Intro*
+\section{Codificação de Mídia}\label{sec:codecs}
+
+    Para diminuir o uso de banda da transmissão de mídia, áudio e vídeo sofrem um processo de compressão antes de serem encapsulados em pacotes RTP ou RTMP. As características de um algoritmo de compressão determinam uma maior ou menor redução de dados, bem como ditam o quanto a mídia perderá qualidade no processo de compressão. Codificação/decodificação - \textit{codec} - (comprimir e descomprimir), pode ser feito tanto em software quanto em hardware, de forma que sistemas de videoconferência de sala tendem a levar vantagem no desempenho dessa tarefa, devido ao seu hardware dedicado. Codecs são \textit{lossy} quando a compressão provoca perda de dados, ou, caso contrário, \textit{lossless}.
     
-\subsection{Padrão PCMA}\label{sec:pcma}
-	
-	*Explica PCMA*
-	
-\subsection{Padrão PCMU}\label{sec:pcmu}
-	
-	*Explica PCMU*
-	
-\subsection{Padrão G.711}\label{sec:g711}
-	
-	*Explica G.711*
-	
-\subsection{Padrão Speex}\label{sec:speex}
-	
-	*Explica Speex*
+    Um parâmetro de codificação importante - tanto para áudio quanto para vídeo - é a taxa de bits ou \textit{bitrate}, que define quantos bits são processados para reproduzir uma unidade de tempo da mídia. Por exemplo, se uma compressão de áudio gera uma taxa de 1kbps, a cada 1 segundo de áudio há 1000 bits. Assim, a taxa de bits de uma codificação impacta o tamanho total da mídia (e, consequentemente, o uso da banda para transmiti-la), sua qualidade (em geral, quanto mais bits por unidade de tempo, mais fiel a codificação é à mídia original - embora haja codecs de baixo \textit{bitrate} e boa qualidade), e seu processamento (quanto menor a taxa de bits, maior é a demanda da compressão para reduzir a mídia). Uma codificação pode gerar uma taxa de bits constante (CBR - \textit{Constant bitrate}) ou variável (VBR - \textit{Variable bitrate}).
     
-\subsection{Padrão OPUS}\label{sec:opus}
-	
-	*Explica OPUS*
-	
-	
-	
-	
-\section{Codificação de vídeo}\label{sec:codecs-video}
+    Para áudio, podem ser destacados outros parâmetros e características, como:
+    
+    \begin{itemize}
+	 	\item Taxa de amostragem (ou \textit{sample rate}): o codec pode alterar o \textit{sample rate} (número de amostras por segundo usado na captura do áudio original), determinando um novo espectro frequências do áudio e impactando na qualidade. No contexto de videoconferência, codecs usam \textit{sample rates} que variam de 8kHz a 48kHz;
+	 	
+	 	\item Supressão de silêncio - \textit{silence suppression} ou \textit{Voice Activity Detection} (\textit{VAD}): o codec pode detectar silêncios no áudio e descartar os dados, reduzindo o tamanho da mídia;
+	 	
+	 	\item Cancelamento de eco: o codec pode detectar ecos (geralmente causados por microfones que acabam capturando a saída de alto-falantes e remandando o áudio que havia chegado para outros participantes) e os cancelar;
+    \end{itemize}
+  
+    Já para vídeo, aponta-se:
+    
+    \begin{itemize}
+	 	\item Quadros por segundos (FPS - \textit{frames per second}): número de imagens que serão exibidas no intervalo de 1 segundo. Quanto maior o FPS, maior a fluidez do vídeo e maior uso de banda em transmissão (é uma relação linear: dobrando o FPS, dobra-se a ocupação da banda);
+	 	
+	 	\item Resolução: largura e altura (em pixels) dos quadros que compõe o vídeo. Resoluções conhecidas são SD (720x480), HD (1280x720) e Full-HD (1920x1080). Possui relação quadrática com o uso de banda, de forma que dobrar a resolução (aumentar a largura e comprimento cada um em duas vezes) quadruplica a ocupação da banda;
+	 	
+	 	\item Perfil ou \textit{profile}: define um conjunto de características que limita a complexidade da codificação, e, consequentemente, reduz a demanda da decodificação. Por exemplo, alguns perfis podem proibir o uso de \textit{B-Frame} (quadro que tem alta compressão, pois usa informações de quadros anteriores e próximos), pois estes demandam mais processamento e uso de memória;
+	 	
+	 	\item \textit{Level}: define limitações numéricas de parâmetros, como resolução, \textit{fps}, \textit{bitrate}, etc.
+    \end{itemize}
 
-	*Intro*
+    A seguir, veremos resumidamente alguns padrões populares e/ou atuais usados para a codificação de áudio e vídeo em sistemas de videoconferência:
+      
+\subsection{Padrões para Codificação de Áudio}\label{sec:codecs-audio}
+
+    			
+	\subsubsection{\textbf{Padrão G.7xx}}\label{sec:g7xx}
+		
+		Codecs da família G.7xx (ou G Series) são padrões ITU-T. 
+		
+		O origem do G Series se deu em 1972, com o lançamento do padrão G.711, formalmente conhecido como \textit{Pulse Code Modulation} (PCM) \textit{of Voice Frequencies}. Foi primeiramente usado em telefonia, onde existiam 2 versões: o G.711 $µ$-law (ou PCMU), usado em redes de telefonia dos Estados Unidos e Japão, e o G.711 A-law (ou PCMA) usado na Europa e internacionalmente \cite{tanenbaum}. Ainda houve melhorias, como o G.711.0, que gerava compressão sem perdas (\textit{lossless}) e como o G.711.1, que incrementava a qualidade do áudio (bem como o uso de banda). O suporte de G.711 é obrigatório em sistemas H.323.
+		
+		A tabela~\ref{tab:g-series} mostra os bitrates e a qualidade de alguns codecs G.7xx \cite{speech}. A qualidade foi medida usando MOS, popular tipo de medida subjetiva de qualidade de áudio, classificando-a de 1 a 5 (MOS não será abordado nesse trabalho).
+		
+		Mais informações sobre G.7xx é possível acessando \textit{ITU-T G Series: Transmission systems and media, digital systems and networks}\footnote{\url{http://www.itu.int/net/itu-t/sigdb/speaudio/Gseries.htm}}, página web da ITU-T dedicada a G Series, contendo todas as especificações. \\ \\ \\ \\
+		
+		
+		
+ 			   \begin{table}[h]
+ 				\begin{center}
+ 				 %\resizebox{6.7cm}{!} {
+ 				    \begin{tabular}{| c | c | c |}    \hline
+ 				    \textbf{Codec} & \textbf{Bitrate (kbps)} & \textbf{Qualidade}   \\ \hline \hline
+ 				    G.711       &  64           &   4.3   \\ \hline
+ 				    G.721/G.726 &  16,24,32,40  &   4.1   \\ \hline
+ 				    G.722       &  32           &   4.1    \\ \hline
+				    G.722.1     &  32           &   4.1    \\ \hline	
+				    G.722.2     &  32           &   4.1    \\ \hline
+ 				    G.723.1     &  5.3 até 6.3  &   3.7 até 3.9   \\ \hline
+ 				    G.727       &  8            &   4.3+   \\ \hline
+ 				    G.728       &  16           &   4.0+   \\ \hline
+ 				    G.729       &  8            &   4.3+    \\ \hline
+ 				    G.729A      &  8            &   4.3+    \\ \hline		    
+ 				    \end{tabular} %}
+ 					\caption{Comparação G Series}
+ 					\label{tab:g-series}
+ 				 \end{center}
+ 				\end{table} 	
+		
+		
+		
+	\subsubsection{\textbf{Padrão Speex e Padrão OPUS}}\label{sec:speex-opus}
+		
+		Speex e OPUS são dois padrões da fundação Xiph.Org\footnote{\url{https://www.xiph.org/about/}}, organização sem fins lucrativos que desenvolve padrões de software open source. 
+		
+		Speex tornou-se um padrão IETF no RFC 5574\footnote{\url{https://tools.ietf.org/html/rfc5574}} e se baseia no algoritmo de compressão CELP (\textit{Code-Excited Linear Prediction}). Algumas características do Speex são \cite{speex}:
+		
+		\begin{itemize}
+		   \item \textit{Lossy};
+		   \item \textit{Sample rate} de 8, 16 ou 32 kHz;
+		   \item \textit{Bitrate} variando de 2.15 a 44.2 kbps;
+		   \item VBR;
+		   \item Cancelamento de eco, supressão de ruído e de silêncio.
+		\end{itemize}
+		
+		Em 2012, surge o OPUS, como uma espécie de 'sucessor' do Speex (o próprio speex.org\footnote{\url{https://www.speex.org}} declara na sua home page: "The Speex codec has been obsoleted by Opus. It will continue to be available, but since Opus is better than Speex in all aspects, users are encouraged to switch."), incorporando características do CELT (outro codec de áudio da Xiph.Org) e SILK (codec de áudio utilizado no Skype).
+		
+		OPUS tornou-se um padrão IETF no RFC 6716\footnote{\url{https://tools.ietf.org/html/rfc6716}} e é o principal codec de áudio da tecnologia WebRTC (Seção~\ref{sec:webrtc}), conseguindo baixos \textit{bitrates} e alta qualidade. 
+		O desenvolvimento do OPUS recebeu colaborações de programadores associados ao Xiph.Org e ao Skype.
+		
+		OPUS apresenta algumas features como \cite{opus}:		
+		\begin{itemize}
+		   \item \textit{Lossy};
+		   \item \textit{Sample rate} de 8 a 48 kHz;
+		   \item \textit{Bitrate} variando de 6 a 510 kbps;
+		   \item Suporta tanto VBR quanto CBR;
+		\end{itemize}
+		
+		O opus-codec.org\footnote{\url{http://opus-codec.org/comparison/}} oferece uma página de comparações entre OPUS e outros codecs de áudio. O gráfico abaixo, mostra a relação de \textit{bitrate} e qualidade de áudio em diversos codecs:
+		
+ 		 \begin{figure}[h]
+ 			\centering
+ 			\includegraphics[width=22em, height=25em]{img/opus-qualidade.png}
+ 			\caption{OPUS vs outros codecs de áudio}
+ 			\label{fig:opus-qualidade}
+ 		 \end{figure}				
+	    
+	\subsubsection{\textbf{Padrão iLBC e Padrão iSAC}}\label{sec:ilbc-isac}
+		
+	\textit{Internet Low Bitrate Codec} (iLBC) e \textit{internet Speech Audio Codec} (iSAC) são codecs de áudio desenvolvidas pela Global IP Solutions, comprada pela Google em 2011, sendo utilizados no Google Hangout e posteriormente incorporados ao WebRTC.
 	
-\subsection{Padrão H.263}\label{sec:h263}
+	Segundo o overview da arquitetura do WebRTC\footnote{\url{https://webrtc.org/architecture/}}, iSAC apresenta \textit{sample rate} de 16 ou 32 kHz, com um \textit{bitrate} variável de 12 a 52 kbps.
 	
-	*Explica H.263*
+	Já iLBC tornou-se padrão IETF, e é definido nos RFCs 3951 e 3952. Algumas características são seu \textit{sample rate} de 8 kHz e seu \textit{bitrate} de 13.33 kbps ou 15.2kbps. Segundo \cite{ilbc}, a qualidade básica do áudio usando iLBC é maior que a oferecida pelo ITU-T G.729A.	
 	
-\subsection{Padrão H.264}\label{sec:h264}
 	
-	*Explica H.264*
+\subsection{Padrões para Codificação de Vídeo}\label{sec:codecs-video}
+
 	
-\subsection{Padrão VP8}\label{sec:vp8}
-	
-	*Explica VP8*
+	\subsubsection{\textbf{Padrão H.26x}}\label{sec:h26x}
+		
+		Codecs H.26x são padrões ITU-T para video. No contexto de videoconferência, destacam-se:
+		
+		\begin{itemize}
+			\item \textbf{H.261}: Usado para interoperação com \textit{endpoints} antigos (\textit{legacy}). Vídeos H.261 podem ser QCIF (resolução de 176x144) a 30 \textit{fps} ou CIF (352x288) a 15 \textit{fps} \cite{h.261-rfc}.
+			
+			\item \textbf{H.263}: Existem 3 versões para H.263: \textit{Base} H.263 (ou, simplesmente, H.263), H.263+ ou H.263-1998 (que também engloba as características do H.263) e H.263++ ou H.263-2000 (também englobando as características do H.263-1998). 
+			
+			H.263 define as seguintes resoluções: sub-QCIF (128x96), QCIF, CIF, CIF4 (704x576), CIF16 (1056x864) e CUSTOM (personalizável - largura e altura devem ser múltiplos de 4).
+			
+			H.263 e H.263-1998, que não suportam \textit{profiles} e \textit{levels}, utilizam, por default,  QCIF a 30 \textit{fps} (podendo utilizar outros valores através de negociações SIP ou H.323).
+			
+			H.263-2000 apresenta 9 perfis de vídeo e múltiplos \textit{levels}, que definem quais os \textit{bitrates}, \textit{fps} e resoluções permitidas. Para videoconferência, o profile recomendado é o \textit{baseline} (\textit{profile} 0), que é o perfil 'mínimo' (sem as \textit{features} adicionais e opções de operação de outros perfis).	
+			
+			\item \textbf{H.264}: Sucessor do H.263. Foi desenvolvido em conjunto com a ISO/IEC, sendo também conhecido como AVC (\textit{Advanced Video Codec}). Gera de 30 a 50\% menos \textit{bitrate} que H.263, embora aumente o uso de CPU - pode demandar 3 ou 4 vezes mais processamento que outros codecs de vídeo \cite{conferencingFundamentals}, dependendo do \textit{profile} usado na codificação H.264.
+		
+		    O perfil H.264 para videoconferência é o \textit{baseline}. \textit{Levels} válidos são: 1, 1.1, 1.2, 1.3, 2, 2.1, 2.2, 3, 3.1, 3.2, 4, 4.1, 4.2, 5, e 5.1. Por exemplo, o level 3.0 define 4CIF a 25 fps. É possível consultar a lista completa de \textit{levels} e suas definições em \cite{h264-recommendation}.
+		\end{itemize}
+		
+		
+	\subsubsection{\textbf{Padrão VPx}}\label{sec:vpx}
+		
+		O padrão de codificação VPx foi desenvolvida pela On2 Technologies, originado da série de codecs \textit{True Motion}. O primeiro padrão VPx foi o \textit{True Motion} VP3, sucessor do \textit{TrueMotion} RT 2.0.
+		
+		Em 2010, a On2 Technologies foi adquirida pela Google\footnote{\url{http://www.on2.com/}} e, assim, o padrão VP8, que fora publicado em 2008, tornou-se público através do WebM Project\footnote{\url{http://www.webmproject.org/about/}}, sendo posteriormente incorporado ao pacote de mídia do WebRTC\footnote{\url{https://webrtc.org/faq/#what-is-the-vp8-video-codec}}.
+		
+		O codec VP8 define 4 \textit{profiles} e 3 \textit{levels} \cite{VP8} que, diferentemente da definição convencional - explicado e exemplificado anteriormente - apenas regulam a complexidade do processo de decodificação/descompressão dos dados de vídeo.
+		
+		
 
 	
 	
 		
 \section{Tecnologias para Webconferência}\label{sec:tecnologias-webconf}
 
-    *Intro*
     
-\subsection{Flash}\label{sec:flash}
+\subsection{Plataforma Flash}\label{sec:flash}
+
+    Adobe Flash (anteriormente Macromedia Flash) é uma plataforma de desenvolvimento de software para desktop, mobile e navegadores web. O desenvolvimento de aplicações Flash se dá através da linguagem de programação ActionScript\footnote{\url{http://www.adobe.com/devnet/actionscript.html}} e, para a confecção de interfaces de usuário, da linguagem de marcação MXML\footnote{\url{http://help.adobe.com/en_US/flex/using/WS2db454920e96a9e51e63e3d11c0bf5f39f-7fff.html}}. Na Figura~\ref{fig:adobe-arch}, temos uma visão geral da arquitetura da plataforma Flash.
+    
+  		 \begin{figure}[h]
+  			\centering
+  			\includegraphics[width=29em, height=17em]{img/adobe-arch.png}
+  			\caption{Visão geral da arquitetura da plataforma Flash}
+  			\label{fig:adobe-arch}
+  		 \end{figure}   
 	
-	*Explica Flash*
-	
+     Através do software Flash Player, parte da plataforma Flash, navegadores web podem, por meio da instalação do plugin, reproduzir conteúdo multimídia. Devido sua facilidade de uso, logo tornou-se um padrão popular para \textit{streaming} de áudio e vídeo na web, sendo utilizado pelo Youtube, Yahoo, BBC Online e outros famosos provedores de conteúdo.
+     
+     Sistemas de webconferência desenvolvidas sobre a plataforma Flash devem usar os padrões suportados pelo Flash Player que, no contexto de videoconferência, define o seguinte escopo:
+		
+		\begin{itemize}
+		   \item Transporte de mídia: RTMP;
+		   \item Codecs de áudio: Speex e G.711 (PCMA e PCMU);
+		   \item Codecs de vídeo: H.263, H.264 e VP6.
+		\end{itemize}
+
+	A plataforma Flash não define um Plano de Controle, dependendo de um servidor de mídia para conectar usuários através de algum protocolo de sinalização e para fazer distribuição de áudio e vídeo. Servidores de mídia para Flash conhecidos são o Adobe Media Server\footnote{\url{http://www.adobe.com/br/products/adobe-media-server-family.html}} e o Red5 (que veremos no próximo capítulo).
+
 \subsection{WebRTC}\label{sec:webrtc}
 	
-	*Explica WebRTC*	
+	WebRTC é um framework aberto que provê capacidades de comunicação em tempo real para navegadores web, implementando componentes que dão suporte a chat, áudio e vídeo, sem a necessidade de instalação de plugins. Desenvolvedores que desejam utilizar WebRTC para construir um sistema de webconferência podem acessar tais componentes pela Web API, que utiliza JavaScript. À época deste trabalho, WebRTC é suportado pelos browsers Chrome, Firefox e Opera, e está em processo de se tornar um padrão IETF.
+		
+	A arquitetura geral do WebRTC é apresentado abaixo:
+	
+  		 \begin{figure}[h]
+  			\centering
+  			\includegraphics[width=35em, height=25em]{img/webrtc-arch.png}
+  			\caption{Visão geral da arquitetura do WebRTC}
+  			\label{fig:webrtc-arch}
+  		 \end{figure}
+  		 
+  	A camada em verde é a camada implementada pelos browsers. Eles devem prover a camada RTP e a implementação dos codecs de mídia. Navegadores web devem, no mínimo, implementar VP8, OPUS, iSAC e iLBC. Chrome e Firefox ainda oferecem suporte a H.264.
+  	
+    O WebRTC, assim como o Flash, não define o Plano de Controle. A filosofia do WebRTC é deixar a escolha do uso do protocolo de sinalização para a aplicação web, enquanto o browser fica responsável pelo Plano de Mídia. Entretanto, o próprio WebRTC faz recomendações de bibliotecas web que implementam SIP, como o JsSIP\footnote{\url{http://www.jssip.net/}} e o SIP.js\footnote{\url{http://sipjs.com/}}, ambas implementadas em JavaScript.
+    
+    Informações adicionais sobre WebRTC é possível acessando o webrtc.org\footnote{\url{https://webrtc.org/}}.	

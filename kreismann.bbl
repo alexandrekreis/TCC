@@ -12,6 +12,12 @@
 \bibitem[IETF(2002)IETF]{sip-rfc} IETF. \textbf{SIP RFC 3261}. [Online;
   acessado em 4-Maio-2016], \url{https://tools.ietf.org/html/rfc3261}.
 
+\bibitem[IETF(2006)IETF]{h.261-rfc} IETF. \textbf{RFC 4587}. [Online; acessado
+  em 8-Maio-2016], \url{https://tools.ietf.org/html/rfc4587}.
+
+\bibitem[IETF(2011)IETF]{VP8} IETF. \textbf{RFC 6386}. [Online; acessado em
+  9-Maio-2016], \url{https://tools.ietf.org/html/rfc6386}.
+
 \bibitem[ITU(2009a)ITU]{h225-recommendation} ITU. \textbf{H.225 Recommendation
   (12/09)}. [Online; acessado em 4-Maio-2016],
   \url{http://www.itu.int/rec/T-REC-H.225.0-200912-I/en}.
@@ -24,17 +30,46 @@
   (05/11)}. [Online; acessado em 4-Maio-2016],
   \url{http://www.itu.int/rec/T-REC-H.245-201105-I/en}.
 
+\bibitem[ITU(2016)ITU]{h264-recommendation} ITU. \textbf{H.264 Recommendation
+  (02/16)}. [Online; acessado em 9-Maio-2016],
+  \url{https://www.itu.int/rec/T-REC-H.264-201602-P/en}.
+
+\bibitem[KARVIR(2005)KARVIR]{flash-platform} KARVIR, V\@. \textbf{Delivering
+  Enterprise Applications, Content, and Communications with the Flash
+  Platform}. [S.l.:~s.n.], 2005.
+
 \bibitem[KUROSE; ROSS(2013)KUROSE; ROSS]{kurose} KUROSE, J.~F.; ROSS, K.~W\@.
   \textbf{Computer Networking}: a top-down approach, 6th edition. [S.l.]:
   Pearson, 2013.
+
+\bibitem[OGUNFUNMI; NARASIMHA(2010)OGUNFUNMI; NARASIMHA]{speech} OGUNFUNMI, T.;
+  NARASIMHA, M\@. \textbf{Principles of Speech Coding}. [S.l.]: CRC Press,
+  2010.
+
+\bibitem[PARMAR; THORNBURGH(2012)PARMAR; THORNBURGH]{adobe} PARMAR, H.;
+  THORNBURGH, M\@. \textbf{Adobe's Real Time Messaging Protocol}. [S.l.]:
+  Copyright Adobe Systems Incorporated, 2012.
 
 \bibitem[ROESLER et~al.(2012)ROESLER; CECAGNO; DARONCO;
   DIXON]{mconfIntroduction} ROESLER, V. et~al\@. Mconf: an open source
   multiconference system for web and mobile devices. In: \textbf{Multimedia - A
   Multidisciplinary Approach to Complex Issues}. [S.l.]: InTech, 2012.
 
+\bibitem[SCHULZRINNE et~al.(2003)SCHULZRINNE; CASNER; FREDERICK;
+  JACOBSON]{schulz} SCHULZRINNE, H. et~al\@. \textbf{RTP}: a transport protocol
+  for real time applications. [S.l.:~s.n.], 2003.
+
 \bibitem[TANENBAUM; WETHERALL(2011)TANENBAUM; WETHERALL]{tanenbaum} TANENBAUM,
   A.~S.; WETHERALL, D.~J\@. \textbf{Computer Networks, 5th Edition}. [S.l.]:
   Pearson, 2011.
+
+\bibitem[WEBRTC(2011)WEBRTC]{ilbc} WEBRTC. \textbf{iLBC Freeware}. [Online;
+  acessado em 8-Maio-2016], \url{https://webrtc.org/license/ilbc-freeware/}.
+
+\bibitem[XIPH.ORG(2003)XIPH.ORG]{speex} XIPH.ORG. \textbf{Speex}. [Online;
+  acessado em 8-Maio-2016], \url{http://www.speex.org/}.
+
+\bibitem[XIPH.ORG(2012)XIPH.ORG]{opus} XIPH.ORG. \textbf{OPUS}. [Online;
+  acessado em 8-Maio-2016], \url{http://www.opus.org/}.
 
 \end{thebibliography}
