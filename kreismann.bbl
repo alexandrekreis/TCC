@@ -5,9 +5,26 @@
   WEB CONFERENCING]{adobeConnect} Adobe Connect: bringing together video and
   next-generation web conferencing. \textbf{White paper}, [S.l.], 2011.
 
+\bibitem[BIGBLUEBUTTON(????)BIGBLUEBUTTON]{BBB} BIGBLUEBUTTON.
+  \textbf{Bigbluebutton}. [Online; acessado em 22-Maio-2016],
+  \url{http://bigbluebutton.org/}.
+
+\bibitem[EKIGA(????)EKIGA]{ekiga} EKIGA. \textbf{Ekiga}. [Online; acessado em
+  26-Maio-2016], \url{http://www.ekiga.org/}.
+
+\bibitem[FFMPEG(????)FFMPEG]{FFMPEG} FFMPEG. \textbf{FFMPEG}. [Online; acessado
+  em 22-Maio-2016], \url{https://ffmpeg.org/}.
+
 \bibitem[FIRESTONE; RAMALINGAM; FRY(2007)FIRESTONE; RAMALINGAM;
   FRY]{conferencingFundamentals} FIRESTONE, S.; RAMALINGAM, T.; FRY, S\@.
   \textbf{Voice and Video Conferencing Fundamentals}. [S.l.:~s.n.], 2007.
+
+\bibitem[FREESWITCH(????)FREESWITCH]{Freeswitch} FREESWITCH.
+  \textbf{Freeswitch}. [Online; acessado em 22-Maio-2016],
+  \url{https://freeswitch.org/}.
+
+\bibitem[HUAWEI(????)HUAWEI]{huawei} HUAWEI. \textbf{Huawei}. [Online; acessado
+  em 26-Maio-2016], \url{http://www.huawei.com/}.
 
 \bibitem[IETF(2002)IETF]{sip-rfc} IETF. \textbf{SIP RFC 3261}. [Online;
   acessado em 4-Maio-2016], \url{https://tools.ietf.org/html/rfc3261}.
@@ -34,6 +51,9 @@
   (02/16)}. [Online; acessado em 9-Maio-2016],
   \url{https://www.itu.int/rec/T-REC-H.264-201602-P/en}.
 
+\bibitem[JITSI(????)JITSI]{jitsi} JITSI. \textbf{Jitsi}. [Online; acessado em
+  26-Maio-2016], \url{http://www.jitsi.org/}.
+
 \bibitem[KARVIR(2005)KARVIR]{flash-platform} KARVIR, V\@. \textbf{Delivering
   Enterprise Applications, Content, and Communications with the Flash
   Platform}. [S.l.:~s.n.], 2005.
@@ -42,6 +62,9 @@
   \textbf{Computer Networking}: a top-down approach, 6th edition. [S.l.]:
   Pearson, 2013.
 
+\bibitem[MCONF(????)MCONF]{Mconf.org} MCONF. \textbf{Mconf}. [Online; acessado
+  em 22-Maio-2016], \url{http://mconf.org/}.
+
 \bibitem[OGUNFUNMI; NARASIMHA(2010)OGUNFUNMI; NARASIMHA]{speech} OGUNFUNMI, T.;
   NARASIMHA, M\@. \textbf{Principles of Speech Coding}. [S.l.]: CRC Press,
   2010.
@@ -49,6 +72,12 @@
 \bibitem[PARMAR; THORNBURGH(2012)PARMAR; THORNBURGH]{adobe} PARMAR, H.;
   THORNBURGH, M\@. \textbf{Adobe's Real Time Messaging Protocol}. [S.l.]:
   Copyright Adobe Systems Incorporated, 2012.
+
+\bibitem[POLYCOM(????)POLYCOM]{polycom} POLYCOM. \textbf{Polycom}. [Online;
+  acessado em 26-Maio-2016], \url{http://www.polycom.com.br/}.
+
+\bibitem[RED5(????)RED5]{Red5} RED5. \textbf{Red5}. [Online; acessado em
+  22-Maio-2016], \url{http://red5.org/}.
 
 \bibitem[ROESLER et~al.(2012)ROESLER; CECAGNO; DARONCO;
   DIXON]{mconfIntroduction} ROESLER, V. et~al\@. Mconf: an open source

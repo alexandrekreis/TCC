@@ -3,7 +3,7 @@
 	Sistemas de videoconferência possibilitam a comunicação de múltiplos usuários, independente de suas posições geográficas, através de áudio e vídeo. Com isso, aulas, treinamentos, apresentações e outros tipos de reunião podem ser realizados sem o deslocamento pessoal para um mesmo local físico, reduzindo custos e agilizando logísticas. Segundo \cite{mconfIntroduction}, sistemas de videoconferência podem ser organizados em quatro grupos:
 	
     \begin{enumerate}
-         \item \textbf{Sistemas de videoconferência de sala}: São sistemas baseados em hardware e exigem o uso de salas físicas com um terminal de acesso - no caso, equipamentos de videoconferência acompanhados de televisões, monitores ou sistemas de som - como pode ser visto na Figura~\ref{fig:videoconf-sala}. Por serem \textit{hardware-based}, têm sua flexibilidade prejudicada, podendo depender de extensões Desktop para funcionalidades extras, tais como compartilhamento de tela ou apresentação de slides. Entretanto, justamente por serem hardwares dedicados, equipamentos de videoconferência de sala garantem áudio de alta qualidade e vídeo de alta definição em tempo real.
+         \item \textbf{Sistemas de videoconferência de sala}: São sistemas baseados em hardware e exigem o uso de salas físicas com um terminal de acesso - no caso, equipamentos de videoconferência acompanhados de televisões, monitores ou sistemas de som - como pode ser visto na Figura~\ref{fig:videoconf-sala}. Por serem \textit{hardware based}, têm sua flexibilidade prejudicada, podendo depender de extensões Desktop para funcionalidades extras, tais como compartilhamento de tela ou apresentação de slides. Entretanto, justamente por serem hardwares dedicados, equipamentos de videoconferência de sala garantem áudio de alta qualidade e vídeo de alta definição em tempo real.
          
 		 \begin{figure}[h]
 		 \centering
@@ -13,7 +13,7 @@
 		 \label{fig:videoconf-sala}
 		 \end{figure}  
          
-         \item \textbf{Sistemas de videoconferência por telepresença}: são uma especialização dos sistemas de sala - herdando, portanto, as características descritas no item 1 - e têm como objetivo reproduzir a sensação de que todos os participantes estão na mesma sala física. Para tal, certas configurações de ambiente da sala e de equipamentos devem ser feitas, como:
+         \item \textbf{Sistemas de videoconferência por telepresença}: são uma especialização dos sistemas de sala - herdando, portanto, as características descritas no item 1 - e têm como objetivo reproduzir a sensação de que todos os participantes estão na mesma sala física. Para tal, como mostra o exemplo da Figura~\ref{fig:telepresenca}, certas configurações de ambiente da sala e de equipamentos devem ser feitas, como:
          
 			\begin{itemize}
 				\item Ajustar a câmera para mostrar o participante remoto em tamanho real;
@@ -25,25 +25,25 @@
 			\begin{figure}[h]
 			\centering
 			\includegraphics[width=22em, height=11em]{img/telepresenca.png}
-			\caption{Exemplo de sistema de telepresença da Cisco}
+			\caption{Exemplo de sistema de telepresença da Cisco.}
 			\label{fig:telepresenca}
 			\end{figure}
 		
-		\item \textbf{Sistemas de videoconferência desktop}: também conhecidos como softfones (junção das palavras \textit{software} e telefone), são alternativas \textit{software-based} para sistemas de sala. Devem ser instalados em um computador pessoal, equipado com câmera e microfone. Embora tais sistemas não usem hardwares dedicados, a diferença de qualidade de mídia entre sistemas de sala e desktop tem diminuído, devido aos avanços na qualidade dos hardwares de PCs.
+		\item \textbf{Sistemas de videoconferência desktop}: também conhecidos como softfones (junção das palavras \textit{software} e telefone), são alternativas \textit{software based} para sistemas de sala. Devem ser instalados em um computador pessoal, equipado com câmera e microfone. Embora tais sistemas não usem hardwares dedicados, a diferença de qualidade de mídia entre sistemas de sala e desktop tem diminuído, devido aos avanços na qualidade dos hardwares de PCs. A Figura~\ref{fig:videoconf-desktop} apresenta dois exemplos de softfones: Ekiga e Skype.
 		
 			 \begin{figure}[h]
 			 \centering
 			 \subfigure{\includegraphics[width=5.5cm, height=11em]{img/ekiga.png}}
 			 \subfigure{\includegraphics[width=5.5cm, height=11em]{img/skype.png}}
-			 \caption{Exemplo de softfones: Ekiga (esquerda) e Skype (direita)}
+			 \caption{Exemplo de softfones: Ekiga (esquerda) e Skype (direita).}
 			 \label{fig:videoconf-desktop}
 			 \end{figure}
 			 
-		 \item \textbf{Sistemas de videoconferência web} ou \textbf{sistemas de webconferência}: são sistemas de videoconferência executados em um navegador web, sendo compatíveis, portanto, com diferentes sistemas operacionais e não requerendo instalação. Para acessar um sistema de webconferência, o usuário, utilizando o sistema operacional de sua preferência, apenas precisa abrir uma URL em um bom browser, o que implica em uma grande facilidade de uso. Exemplos de tais sistemas são o Adobe Connect, Google Hangout e Mconf.
+		 \item \textbf{Sistemas de videoconferência web} ou \textbf{sistemas de webconferência}: são sistemas de videoconferência executados em um navegador web, sendo compatíveis, portanto, com diferentes sistemas operacionais e não requerendo instalação. Para acessar um sistema de webconferência, o usuário, utilizando o sistema operacional de sua preferência, apenas precisa abrir uma URL em um bom navegador web, o que implica em uma grande facilidade de uso. Exemplos de tais sistemas são o Adobe Connect, Google Hangout e Mconf (este é demonstrado na Figura~\ref{fig:webconf-example}). \\ \\
 		 
-		 	\begin{figure}[H]
+		 	\begin{figure}[h]
 		 	\centering
-		 	\includegraphics[width=27em, height=15em]{img/webconference-example.png}
+		 	\includegraphics[width=32em, height=23em]{img/webconference-example.png}
 		 	\caption{Exemplo de sistema de webconferência: Mconf.}
 		 	\label{fig:webconf-example}
 		 	\end{figure}
@@ -51,26 +51,31 @@
 	
     \end{enumerate}	
     
-    \section{Interoperabilidade}\label{sec:intro-interop}
+  \section{Interoperabilidade}\label{sec:intro-interop}
     		
     Por meio de padrões de videoconferência, um sistema desse tipo deve ser capaz de interoperar, através de áudio e vídeo, com diferentes sistemas (equipamentos ou softwares). Por exemplo, se um sistema utiliza os padrões SIP para sinalização e RTP para o transporte de mídia (itens que veremos mais adiante), espera-se que ele possa se comunicar com outro sistema que também os empregue. 
     
-    Embora sistemas de videoconferência de sala e softfones trabalhem com um escopo similar de padrões (basicamente: SIP ou H.323, e RTP), sistemas de webconferência apresentam algumas particularidades. Por exemplo, se um sistema foi desenvolvido sobre a plataforma Flash, o transporte de mídia utilizará o padrão RTMP, em vez de RTP. Já webconferências utilizando-se da tecnologia WebRTC, que possibilita browsers utilizarem SIP e RTP, apresentam VP8, OPUS e outros padrões de codificação de mídia ainda não encontrado em muitos equipamentos de videoconferência e softfones.
+    Embora sistemas de videoconferência de sala e softfones trabalhem com um escopo similar de padrões (basicamente: SIP ou H.323, e RTP), sistemas de webconferência apresentam algumas particularidades. Por exemplo, se um sistema foi desenvolvido sobre a plataforma Flash, o transporte de mídia utilizará o padrão RTMP, em vez de RTP. Já webconferências utilizando-se da tecnologia WebRTC, que possibilita navegadores web utilizarem SIP e RTP, apresentam VP8, OPUS e outros padrões de codificação de mídia ainda não encontrados em muitos equipamentos de videoconferência e softfones.
     
     Quando não há os mesmos padrões implementados, a interoperação fica dependente de soluções intermediárias que possibilitem a ponte entre esses padrões. Exemplificando, caso um equipamento de videoconferência utilize H.323 para sinalização e RTP para o transporte de mídia, e um sistema de webconferência empregue, respectivamente, SIP e RTMP, precisaremos de duas pontes para haver interoperabilidade: uma que viabilize a comunicação H.323/SIP e a outra, RTP/RTMP.
     
-    Este trabalho, portanto, apresentará os principais padrões e tecnologias de videoconferência, e, em seguida, soluções \textit{open source} que possibilitem pontes entre eles, a fim da comunicação transparente de webconferência e videoconferência (softfones e equipamentos). Como soluções para interoperação normalmente implementam apenas algumas pontes, precisamos integrá-las em uma arquitetura para cobrir um número maior de padrões e, assim, alcançar um nível maior de interoperabilidade.
-	 
-	
+  \section{Objetivo}
+    
+    Dessa forma, considerando os quatro grupos de videoconferência, e o fato de que sistemas de webconferência, a depender da tecnologia que os compõe - Flash ou WebRTC -, muitas vezes implementam diferentes padrões de sinalização, transmissão e codificação de áudio e vídeo, o objetivo deste trabalho é levantar e analisar soluções open source que permitam a ponte entre os diversos padrões existentes. Assim, ao utilizá-las, espera-se que sistemas de webconferência possam se comunicar de maneira transparente com os demais sistemas de videoconferência. 
+    
+    Primeiramente, será feito o estudo dos principais e/ou atuais padrões e tecnologias empregados na construção de sistemas de videoconferência. Após, apresentação das soluções open source que compatibilizam os padrões estudados. Como veremos no decorrer deste trabalho, não há uma solução única que cubra todos os padrões, de forma que é preciso integrar diversas delas em uma arquitetura para abranger um número maior de padrões. Desse modo, será feito um estudo de caso com o sistema de webconferência open source Mconf, em que, através da integração das soluções apresentadas, se estenderá o nível de interoperabilidade da webconferência com demais softwares e equipamentos de videoconferência.
+    
+	 	
 \section{Organização}
 
-	Para tanto, o trabalho está estruturado da seguinte forma:
+	O trabalho está estruturado da seguinte forma:
 	
 	\begin{itemize}
-		\item capítulo 2: Apresentação de padrões de videoconferência e tecnologias: protocolos de sinalização (H.323, SIP), protocolos de transporte de mídia (RTP, RTMP), codificação de áudio (PCM, G.7xx, Speex, OPUS, iSAC, iLBC), codificação de vídeo (H.26x, VPx) e tecnologias para webconferência (Flash, WebRTC);
-		\item capítulo 3: Soluções de interoperabilidade \textit{open source}: Freeswitch, Asterisk, Red5 e FFMPEG;
-		\item capítulo 4: Desenvolvimento da arquitetura, integrando soluções de interoperabilidade, utilizando o sistema de webconferência Mconf;
-		\item capítulo 5: Resultados da implementação da arquitetura, demonstrando a interoperabilidade do sistema Mconf com diferentes sistemas de videoconferência.
+		\item Capítulo 2: Apresentação de padrões de videoconferência e tecnologias: protocolos de sinalização (H.323, SIP), protocolos de transporte de mídia (RTP, RTMP), codificação de áudio (PCM, G.7xx, Speex, OPUS, iSAC, iLBC), codificação de vídeo (H.26x, VPx) e tecnologias para webconferência (Flash, WebRTC);
+		\item Capítulo 3: Levantamento de soluções de interoperabilidade \textit{open source}: Freeswitch, FFMPEG, Red5, Asterisk e Kurento;
+		\item Capítulo 4: Integração das soluções de interoperabilidade, utilizando o sistema de webconferência Mconf como estudo de caso;
+		\item Capítulo 5: Resultados da implementação proposta no Capítulo 4, demonstrando a interoperabilidade do sistema Mconf com diferentes sistemas de videoconferência;
+		\item Capítulo 6: Considerações finais e sugestões para trabalhos futuros.
 	\end{itemize}
 
 

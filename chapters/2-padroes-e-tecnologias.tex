@@ -36,7 +36,7 @@
 \subsection{Padrão H.323}\label{sec:h.323}
 	
      Como afirmado em \cite{tanenbaum}, H.323, mais do que um protocolo específico, é uma visão geral da arquitetura de telefonia da Internet, bem como um encapsulador de diversos outros protocolos (que veremos no decorrer desse trabalho).
-     O padrão, primeiramente, define quatro tipos de unidades:
+     O padrão, primeiramente, define quatro tipos de unidades (ilustrados na Figura~\ref{fig:unidades-h323}):
      
 		\begin{itemize}
 			  \item \textbf{Terminais}: são os \textit{endpoints}, emissores e receptores de mídia. É a única unidade obrigatória;
@@ -52,7 +52,7 @@
 		 \begin{figure}[h]
 			\centering
 			\includegraphics[width=24em, height=9em]{img/unidades-h323.png}
-			\caption{Unidades H.323}
+			\caption{Unidades H.323.}
 			\label{fig:unidades-h323}
 		 \end{figure}
 		  
@@ -60,12 +60,12 @@
      \subsubsection{\textbf{H.225}}\label{sec:h225}
      
       	O protocolo H.225 define o canal de sinalização de uma sessão H.323, descrevendo, portanto, como uma chamada é iniciada, estabelecida e finalizada. 
-      	Um terminal iniciando uma chamada (daqui para frente chamado de \textit{caller}), deve, primeiramente, abrir uma conexão TCP com a unidade que se quer chamar (respectivamente, \textit{callee}), que estará esperando conexões na porta 1720. Um pacote H.225 é definido da seguinte forma:
+      	Um terminal iniciando uma chamada (daqui para frente chamado de \textit{caller}), deve, primeiramente, abrir uma conexão TCP com a unidade que se quer chamar (respectivamente, \textit{callee}), que estará esperando conexões na porta 1720. Um pacote H.225 é ilustrado na Figura~\ref{fig:pacote-h225} e é definido da seguinte forma: 
       	
  		 \begin{figure}[h]
  			\centering
  			\includegraphics[width=22em, height=8em]{img/pacote-h225.png}
- 			\caption{Pacote H.225}
+ 			\caption{Pacote H.225.}
  			\label{fig:pacote-h225}
  		 \end{figure}
  		 
@@ -77,19 +77,19 @@
  		    \item \textit{Information Elements}: espaço para parâmetros adicionais. Dependem do \textit{Message Type}.
  		 \end{itemize}
  		 
- 		 A figura abaixo demonstra o estabelecimento de uma chamada H.323 básica:
+ 		 A Figura~\ref{fig:conexao-h323-basica} demonstra o estabelecimento de uma chamada H.323 básica:
  		 
  		 \begin{figure}[h]
  			\centering
- 			\includegraphics[width=27em, height=18.3em]{img/conexao-h323-basica.png}
- 			\caption{Estabelecimento de uma chamada H.323 básica}
+ 			\includegraphics[width=29em, height=17.2em]{img/conexao-h323-basica.png}
+ 			\caption{Estabelecimento de uma chamada H.323 básica.}
  			\label{fig:conexao-h323-basica}
  		 \end{figure}
  		 
  		 \begin{enumerate}
  		    \item Após o estabelecimento da conexão TCP, o caller inicia a chamada, mandando um H.225 \textit{Setup Message}. Esse tipo de \textit{Message Type} carrega como parâmetro obrigatório o \textit{Bearer Capability}, que define a natureza da chamada: se é apenas de áudio ou uma chamada audiovisual.
  		    
- 		    \item O \textit{callee} responde o \textit{Setup Message}, com um H.225 \textit{Alerting}, indicando ao \textit{caller} que o dispositivo chamado já iniciou o procedimento de alerta de que uma nova chamada chegou - em outras palavras, que o dispositivo está 'tocando' (como um telefone; em inglês, \textit{Ringing}). Antes do \textit{Alerting}, outro tipo de \textit{Message Type} pode ocorrer (não é obrigatório) do \textit{callee} para o \textit{caller}: o \textit{Call Proceeding}. CP tem o objetivo de informar o \textit{caller} que a chamada está em processo de ser estabelecida e que não será mais aceito novas mensagens para estabelecimento de chamada.
+ 		    \item O \textit{callee} responde o \textit{Setup Message}, com um H.225 \textit{Alerting}, indicando ao \textit{caller} que o dispositivo chamado já iniciou o procedimento de alerta de que uma nova chamada chegou - em outras palavras, que o dispositivo está 'tocando' (como um telefone; em inglês, \textit{Ringing}). Antes do \textit{Alerting}, outro tipo de \textit{Message Type} pode ocorrer (não é obrigatório) do \textit{callee} para o \textit{caller}: o \textit{Call Proceeding}. CP tem o objetivo de informar o \textit{caller} que a chamada está em processo de ser estabelecida.
  		    
  		    \item O \textit{callee} também responde um \textit{Setup ACK}, indicando que o \textit{Setup Message} foi devidamente recebido.
  		    
@@ -104,14 +104,12 @@
       
          O protocolo H.245 provê o mecanismo para a negociação de mídia e para a abertura dos canais RTP, onde os dados multimídia serão transmitidos/recebidos. Após o H.225 \textit{Setup Message}, o \textit{callee} pode usar o H.225 \textit{Call Proceeding}, \textit{Alerting} ou \textit{Connect} para enviar ao \textit{called} o IP e a porta para a abertura da sessão H.245. Quando o \textit{caller} recebe essas informações, é aberta uma conexão TCP entre as partes envolvidas, onde haverá, então, a negociação de mídia.
       
-         Na figura abaixo, é demonstrado como é feita a negociação de mídia via sessão H.245:
-         \newline \newline \newline \newline \newline \newline \newline \newline
-         \newline \newline 
+         A Figura~\ref{fig:negociacao-h323-basica} demonstra como é feita a negociação de mídia via sessão H.245. \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\
       
   		 \begin{figure}[h]
   			\centering
   			\includegraphics[width=26em, height=38em]{img/negociacao-h323-basica.png}
-  			\caption{Negociação de mídia H.323}
+  			\caption{Negociação de mídia H.323.}
   			\label{fig:negociacao-h323-basica}
   		 \end{figure}     
       
@@ -120,7 +118,7 @@
   		    
   		    \item \textit{TCS} contém a descrição da capacidade de mídia do remetente da mensagem. Inclui a lista de todos os codecs de áudio e vídeo suportados e suas características (tipos de payload, perfis e resoluções de vídeo, taxa de bits e de frames, etc - itens que veremos nas próximas seções). Também contém o \textit{Simultaneous Capability Set}, que define quais grupos de codecs podem ser usados simultaneamente. A parte que recebe o H.245 \textit{TCS} informa ao transmissor da mensagem o recebimento da mesma com um \textit{TCS ACK}.
   		    		 		 
-	 		\item A troca de mensagens \textit{MSD} define quem irá ser o 'mestre' e o 'escravo' da sessão. O mestre será responsável por atribuir um ID para o canal lógico, gerar uma chave quando há encriptação de mídia, entre outras tarefas de administração do canal lógico. Uma mensagem \textit{MSD} contém um \textit{Terminal Type} (um número) e um aleatoriamente escolhido \textit{Determination Number}. Cada parte envolvida compara os números recebidos na mensagem \textit{MSD} com os seus próprios números e quem tiver o maior \textit{Terminal Type} será o mestre. Em caso de empate, o mestre será quem tiver o maior \textit{Determination Number}. Caso haja novamente um empate, ocorre uma nova negociação, com novas mensagens \textit{MSD}.
+	 		\item A troca de mensagens \textit{MSD} define quem irá ser o 'mestre' e o 'escravo' da sessão. O mestre será responsável por atribuir um ID para o canal lógico, gerar uma chave quando há encriptação de mídia, entre outras tarefas de administração do canal lógico. Uma mensagem \textit{MSD} contém um \textit{Terminal Type} (um número) e um \textit{Determination Number} (número aleatório). Cada parte envolvida compara os números recebidos na mensagem \textit{MSD} com os seus próprios números e quem tiver o maior \textit{Terminal Type} será o mestre. Em caso de empate, o mestre será quem tiver o maior \textit{Determination Number}. Caso haja novamente um empate, ocorre uma nova negociação, com novas mensagens \textit{MSD}.
 	 		
 	 		\item Posteriormente à determinação do mestre e escravo, o \textit{caller} envia o H.245 \textit{OpenLogicalChannel} (\textit{OLC}), requisitando a abertura do canal lógico. O canal lógico, no contexto H.323, representa o caminho usado para a transmissão de mídia. A mensagem \textit{OLC} carrega consigo o codec de áudio e de vídeo que o \textit{caller} usará na transmissão, bem como as características de cada codec (como explicado no item 2).
 	 		Outros dados importantes do H.245 \textit{OLC} são as portas RTCP (mais detalhes na Seção~\ref{sec:rtp}) que serão usadas no contexto RTP e o \textit{LCN} (\textit{Logical Channel Number}), identificador único do canal lógico.
@@ -136,18 +134,18 @@
   		 
       \subsubsection{\textbf{H.323 \textit{Fast Connect Mode}}}\label{sec:h323-fast}
       
-         No H.323 versão 2 existe a opção do \textit{Fast Connect Mode}. O \textit{caller} manda um H.245 \textit{OLC} com um codec sugerido dentro do H.225 \textit{Setup Message}. Se o \textit{callee} suportar \textit{Fast Connect Mode} e aceitar a sugestão do codec, será respondido um H.225 \textit{Connect} também transportando um H.245 \textit{OLC}. Com isso, as partes envolvidas já têm as informações necessárias para estabelecer a conexão de mídia, diminuindo significantemente o número de mensagens requeridas para estabelecer a sessão H.323. Segundo \cite{conferencingFundamentals}, equipamentos de vídeo H.323 geralmente não suportam \textit{Fast Connect Mode}.
+         No H.323 versão 2 existe a opção do \textit{Fast Connect Mode} (Figura~\ref{fig:h323-fast}). O \textit{caller} manda um H.245 \textit{OLC} com um codec sugerido dentro do H.225 \textit{Setup Message}. Se o \textit{callee} suportar \textit{Fast Connect Mode} e aceitar a sugestão do codec, será respondido um H.225 \textit{Connect} também transportando um H.245 \textit{OLC}. Com isso, as partes envolvidas já têm as informações necessárias para estabelecer a conexão de mídia, diminuindo significantemente o número de mensagens requeridas para estabelecer a sessão H.323. Segundo \cite{conferencingFundamentals}, equipamentos de vídeo H.323 geralmente não suportam \textit{Fast Connect Mode}. \\
          
- 		 \begin{figure}[H]
+ 		 \begin{figure}[h]
  			\centering
  			\includegraphics[width=26em, height=18em]{img/h323-fast.png}
- 			\caption{H.323 \textit{Fast Connect Mode}}
+ 			\caption{H.323 \textit{Fast Connect Mode}.}
  			\label{fig:h323-fast}
  		 \end{figure}        
 
       \subsubsection{\textbf{Mais informações sobre H.323}}\label{sec:h323-mais infos}
       
-         Para mais informações sobre o protocolo H.323, consulte \cite{h225-recommendation}, \cite{h323-recommendation}, \cite{h245-recommendation} e também \cite{conferencingFundamentals} (detalhes nas Referências deste trabalho).                     
+         Para mais informações sobre o protocolo H.323, consulte \cite{h225-recommendation}, \cite{h323-recommendation}, \cite{h245-recommendation} e também \cite{conferencingFundamentals}.
     
 \subsection{Padrão SIP}\label{sec:sip}
 	
@@ -155,7 +153,7 @@
 	 O padrão, primeiramente, define os seguintes elementos:
 	
 		\begin{itemize}
-			  \item \textbf{\textit{User Agent}}: podem ser tanto os \textit{endpoints}, emissores e receptores de mídia, quanto servidores de controle de chama (abordados nos próximos itens). 
+			  \item \textbf{\textit{User Agent}}: podem ser tanto os \textit{endpoints}, emissores e receptores de mídia, quanto servidores de controle de chamada (abordados nos próximos itens). 
 			  Todo \textit{UA} é formado por um \textit{User Agent Client} (\textit{UAC}) - responsável por iniciar as transações (que também definiremos mais adiante)- e por um \textit{User Agent Server} (\textit{UAS}) - responsável pelas respostas dessas transações;
 			  
 			  \item \textbf{\textit{Proxy Server}}: Entidade que faz o roteamento de mensagens SIP. É responsável por determinar para onde mensagens SIP vão ser direcionadas (quais \textit{endpoints} ou servidores receberão determinada mensagem), provendo também autenticação e autorização de mensagens. Um PS \textit{stateful} armazena o histórico de todas as mensagens de uma transação, a fim de levantar dados para distribuição de sessões SIP em diferentes servidores e/ou para geração de estatísticas. Já um PS \textit{stateless} faz o roteamento de mensagens sem guardar quaisquer informações.
@@ -165,22 +163,22 @@
 			  \item \textbf{\textit{Registrar Server}}: Entidade para onde os usuários enviam o pedido de registro. Usuários são registrados como URIs em um banco de dados, onde cada URI é associado com uma localização (normalmente o endereço IP desse usuário). Com isso, \textit{Proxy Servers} ou \textit{Redirect Servers} podem usar essa base de dados para executar suas tarefas.
 		\end{itemize}	
 	
-	Na figura abaixo, é demonstrado um diálogo SIP:
+	Na Figura~\ref{fig:sip-dialog} abaixo, é demonstrado um diálogo SIP:
 	
  		\begin{figure}[h]
  			\centering
  			\includegraphics[width=30em, height=19.5em]{img/sip-dialog.png}
- 			\caption{Diálogo SIP}
+ 			\caption{Diálogo SIP.}
  			\label{fig:sip-dialog}
  		\end{figure}
  		
  		\begin{enumerate}
- 			\item Começamos com o UA callee recebendo um \textit{INVITE} do UA Caller, para o início de uma chamada. Tipicamente, a porta que define o canal de sinalização SIP é a porta 5060 (podemos encontrar ambientes onde se usa a porta 5070 ou 5061 - esta última para sinalizações encriptadas). Um \textit{INVITE} tem a seguinte estrutura:
- 			\newline \newline \newline \newline \newline \newline \newline \newline \newline \newline \newline \newline \newline
+ 			\item Começamos com o UA callee recebendo um \textit{INVITE} do UA Caller, para o início de uma chamada. Tipicamente, a porta que define o canal de sinalização SIP é a porta 5060 (podemos encontrar ambientes onde se usa a porta 5070 ou 5061 - esta última para sinalizações encriptadas). Um \textit{INVITE} tem a seguinte estrutura (Figura~\ref{fig:sip-invite}): \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\
+ 		
 			\begin{figure}[h]
 			    \centering
 			    \adjustbox{margin=1em,width=10.3cm,frame,center}
-			    {\begin{minipage}{1.05\linewidth}
+			    {\begin{minipage}{0.99\linewidth}
 			        INVITE sip:UAcallee@172.27.14.53 SIP/2.0 \newline
 			        
 			        ! As linhas abaixo são os \textit{headers} SIP: \newline
@@ -206,7 +204,7 @@
 			        a=rtpmap:104 H264/90000 \newline
 			        a=fmtp:104 max-fs=6336;max-mbps=190080;profile-level-id=42801e
 			    \end{minipage}}
-			    \caption{SIP Invite}
+			    \caption{SIP Invite.}
 			    \label{fig:sip-invite}
 			\end{figure}
 			
@@ -234,7 +232,7 @@
 				    NOTIFY & Envia um evento de notificação para UAs inscritos.     \\ \hline
 				    REFER & \makecell[l]{Indica que um UA deve usar o endereço contido no REFER para refazer um \\ determinado \textit{Request}.}      \\ \hline
 				    \end{tabular}}
-					\caption{SIP Requests}
+					\caption{SIP Requests.}
 					\label{tab:sip-requests}
 				 \end{center}
 				\end{table}
@@ -254,7 +252,7 @@
 				    603 & Decline & 6xx       \\ \hline
 				    604 & Does not exist & 6xx       \\ \hline				    				 
 				    \end{tabular}
-					\caption{SIP Responses}
+					\caption{SIP Responses.}
 					\label{tab:sip-responses}
 				 \end{center}
 				\end{table}
@@ -299,7 +297,7 @@
 				Um uso importante desse parâmetro é descrever os codecs de mídia que um UA suporta, logo após a descrição de mídia (\textit{"m="}). Na Figura~\ref{fig:sip-invite}, é estabelecido que o UACaller só suporta Speex como codec de áudio e H.264 como codec de vídeo. Ao final do SDP, há ainda alguns atributos específicos do codec H.264, como tamanho máximo de frame, taxa máxima de bits por segundo e \textit{profile} de vídeo (ver Seção~\ref{sec:codecs}). Vale a menção que há diversos outros usos para atributos e existe uma lista extensa definida em \cite{sip-rfc}.
 			\end{enumerate}
 			
-			\item Quando o \textit{callee} recebe a chamada e entra em processo para determinar se a aceitará ou não, é mandado um 100 Trying para o \textit{caller}:
+			\item Quando o \textit{callee} recebe a chamada e entra em processo para determinar se a aceitará ou não, é mandado um 100 Trying para o \textit{caller} (Figura~\ref{fig:sip-trying}):
 			
 			\begin{figure}[h]
 			    \centering
@@ -313,11 +311,11 @@
 			        CSeq: 1 INVITE \newline
 			        Content-Length: 0
 			    \end{minipage}}
-			    \caption{SIP 100 Trying}
+			    \caption{SIP 100 Trying.}
 			    \label{fig:sip-trying}
 			\end{figure}
 			
-			\item Assim que o \textit{callee} aceita a chamada, este manda um 200 OK para o \textit{caller}. Nele, há o SDP descrevendo quais codecs de mídia, do conjunto que o \textit{caller} enviou no SDP do INVITE, que o \textit{callee} também suporta (no caso, o \textit{callee} também suporta Speex e H.264). Há também, como importante atributo de mídia (tanto para áudio, quanto para vídeo), o IP e as portas RTCP que o \textit{callee} usará para o controle do recebimento dos fluxos RTP (áudio e vídeo).
+			\item Assim que o \textit{callee} aceita a chamada, este manda um 200 OK para o \textit{caller} (Figura~\ref{fig:sip-ok}). Nele, há o SDP descrevendo quais codecs de mídia, do conjunto que o \textit{caller} enviou no SDP do INVITE, que o \textit{callee} também suporta (no caso, o \textit{callee} também suporta Speex e H.264). Há também, como importante atributo de mídia (tanto para áudio, quanto para vídeo), o IP e as portas RTCP que o \textit{callee} usará para o controle do recebimento dos fluxos RTP (áudio e vídeo).
 			\newline		
 			\begin{figure}[h]
 			    \centering
@@ -346,11 +344,11 @@
 					a=fmtp:104 max-fs=6336;max-mbps=190080;profile-level-id=42801e \newline
 					a=rtcp:29241 IN IP4 172.27.14.53			           
 			    \end{minipage}}
-			    \caption{SIP 200 OK}
+			    \caption{SIP 200 OK.}
 			    \label{fig:sip-ok}
 			\end{figure}			
 				
-			\item Quando o \textit{caller} finalmente recebe o 200 OK, ele transmite o ACK. A partir daí, ambos os UAs estão numa chamada estabelecida e prontos para enviarem e receberem áudio e vídeo.
+			\item Quando o \textit{caller} finalmente recebe o 200 OK, ele transmite o ACK (Figura~\ref{fig:sip-ack}). A partir daí, ambos os UAs estão numa chamada estabelecida e prontos para enviarem e receberem áudio e vídeo.
 
 			\begin{figure}[h]
 			    \centering
@@ -366,11 +364,11 @@
 			        CSeq: 1 ACK \newline
 			        Content-Length: 0
 			    \end{minipage}}
-			    \caption{SIP ACK}
+			    \caption{SIP ACK.}
 			    \label{fig:sip-ack}
 			\end{figure}			
 			
-			\item Quando uma das partes desliga a chamada, é enviado um BYE. No caso da Figura~\ref{fig:sip-invite}, quem o faz é o \textit{callee}: 
+			\item Quando uma das partes desliga a chamada, é enviado um BYE (Figura~\ref{fig:sip-bye}). No caso da Figura~\ref{fig:sip-invite}, quem o faz é o \textit{callee}: 
 			
 			\begin{figure}[h]
 			    \centering
@@ -385,11 +383,11 @@
 			        CSeq: 5 BYE \newline
 			        Content-Length: 0
 			    \end{minipage}}
-			    \caption{SIP BYE}
+			    \caption{SIP BYE.}
 			    \label{fig:sip-bye}
 			\end{figure}			
 			
-			\item No momento em que o \textit{caller} recebe o BYE, é enviado o 200 OK para o \textit{callee} e, desse modo, a chamada é encerrada.
+			\item No momento em que o \textit{caller} recebe o BYE, é enviado o 200 OK (Figura~\ref{fig:sip-ok-final}) para o \textit{callee} e, desse modo, a chamada é encerrada.
 			\newline \newline
 			
 			\begin{figure}[h]
@@ -406,14 +404,14 @@
 			        CSeq: 5 BYE \newline
 			        Content-Length: 0
 			    \end{minipage}}
-			    \caption{SIP 200 OK}
+			    \caption{SIP 200 OK.}
 			    \label{fig:sip-ok-final}
 			\end{figure}			
  		\end{enumerate}		
 	
       \subsubsection{\textbf{Mais informações sobre SIP}}\label{sec:sip-mais infos}
       
-         Para mais informações sobre o protocolo SIP, consulte \cite{sip-rfc} e \cite{conferencingFundamentals} (detalhes nas Referências deste trabalho). 	
+         Para mais informações sobre o protocolo SIP, consulte \cite{sip-rfc} e \cite{conferencingFundamentals}.
 
 
 
@@ -426,12 +424,12 @@
 	
 	RTP - \textit{Real-Time Protocol} - é um protocolo de nível de aplicação e, no contexto de videoconferência, é o principal padrão para a transmissão de áudio e vídeo em tempo real. O protocolo possui propriedades que auxiliam na fluidez da streaming, na sincronização e nos ajustes de qualidade e de taxa de transmissão de mídias.
 	Um pacote RTP é composto pelo cabeçalho mais o pedaço da mídia a ser transmitido. O envio de pacotes RTP é através de um \textit{socket} UDP, portanto todo pacote RTP é encapsulado em um segmento UDP.	
-	O cabeçalho tem a seguinte estrutura:
+	O cabeçalho é ilustrado na Figura~\ref{fig:rtp-pacote} e tem a seguinte estrutura:
 	
  		 \begin{figure}[h]
  			\centering
  			\includegraphics[width=22em, height=9em]{img/rtp-pacote.png}
- 			\caption{Pacote RTP}
+ 			\caption{Pacote RTP.}
  			\label{fig:rtp-pacote}
  		 \end{figure}	
  		 
@@ -440,7 +438,7 @@
    \begin{itemize}
    	 \item \textit{M}: é um bit de marcação. Muito usado para informar que o pedaço de áudio sendo transmitido é o começo de uma fala ou que é o início de um \textit{frame}, caso o pacote RTP esteja transportando vídeo;
    	 
-   	 \item \textit{Payload Type}: indica qual algoritmo de codificação de mídia está sendo usado. Existem tanto algoritmos que possuem valores fixos de \textit{Payload Type} (por exemplo, para G.722 - um tipo de codificação de áudio - o \textit{Payload Type} é sempre 9), quanto os que possuem valores dinâmicos (que é o caso do H.264, citado nas seções anteriores), que tipicamente variam de 97 a 127. O valor do PT pode ser alterado no meio de uma transmissão de mídia, e dessa forma o receptor saberá que o algoritmo de codificação mudou. A seguir, mostramos alguns codecs e seus RTP \textit{Payload Types}: 
+   	 \item \textit{Payload Type}: indica qual algoritmo de codificação de mídia está sendo usado. Existem tanto algoritmos que possuem valores fixos de \textit{Payload Type} (por exemplo, para G.722 - um tipo de codificação de áudio - o \textit{Payload Type} é sempre 9), quanto os que possuem valores dinâmicos (que é o caso do H.264, citado nas seções anteriores), que tipicamente variam de 97 a 127. O valor do PT pode ser alterado no meio de uma transmissão de mídia, e dessa forma o receptor saberá que o algoritmo de codificação mudou. A seguir, mostramos alguns codecs e seus RTP \textit{Payload Types} (Tabela~\ref{tab:rtp-payload-types}): 
    	 
  			   \begin{table}[h]
  				\begin{center}
@@ -457,7 +455,7 @@
  				    H.264 &  Vídeo &  Dinâmico    \\ \hline
 				    VP8 &  Vídeo &  Dinâmico    \\ \hline			    
  				    \end{tabular} %}
- 					\caption{RTP Payload Types}
+ 					\caption{RTP Payload Types.}
  					\label{tab:rtp-payload-types}
  				 \end{center}
  				\end{table}  	 
@@ -473,24 +471,22 @@
    
    \subsubsection{\textbf{RTCP}}\label{sec:rtp-rtcp}
    
-		O RTCP - \textit{RTP Control Protocol} - é o protocolo irmão do RTP, atuando juntamente deste. Tem como principal função fornecer aos usuários \textit{feedback} sobre atrasos de pacotes e suas variações, uso e congestionamento de banda, e outras propriedades da rede. Também pode atuar em sincronização de mídia, nomeações de \textit{streams} e identificação de participantes. RTP e RTCP atuam em portas diferentes, a fim da identificação do que é um dado de mídia (no contexto de videoconferência), e o que é um dado de controle.
+		O RTCP - \textit{RTP Control Protocol} - é o protocolo que atua junto ao RTP. Tem como principal função fornecer aos usuários \textit{feedback} sobre atrasos de pacotes e suas variações, uso e congestionamento de banda, e outras propriedades da rede. Também pode atuar em sincronização de mídia, nomeações de \textit{streams} e identificação de participantes. RTP e RTCP atuam em portas diferentes, a fim da identificação do que é um dado de mídia (no contexto de videoconferência), e o que é um dado de controle.
 		
-		Tais \textit{feedbacks} são úteis para adaptações nas transmissões. Se pacotes RTCP indicam que a rede não está enfrentando nenhum problema, o transmissor da mídia tem a oportunidade de, por exemplo, trocar para algum codec que ofereça mais qualidade mas que ocupe mais banda, ou simplesmente, utilizando o mesmo codec, elevar a taxa de transmissão a fim de aumentar a qualidade da mídia. Da mesma forma, caso o transmissor receba informações RTCP que apontam problemas na rede, é possível diminuir o uso de banda, alterando codecs e taxas de transmissão (o que provavelmente irá diminuir a qualidade da mídia). O uso alternado e \textit{on-the-fly} de codecs durante a sessão é possível modificando o \textit{Payload Type} dos pacotes RTP.		
+		Tais \textit{feedbacks} são úteis para adaptações nas transmissões. Se pacotes RTCP indicam que a rede não está enfrentando nenhum problema, o transmissor da mídia tem a oportunidade de, por exemplo, trocar para algum codec que ofereça mais qualidade mas que ocupe mais banda, ou simplesmente, utilizando o mesmo codec, elevar a taxa de transmissão a fim de aumentar a qualidade da mídia. Da mesma forma, caso o transmissor receba informações RTCP que apontam problemas na rede, é possível diminuir o uso de banda, alterando codecs e taxas de transmissão (o que provavelmente irá diminuir a qualidade da mídia). O uso alternado e \textit{on-the-fly} de codecs durante a sessão é possível modificando o \textit{Payload Type} dos pacotes RTP (antes do momento efetivo da troca, há nova negociação de mídia SIP ou H.323).		
 		
 		\textit{Feedbacks} RTCP também são úteis para geração de relatórios que apontam dados importantes como porcentagem de pacotes perdidos, flutuação da qualidade da mídia durante o andamento da sessão, entre outros.
 		
-		Uma questão envolvendo RTCP é o uso de banda pelo próprio. Pacotes RTCP são enviados para todos os participantes de uma sessão, de forma que o aumento do grupo de usuários pode também levar a um rápido crescimento do uso de banda pelo protocolo RTCP. Diminuir a taxa de envio de \textit{feedbacks} de forma que o envio de mensagens RTCP não ocupe mais que 5 \% da banda é a norma para evitar tal situação.
+		Uma questão envolvendo RTCP é o uso de banda pelo próprio. Pacotes RTCP são enviados para todos os participantes de uma sessão, de forma que o aumento do grupo de usuários pode também levar a um rápido crescimento do uso de banda pelo protocolo RTCP. Diminuir a taxa de envio de \textit{feedbacks} de forma que o envio de mensagens RTCP não ocupe mais que 5 \% da banda é a norma para evitar tal situação. \\
 		
-      \subsubsection{\textbf{Mais informações sobre RTP e RTCP}}\label{sec:rtp-mais infos}
-      
-         Para mais informações sobre esses protocolos, consulte \cite{schulz} (detalhes nas Referências deste trabalho). 	  
+   Para mais informações sobre RTP e RTCP, consulte \cite{schulz}.
    
  		 
 \subsection{Padrão RTMP}\label{sec:rtmp}
 	
 	\textit{Adobe's Real Time Messaging Protocol} (RTMP) é o protocolo de transporte usado para \textit{streaming} de áudio, vídeo e outros tipos de dados da plataforma Flash. Inicialmente um padrão proprietário da Macromedia, a Adobe - assim que comprou	a empresa - tornou a especificação do padrão pública, visando a interoperação de outros sistemas com seus produtos.
 	Mensagens RTMP são utilizadas somente no nível de aplicação e, diferentemente de RTP - que roda sobre UDP - pacotes RTMP são enviados através de uma conexão TCP, normalmente usando a porta 1935.
-	Uma mensagem RTMP é formado pelo cabeçalho e pelo pedaço de mídia a ser transmitido (no contexto de videoconferência). O cabeçalho de uma mensagem RTMP deve conter:
+	Uma mensagem RTMP é formada pelo cabeçalho e pelo pedaço de mídia a ser transmitido (no contexto de videoconferência). O cabeçalho de uma mensagem RTMP deve conter:
 	
 	\begin{itemize}
 	   \item \textit{Timestamp};
@@ -499,11 +495,9 @@
 	   \item \textit{Message Stream ID}: número arbitrário que define o identificador único da \textit{stream}.
 	\end{itemize}
 	
-	Após a montagem da mensagem, ele sofre o processo de \textit{chunking}, onde a mensagem é fragmentada em pedaços menores, os \textit{chunks}. \textit{Chunks} possuem cabeçalho e \textit{payload} variáveis, diminuindo, assim, o \textit{overhead} gerado por pacotes de tamanho fixo (pequenos dados a serem transmitidos em pacotes de tamanho fixo às vezes devem preencher o payload ou cabeçalhos com \textit{dummy bits} apenas para respeitar o tamanho fixo ; assim, parte do pacote a ser transmitido é inútil, e, desse modo, se usa mais banda que o necessário). O receptor, por sua vez, agrupa os \textit{chunks} de uma mesma mensagem através do \textit{Chunk Stream Id}, campo do cabeçalho do \textit{chunk}, montando, assim, a mensagem original.
-	
-      \subsubsection{\textbf{Mais informações sobre RTMP}}\label{sec:rtmp-mais infos}
+	Após a montagem da mensagem, ele sofre o processo de \textit{chunking}, onde a mensagem é fragmentada em pedaços menores, os \textit{chunks}. \textit{Chunks} possuem cabeçalho e \textit{payload} variáveis, diminuindo, assim, o \textit{overhead} gerado por pacotes de tamanho fixo (pequenos dados a serem transmitidos em pacotes de tamanho fixo às vezes devem preencher o payload ou cabeçalhos com \textit{dummy bits} apenas para respeitar o tamanho fixo ; assim, parte do pacote a ser transmitido é inútil, e, desse modo, se usa mais banda que o necessário). O receptor, por sua vez, agrupa os \textit{chunks} de uma mesma mensagem através do \textit{Chunk Stream Id}, campo do cabeçalho do \textit{chunk}, montando, assim, a mensagem original. \\	
       
-         Para mais informações sobre o protocolo RTMP, consulte \cite{adobe} (detalhes nas Referências deste trabalho). 
+   Para mais informações sobre o protocolo RTMP, consulte \cite{adobe}.
 		
 
 
@@ -546,7 +540,7 @@
 		
 		O origem do G Series se deu em 1972, com o lançamento do padrão G.711, formalmente conhecido como \textit{Pulse Code Modulation} (PCM) \textit{of Voice Frequencies}. Foi primeiramente usado em telefonia, onde existiam 2 versões: o G.711 $µ$-law (ou PCMU), usado em redes de telefonia dos Estados Unidos e Japão, e o G.711 A-law (ou PCMA) usado na Europa e internacionalmente \cite{tanenbaum}. Ainda houve melhorias, como o G.711.0, que gerava compressão sem perdas (\textit{lossless}) e como o G.711.1, que incrementava a qualidade do áudio (bem como o uso de banda). O suporte de G.711 é obrigatório em sistemas H.323.
 		
-		A tabela~\ref{tab:g-series} mostra os bitrates e a qualidade de alguns codecs G.7xx \cite{speech}. A qualidade foi medida usando MOS, popular tipo de medida subjetiva de qualidade de áudio, classificando-a de 1 a 5 (MOS não será abordado nesse trabalho).
+		A Tabela~\ref{tab:g-series} mostra os \textit{bitrates} e a qualidade de alguns codecs G.7xx \cite{speech}. A qualidade foi medida usando MOS, popular tipo de medida subjetiva de qualidade de áudio, classificando-a de 1 a 5 (MOS não será abordado nesse trabalho). Nessa tabela se observa que, no geral, a evolução da G Series apresentou uma taxa de compressão cada vez maior (diminuindo o \textit{bitrate} a cada nova versão, exceto nas versões G.727 e G.728), enquanto manteve o nível de qualidade (exceto pelo G.723.1, em que, comparado à versão anterior deste, diminuiu-se bruscamente o \textit{bitrate}).
 		
 		Mais informações sobre G.7xx é possível acessando \textit{ITU-T G Series: Transmission systems and media, digital systems and networks}\footnote{\url{http://www.itu.int/net/itu-t/sigdb/speaudio/Gseries.htm}}, página web da ITU-T dedicada a G Series, contendo todas as especificações. \\ \\ \\ \\
 		
@@ -563,12 +557,12 @@
 				    G.722.1     &  32           &   4.1    \\ \hline	
 				    G.722.2     &  32           &   4.1    \\ \hline
  				    G.723.1     &  5.3 até 6.3  &   3.7 até 3.9   \\ \hline
- 				    G.727       &  8            &   4.3+   \\ \hline
- 				    G.728       &  16           &   4.0+   \\ \hline
- 				    G.729       &  8            &   4.3+    \\ \hline
- 				    G.729A      &  8            &   4.3+    \\ \hline		    
+ 				    G.727       &  8            &   4.3   \\ \hline
+ 				    G.728       &  16           &   4.0   \\ \hline
+ 				    G.729       &  8            &   4.3    \\ \hline
+ 				    G.729A      &  8            &   4.3    \\ \hline		    
  				    \end{tabular} %}
- 					\caption{Comparação G Series}
+ 					\caption{Comparação G Series.}
  					\label{tab:g-series}
  				 \end{center}
  				\end{table} 	
@@ -602,12 +596,12 @@
 		   \item Suporta tanto VBR quanto CBR;
 		\end{itemize}
 		
-		O opus-codec.org\footnote{\url{http://opus-codec.org/comparison/}} oferece uma página de comparações entre OPUS e outros codecs de áudio. O gráfico abaixo, mostra a relação de \textit{bitrate} e qualidade de áudio em diversos codecs:
+		O opus-codec.org\footnote{\url{http://opus-codec.org/comparison/}} oferece uma página de comparações entre OPUS e outros codecs de áudio. O gráfico abaixo (Figura~\ref{fig:opus-qualidade}), mostra a relação de \textit{bitrate} e qualidade de áudio em diversos codecs:
 		
  		 \begin{figure}[h]
  			\centering
  			\includegraphics[width=22em, height=25em]{img/opus-qualidade.png}
- 			\caption{OPUS vs outros codecs de áudio}
+ 			\caption{OPUS vs outros codecs de áudio.}
  			\label{fig:opus-qualidade}
  		 \end{figure}				
 	    
@@ -662,16 +656,18 @@
     
 \subsection{Plataforma Flash}\label{sec:flash}
 
-    Adobe Flash (anteriormente Macromedia Flash) é uma plataforma de desenvolvimento de software para desktop, mobile e navegadores web. O desenvolvimento de aplicações Flash se dá através da linguagem de programação ActionScript\footnote{\url{http://www.adobe.com/devnet/actionscript.html}} e, para a confecção de interfaces de usuário, da linguagem de marcação MXML\footnote{\url{http://help.adobe.com/en_US/flex/using/WS2db454920e96a9e51e63e3d11c0bf5f39f-7fff.html}}. Na Figura~\ref{fig:adobe-arch}, temos uma visão geral da arquitetura da plataforma Flash.
+    Adobe Flash (anteriormente Macromedia Flash) é uma plataforma de desenvolvimento de software para desktop, mobile e navegadores web. Na Figura~\ref{fig:adobe-arch}, temos a visão geral da sua arquitetura.
     
   		 \begin{figure}[h]
   			\centering
-  			\includegraphics[width=29em, height=17em]{img/adobe-arch.png}
-  			\caption{Visão geral da arquitetura da plataforma Flash}
+  			\includegraphics[width=34em, height=25em]{img/adobe-arch.jpg}
+  			\caption{Visão geral da arquitetura da plataforma Flash.}
   			\label{fig:adobe-arch}
-  		 \end{figure}   
-	
-     Através do software Flash Player, parte da plataforma Flash, navegadores web podem, por meio da instalação do plugin, reproduzir conteúdo multimídia. Devido sua facilidade de uso, logo tornou-se um padrão popular para \textit{streaming} de áudio e vídeo na web, sendo utilizado pelo Youtube, Yahoo, BBC Online e outros famosos provedores de conteúdo.
+  		 \end{figure}
+  		 
+  	 O desenvolvimento de aplicações Flash se dá através da linguagem de programação ActionScript\footnote{\url{http://www.adobe.com/devnet/actionscript.html}} e, para a confecção de interfaces de usuário, da linguagem de marcação MXML\footnote{\url{http://help.adobe.com/en_US/flex/using/WS2db454920e96a9e51e63e3d11c0bf5f39f-7fff.html}}, ambas integradas no framework Flex\footnote{\url{http://www.adobe.com/br/products/flex.html}}. Para administrar os projetos de código que utilizam tal framework, há a IDE Flex Builder\footnote{\url{http://www.adobe.com/br/products/flash-builder.html}}, renomeada posteriormente para \textit{Flash Builder} e exclusiva para Windows. O software Adobe Air\footnote{\url{http://www.adobe.com/br/products/air.html}} permite que o mesmo código seja executado em diferentes sistemas operacionais (Windows, Linux, Mac, Android, Mac OS, entre outros).
+  	    	
+     É através do software Flash Player que navegadores web podem, por meio da instalação do plugin, reproduzir conteúdo multimídia. Devido sua facilidade de uso, logo tornou-se um padrão popular para \textit{streaming} de áudio e vídeo na web. Entre os famosos provedores de conteúdo que utilizam ou já utilizaram o Flash Player, destacam-se Spotify, Yahoo, BBC Online, Youtube, entre outros.
      
      Sistemas de webconferência desenvolvidas sobre a plataforma Flash devem usar os padrões suportados pelo Flash Player que, no contexto de videoconferência, define o seguinte escopo:
 		
@@ -680,24 +676,24 @@
 		   \item Codecs de áudio: Speex e G.711 (PCMA e PCMU);
 		   \item Codecs de vídeo: H.263, H.264 e VP6.
 		\end{itemize}
-
-	A plataforma Flash não define um Plano de Controle, dependendo de um servidor de mídia para conectar usuários através de algum protocolo de sinalização e para fazer distribuição de áudio e vídeo. Servidores de mídia para Flash conhecidos são o Adobe Media Server\footnote{\url{http://www.adobe.com/br/products/adobe-media-server-family.html}} e o Red5 (que veremos no próximo capítulo).
+		
+	Depende-se de um servidor de mídia Flash para a distribuição de áudio e vídeo entre múltiplos clientes Flash. A conexão destes com o servidor se dá através de um \textit{NetConnection}, definida na API do ActionScript. O servidor de mídia Flash também pode conectar usuários externos (não-Flash) que utilizam SIP, já que o Flash Player por si só não define Plano de Controle. Servidores de mídia Flash conhecidos são o Adobe Media Server\footnote{\url{http://www.adobe.com/br/products/adobe-media-server-family.html}} (ilustrado na Figura~\ref{fig:adobe-arch} como \textit{Flash Media Server}) e o Red5 (que veremos no próximo capítulo).
 
 \subsection{WebRTC}\label{sec:webrtc}
 	
-	WebRTC é um framework aberto que provê capacidades de comunicação em tempo real para navegadores web, implementando componentes que dão suporte a chat, áudio e vídeo, sem a necessidade de instalação de plugins. Desenvolvedores que desejam utilizar WebRTC para construir um sistema de webconferência podem acessar tais componentes pela Web API, que utiliza JavaScript. À época deste trabalho, WebRTC é suportado pelos browsers Chrome, Firefox e Opera, e está em processo de se tornar um padrão IETF.
+	WebRTC é um framework aberto que provê capacidades de comunicação em tempo real para navegadores web, implementando componentes que dão suporte a chat, áudio e vídeo, sem a necessidade de instalação de plugins. Desenvolvedores que desejam utilizar WebRTC para construir um sistema de webconferência podem acessar tais componentes pela Web API, que utiliza JavaScript. À época deste trabalho, WebRTC é suportado pelos navegadores web Chrome, Firefox e Opera, e está em processo de se tornar um padrão IETF.
 		
-	A arquitetura geral do WebRTC é apresentado abaixo:
+	A arquitetura geral do WebRTC é apresentada Figura~\ref{fig:webrtc-arch}.
 	
   		 \begin{figure}[h]
   			\centering
-  			\includegraphics[width=35em, height=25em]{img/webrtc-arch.png}
-  			\caption{Visão geral da arquitetura do WebRTC}
+  			\includegraphics[width=35em, height=20em]{img/webrtc-arch.png}
+  			\caption{Visão geral da arquitetura do WebRTC.}
   			\label{fig:webrtc-arch}
   		 \end{figure}
-  		 
-  	A camada em verde é a camada implementada pelos browsers. Eles devem prover a camada RTP e a implementação dos codecs de mídia. Navegadores web devem, no mínimo, implementar VP8, OPUS, iSAC e iLBC. Chrome e Firefox ainda oferecem suporte a H.264.
   	
-    O WebRTC, assim como o Flash, não define o Plano de Controle. A filosofia do WebRTC é deixar a escolha do uso do protocolo de sinalização para a aplicação web, enquanto o browser fica responsável pelo Plano de Mídia. Entretanto, o próprio WebRTC faz recomendações de bibliotecas web que implementam SIP, como o JsSIP\footnote{\url{http://www.jssip.net/}} e o SIP.js\footnote{\url{http://sipjs.com/}}, ambas implementadas em JavaScript.
+  	A camada em verde é a camada implementada pelos navegadores web. Eles devem prover a camada RTP e a implementação dos codecs de mídia. Navegadores web devem, no mínimo, implementar VP8, OPUS, iSAC e iLBC. Chrome e Firefox ainda oferecem suporte a H.264. 
+  	
+    A conexão entre clientes WebRTC se dá através de um \textit{WebSocket}, tecnologia que utiliza TCP para conectar navegadores web. Assim como o Flash Player, WebRTC não define Plano de Controle. A filosofia do WebRTC é deixar a escolha do uso do protocolo de sinalização para a aplicação web, enquanto o navegador web fica responsável pelo Plano de Mídia. Entretanto, o próprio WebRTC faz recomendações de bibliotecas web que implementam SIP, como o JsSIP\footnote{\url{http://www.jssip.net/}} e o SIP.js\footnote{\url{http://sipjs.com/}}, ambas implementadas em Java-\\Script. Assim, um cliente WebRTC tem a capacidade de fazer ligações para \textit{endpoints} ou servidores SIP.
     
-    Informações adicionais sobre WebRTC é possível acessando o webrtc.org\footnote{\url{https://webrtc.org/}}.	
+    Informações adicionais sobre WebRTC é possível acessando o webrtc.org\footnote{\url{https://webrtc.org/}}.

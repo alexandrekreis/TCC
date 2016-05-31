@@ -3,44 +3,44 @@ Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: kreismann.aux
 The style file: abnt.bst
 Database file #1: kreismann.bib
-You've used 19 entries,
+You've used 28 entries,
             2371 wiz_defined-function locations,
-            660 strings with 6165 characters,
-and the built_in function-call counts, 14069 in all, are:
-= -- 1441
-> -- 78
-< -- 228
-+ -- 849
-- -- 20
-* -- 706
-:= -- 1209
-add.period$ -- 66
-call.type$ -- 19
-change.case$ -- 174
+            691 strings with 6605 characters,
+and the built_in function-call counts, 17951 in all, are:
+= -- 1734
+> -- 105
+< -- 318
++ -- 1045
+- -- 29
+* -- 967
+:= -- 1576
+add.period$ -- 93
+call.type$ -- 28
+change.case$ -- 237
 chr.to.int$ -- 1
-cite$ -- 19
-duplicate$ -- 1861
-empty$ -- 768
-format.name$ -- 186
-if$ -- 2969
+cite$ -- 28
+duplicate$ -- 2307
+empty$ -- 1047
+format.name$ -- 249
+if$ -- 3719
 int.to.chr$ -- 1
 int.to.str$ -- 0
 missing$ -- 0
-newline$ -- 41
-num.names$ -- 90
-pop$ -- 311
+newline$ -- 59
+num.names$ -- 135
+pop$ -- 428
 preamble$ -- 1
-purify$ -- 19
+purify$ -- 28
 quote$ -- 0
-skip$ -- 848
+skip$ -- 1062
 stack$ -- 0
-substring$ -- 670
-swap$ -- 1216
+substring$ -- 812
+swap$ -- 1556
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 147
+type$ -- 192
 warning$ -- 0
-while$ -- 110
+while$ -- 164
 width$ -- 0
-write$ -- 21
+write$ -- 30

@@ -9,42 +9,59 @@
 \addvspace {10\p@ }
 \select@language {brazilian}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {Figura\nobreakspace 1.1:}{\ignorespaces Exemplo de sistema de videoconfer\^encia de sala: equipamentos da Polycom.}}{12}
-\contentsline {figure}{\numberline {Figura\nobreakspace 1.2:}{\ignorespaces Exemplo de sistema de telepresen\c ca da Cisco}}{13}
-\contentsline {figure}{\numberline {Figura\nobreakspace 1.3:}{\ignorespaces Exemplo de softfones: Ekiga (esquerda) e Skype (direita)}}{13}
-\contentsline {figure}{\numberline {Figura\nobreakspace 1.4:}{\ignorespaces Exemplo de sistema de webconfer\^encia: Mconf.}}{14}
+\contentsline {figure}{\numberline {Figura\nobreakspace 1.1:}{\ignorespaces Exemplo de sistema de videoconfer\^encia de sala: equipamentos da Polycom.}}{13}
+\contentsline {figure}{\numberline {Figura\nobreakspace 1.2:}{\ignorespaces Exemplo de sistema de telepresen\c ca da Cisco.}}{14}
+\contentsline {figure}{\numberline {Figura\nobreakspace 1.3:}{\ignorespaces Exemplo de softfones: Ekiga (esquerda) e Skype (direita).}}{14}
+\contentsline {figure}{\numberline {Figura\nobreakspace 1.4:}{\ignorespaces Exemplo de sistema de webconfer\^encia: Mconf.}}{15}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {Figura\nobreakspace 2.1:}{\ignorespaces Unidades H.323}}{17}
-\contentsline {figure}{\numberline {Figura\nobreakspace 2.2:}{\ignorespaces Pacote H.225}}{18}
-\contentsline {figure}{\numberline {Figura\nobreakspace 2.3:}{\ignorespaces Estabelecimento de uma chamada H.323 b\'asica}}{18}
-\contentsline {figure}{\numberline {Figura\nobreakspace 2.4:}{\ignorespaces Negocia\c c\~ao de m\IeC {\'\i }dia H.323}}{20}
-\contentsline {figure}{\numberline {Figura\nobreakspace 2.5:}{\ignorespaces H.323 \textit {Fast Connect Mode}}}{22}
-\contentsline {figure}{\numberline {Figura\nobreakspace 2.6:}{\ignorespaces Di\'alogo SIP}}{23}
-\contentsline {figure}{\numberline {Figura\nobreakspace 2.7:}{\ignorespaces SIP Invite}}{24}
-\contentsline {figure}{\numberline {Figura\nobreakspace 2.8:}{\ignorespaces SIP 100 Trying}}{26}
-\contentsline {figure}{\numberline {Figura\nobreakspace 2.9:}{\ignorespaces SIP 200 OK}}{27}
-\contentsline {figure}{\numberline {Figura\nobreakspace 2.10:}{\ignorespaces SIP ACK}}{27}
-\contentsline {figure}{\numberline {Figura\nobreakspace 2.11:}{\ignorespaces SIP BYE}}{27}
-\contentsline {figure}{\numberline {Figura\nobreakspace 2.12:}{\ignorespaces SIP 200 OK}}{28}
-\contentsline {figure}{\numberline {Figura\nobreakspace 2.13:}{\ignorespaces Pacote RTP}}{28}
-\contentsline {figure}{\numberline {Figura\nobreakspace 2.14:}{\ignorespaces OPUS vs outros codecs de \'audio}}{34}
-\contentsline {figure}{\numberline {Figura\nobreakspace 2.15:}{\ignorespaces Vis\~ao geral da arquitetura da plataforma Flash}}{36}
-\contentsline {figure}{\numberline {Figura\nobreakspace 2.16:}{\ignorespaces Vis\~ao geral da arquitetura do WebRTC}}{37}
+\contentsline {figure}{\numberline {Figura\nobreakspace 2.1:}{\ignorespaces Unidades H.323.}}{18}
+\contentsline {figure}{\numberline {Figura\nobreakspace 2.2:}{\ignorespaces Pacote H.225.}}{19}
+\contentsline {figure}{\numberline {Figura\nobreakspace 2.3:}{\ignorespaces Estabelecimento de uma chamada H.323 b\'asica.}}{19}
+\contentsline {figure}{\numberline {Figura\nobreakspace 2.4:}{\ignorespaces Negocia\c c\~ao de m\IeC {\'\i }dia H.323.}}{21}
+\contentsline {figure}{\numberline {Figura\nobreakspace 2.5:}{\ignorespaces H.323 \textit {Fast Connect Mode}.}}{23}
+\contentsline {figure}{\numberline {Figura\nobreakspace 2.6:}{\ignorespaces Di\'alogo SIP.}}{24}
+\contentsline {figure}{\numberline {Figura\nobreakspace 2.7:}{\ignorespaces SIP Invite.}}{25}
+\contentsline {figure}{\numberline {Figura\nobreakspace 2.8:}{\ignorespaces SIP 100 Trying.}}{27}
+\contentsline {figure}{\numberline {Figura\nobreakspace 2.9:}{\ignorespaces SIP 200 OK.}}{28}
+\contentsline {figure}{\numberline {Figura\nobreakspace 2.10:}{\ignorespaces SIP ACK.}}{28}
+\contentsline {figure}{\numberline {Figura\nobreakspace 2.11:}{\ignorespaces SIP BYE.}}{28}
+\contentsline {figure}{\numberline {Figura\nobreakspace 2.12:}{\ignorespaces SIP 200 OK.}}{29}
+\contentsline {figure}{\numberline {Figura\nobreakspace 2.13:}{\ignorespaces Pacote RTP.}}{29}
+\contentsline {figure}{\numberline {Figura\nobreakspace 2.14:}{\ignorespaces OPUS vs outros codecs de \'audio.}}{35}
+\contentsline {figure}{\numberline {Figura\nobreakspace 2.15:}{\ignorespaces Vis\~ao geral da arquitetura da plataforma Flash.}}{37}
+\contentsline {figure}{\numberline {Figura\nobreakspace 2.16:}{\ignorespaces Vis\~ao geral da arquitetura do WebRTC.}}{38}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {Figura\nobreakspace 3.1:}{\ignorespaces Exemplo de um dialplan em XML}}{38}
-\contentsline {figure}{\numberline {Figura\nobreakspace 3.2:}{\ignorespaces Registo de usu\'ario b\'asico}}{39}
-\contentsline {figure}{\numberline {Figura\nobreakspace 3.3:}{\ignorespaces Ponte H323-SIP do Freeswitch}}{39}
-\contentsline {figure}{\numberline {Figura\nobreakspace 3.4:}{\ignorespaces Ponte H323-SIP do Freeswitch}}{40}
-\contentsline {figure}{\numberline {Figura\nobreakspace 3.5:}{\ignorespaces Vari\'avel \textit {global\_codec\_prefs} em \textit {vars.xml}}}{42}
-\contentsline {figure}{\numberline {Figura\nobreakspace 3.6:}{\ignorespaces Mixagem de \'audio do Freeswitch}}{42}
-\contentsline {figure}{\numberline {Figura\nobreakspace 3.7:}{\ignorespaces Switching de v\IeC {\'\i }deo do Freeswitch}}{43}
-\contentsline {figure}{\numberline {Figura\nobreakspace 3.8:}{\ignorespaces Exemplo de composi\c c\~ao de v\IeC {\'\i }deo do Freeswitch}}{44}
-\contentsline {figure}{\numberline {Figura\nobreakspace 3.9:}{\ignorespaces Exemplos de \textit {layouts} de v\IeC {\'\i }deo do Freeswitch 1.6}}{44}
-\contentsline {figure}{\numberline {Figura\nobreakspace 3.10:}{\ignorespaces Formato do comando \textit {ffmpeg}}}{45}
-\contentsline {figure}{\numberline {Figura\nobreakspace 3.11:}{\ignorespaces Formato do comando \textit {ffmpeg}}}{45}
-\contentsline {figure}{\numberline {Figura\nobreakspace 3.12:}{\ignorespaces Formato do comando \textit {ffmpeg}}}{46}
-\contentsline {figure}{\numberline {Figura\nobreakspace 3.13:}{\ignorespaces Red5 como servidor de m\IeC {\'\i }dia Flash}}{47}
-\contentsline {figure}{\numberline {Figura\nobreakspace 3.14:}{\ignorespaces Red5 e Freeswitch conectando m\'ultiplos usu\'arios}}{48}
+\contentsline {figure}{\numberline {Figura\nobreakspace 3.1:}{\ignorespaces Exemplo de um \textit {dialplan} em XML.}}{41}
+\contentsline {figure}{\numberline {Figura\nobreakspace 3.2:}{\ignorespaces Registo de usu\'ario b\'asico.}}{41}
+\contentsline {figure}{\numberline {Figura\nobreakspace 3.3:}{\ignorespaces Ponte H323-SIP do Freeswitch.}}{41}
+\contentsline {figure}{\numberline {Figura\nobreakspace 3.4:}{\ignorespaces Exemplo de \textit {dialplan} de redirecionamento SIP.}}{42}
+\contentsline {figure}{\numberline {Figura\nobreakspace 3.5:}{\ignorespaces Exemplo da vari\'avel \textit {global\_codec\_prefs} em \textit {vars.xml}.}}{44}
+\contentsline {figure}{\numberline {Figura\nobreakspace 3.6:}{\ignorespaces Mixagem de \'audio do Freeswitch.}}{44}
+\contentsline {figure}{\numberline {Figura\nobreakspace 3.7:}{\ignorespaces \textit {Switching} de v\IeC {\'\i }deo do Freeswitch.}}{45}
+\contentsline {figure}{\numberline {Figura\nobreakspace 3.8:}{\ignorespaces Exemplo de composi\c c\~ao de v\IeC {\'\i }deo do Freeswitch.}}{46}
+\contentsline {figure}{\numberline {Figura\nobreakspace 3.9:}{\ignorespaces Quatro exemplos de \textit {layouts} de v\IeC {\'\i }deo do Freeswitch 1.6.}}{46}
+\contentsline {figure}{\numberline {Figura\nobreakspace 3.10:}{\ignorespaces Formato do comando \textit {ffmpeg}.}}{47}
+\contentsline {figure}{\numberline {Figura\nobreakspace 3.11:}{\ignorespaces Comando \textit {ffmpeg} para transcodifica\c c\~ao de RTP para RTMP.}}{47}
+\contentsline {figure}{\numberline {Figura\nobreakspace 3.12:}{\ignorespaces Comando \textit {ffmpeg} para transcodifica\c c\~ao de RTMP para RTP.}}{48}
+\contentsline {figure}{\numberline {Figura\nobreakspace 3.13:}{\ignorespaces Red5 como servidor de m\IeC {\'\i }dia Flash.}}{49}
+\contentsline {figure}{\numberline {Figura\nobreakspace 3.14:}{\ignorespaces Red5 e Freeswitch conectando m\'ultiplos usu\'arios.}}{50}
 \addvspace {10\p@ }
+\contentsline {figure}{\numberline {Figura\nobreakspace 4.1:}{\ignorespaces Interface web do Mconf.}}{53}
+\contentsline {figure}{\numberline {Figura\nobreakspace 4.2:}{\ignorespaces Vis\~ao geral da arquitetura do Mconf-Live.}}{54}
+\contentsline {figure}{\numberline {Figura\nobreakspace 4.3:}{\ignorespaces Compila\c c\~ao do \textit {mod\_h323} no Ubuntu.}}{56}
+\contentsline {figure}{\numberline {Figura\nobreakspace 4.4:}{\ignorespaces Exemplo de \textit {h323.conf.xml}.}}{56}
+\contentsline {figure}{\numberline {Figura\nobreakspace 4.5:}{\ignorespaces Vis\~ao geral da arquitetura modificada do Mconf-Live.}}{59}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {Figura\nobreakspace 5.1:}{\ignorespaces Caso de Uso 1.}}{61}
+\contentsline {figure}{\numberline {Figura\nobreakspace 5.2:}{\ignorespaces Liga\c c\~ao H.323 Ekiga.}}{61}
+\contentsline {figure}{\numberline {Figura\nobreakspace 5.3:}{\ignorespaces Usu\'ario Ekiga H.323 em uma sala do Mconf.}}{62}
+\contentsline {figure}{\numberline {Figura\nobreakspace 5.4:}{\ignorespaces Caso de Uso 2.}}{62}
+\contentsline {figure}{\numberline {Figura\nobreakspace 5.5:}{\ignorespaces Usu\'ario Ekiga como \textit {video floor}.}}{63}
+\contentsline {figure}{\numberline {Figura\nobreakspace 5.6:}{\ignorespaces Usu\'ario web como \textit {video floor}.}}{64}
+\contentsline {figure}{\numberline {Figura\nobreakspace 5.7:}{\ignorespaces Caso de Uso 3.}}{64}
+\contentsline {figure}{\numberline {Figura\nobreakspace 5.8:}{\ignorespaces Mconf exibindo o v\IeC {\'\i }deo do Polycom QDX 6000 (\textit {QDX User}).}}{65}
+\contentsline {figure}{\numberline {Figura\nobreakspace 5.9:}{\ignorespaces Polycom QDX 6000 exibindo v\IeC {\'\i }deo do usu\'ario web \textit {Web User 1}.}}{65}
+\contentsline {figure}{\numberline {Figura\nobreakspace 5.10:}{\ignorespaces Caso de Uso 4.}}{66}
+\contentsline {figure}{\numberline {Figura\nobreakspace 5.11:}{\ignorespaces Mconf exibindo a composi\c c\~ao de v\IeC {\'\i }deo do RMX 2000.}}{66}
 \addvspace {10\p@ }
 \addvspace {10\p@ }

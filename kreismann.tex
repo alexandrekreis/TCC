@@ -90,8 +90,10 @@ To do
 % o parametro deve ser a abreviatura mais longa
 \begin{listofabbrv}{ISO/IEC}
     \item[ASCII] American Standard Code
+    \item[HTML5] Hypertext Markup Language, versão 5
+    \item[IDE] Integrated Development Environment
+    \item[IETF] Internet Engineering Task Force    
     \item [ISO/IEC] International Organization for Standardization / International Electrotechnical Commission
-    \item[IETF] Internet Engineering Task Force
     \item[ITU] International Telecommunication Union
     \item[MCU] Multipoint Control Unit
     \item[RFC] Request for Comments
@@ -120,12 +122,13 @@ To do
 % resumo na lÃ­ngua do documento
 \begin{abstract}
 
-A comunicação transparente entre webconferência - videoconferência executada em um navegador web - e outros sistemas de videoconferência - sejam eles hardwares dedicados ou sistemas desktop - é uma tarefa dificultada pelo fato de que o primeiro, muitas vezes, implementa diferentes padrões para a sinalização, transmissão e codificação de áudio e vídeo. Outro fator complicador é que soluções para interoperação resolvem apenas parcialmente o problema, de forma que é preciso integrá-las em uma arquitetura para alcançar um nível maior de interoperabilidade.
+Sistemas de videoconferência permitem a comunicação por áudio e vídeo em tempo real e, devido a crescente qualidade das redes de banda larga, vêm apresentando um aumento significativo de uso, em que aulas, palestras, treinamentos e outros tipos de reuniões cada vez mais usufruem dessa tecnologia. 
 
-O objetivo deste trabalho, portanto, é a análise de soluções \textit{open source} e o desenvolvimento de uma arquitetura que permita a interoperabilidade entre webconferência e sistemas de videoconferência em geral (equipamentos e softfones).
+É possível dividir tais sistemas em quatro grandes grupos: \textit{sistemas de webconferência}, que são executados em um navegador web; sistemas desktop que requerem a instalação em um computador, conhecidos como \textit{softfones}; e, finalmente, os de hardware dedicado, que podem ser \textit{sistemas de videoconferência de sala} ou \textit{sistemas de telepresença}.
 
-Para tal, primeiramente, é feito o levantamento de protocolos, codecs, e demais padrões e tecnologias do contexto de video e webconferência. Após, apresentação de soluções \textit{open source} que possibilitem a comunicação transparente dos padrões estudados. Finalmente, projeto e desenvolvimento de uma arquitetura utilizando essas soluções. Será utilizado o sistema de webconferência open source \textit{Mconf} para efetuar a implementação e validação. A validação deverá permitir a interoperabilidade da webconferência com softfones e equipamentos de videoconferência.
+Embora cada grupo tenha o seu foco de uso, um dos fatores de qualidade de um sistema de videoconferência é a capacidade de interoperar com diferentes sistemas, pois há situações em que usuários de um sistema específico desejam se comunicar com utilizadores de outros sistemas. Entretanto, webconferências implementam, muitas vezes, diferentes padrões para sinalização, transmissão e codificação de áudio e vídeo, dificultando sua interoperabilidade com os demais sistemas de videoconferência.
 
+Este trabalho, portanto, estudará os principais padrões e tecnologias de videoconferência e analisará soluções open source que os compatibilizem, permitindo que webconferências interoperem com os diversos sistemas de videoconferência. Usando tais soluções, será feito um estudo de caso com a webconferência open source Mconf, a fim de estender seu nível de interoperabilidade com os demais softwares e equipamentos de videoconferência.
 
 \end{abstract}
 
@@ -134,11 +137,13 @@ Para tal, primeiramente, é feito o levantamento de protocolos, codecs, e demais 
 % na outra lÃ­ngua, separadas por vÃ­rgulas
 \begin{englishabstract}{Open Source Solutions for Interoperability of Video Conference and Web Conference Systems}{interoperability, video conference, web conference, open source, Mconf}
 
-Transparent communication among web conference - video conference executed in a web browser - and other video conference systems - dedicated hardwares or desktop applications - is a task made difficult by the fact that the first one often implements different standards for media signaling, transmission and encoding. Another complicating matter is that interoperability solutions only partially resolve the problem, so we need to integrate them into an architecture to achieve a higher level of interoperability.
+Video conference systems allow real time communication through audio and video. Due to the rising quality of broadband networks, such systems are presenting a significant growth in use, in which classes, talks, trainings and other types of meetings are increasingly utilizing this technology.
 
-Thus the objective of this work is to analyze open source solutions and to develop an architecture allowing interoperability of web conference and different video conference systems (equipments and softphones).
+We can divide such systems in four major groups: \textit{web conferences}, which are executed in a web browser; desktop systems that require installation in a computer, known as \textit{softphones}; and, finally, hardware based systems, which can be \textit{room video conference systems} or \textit{telepresence video conference systems}.
 
-To do so, firstly we study protocols, codecs and further standards and technologies of video and web conferencing context. Afterwards, we present open source solutions that allow transparent communication of studied standards. Finally, we develop an architecture utilizing those solutions. Implementation and validation will be performed by using the open source web conference system \textit{Mconf}. Through validation, the web conference must interoperate with softphones and video conference equipments.
+Although each type has its focus of use, a quality factor of a video conference system is the capability of interoperating with different systems, since there are situations in which a user of a specific system wishes to communicate with users operating another system. However, web conferences often implement different standards for media signaling, transmission and encoding, making more difficult their interoperability with further video conference systems.
+
+Thus the objective of this work is to study the main video conference standards and technologies and to analyze open source solutions that make them compatible, allowing the interoperability among web conferences and further video conference systems. Using these solutions, we're going to do a study case with the open source web conference Mconf, extending its interoperability level with softwares and equipments.
 \end{englishabstract}
 
 % aqui comeca o texto propriamente dito
@@ -148,11 +153,21 @@ To do so, firstly we study protocols, codecs and further standards and technolog
 \input{chapters/3-solucoes.tex}
 \input{chapters/4-arquitetura.tex}
 \input{chapters/5-resultados.tex}
+\input{chapters/6-conclusao.tex}
 
 
 \bibliography{kreismann}
 \nocite{adobeConnect}
 \nocite{flash-platform}
+\nocite{FFMPEG}
+\nocite{Freeswitch}
+\nocite{Red5}
+\nocite{Mconf.org}
+\nocite{BBB}
+\nocite{ekiga}
+\nocite{jitsi}
+\nocite{polycom}
+\nocite{huawei}
 \bibliographystyle{abnt}
 
 \end{document}

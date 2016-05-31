@@ -1,50 +1,58 @@
 \select@language {brazilian}
 \contentsline {chapter}{Lista de Abreviaturas e Siglas}{7}
 \contentsline {chapter}{Lista de Figuras}{8}
-\contentsline {chapter}{Lista de Tabelas}{9}
-\contentsline {chapter}{Resumo}{10}
+\contentsline {chapter}{Lista de Tabelas}{10}
+\contentsline {chapter}{Resumo}{11}
 \select@language {english}
-\contentsline {chapter}{Abstract}{11}
+\contentsline {chapter}{Abstract}{12}
 \select@language {brazilian}
-\contentsline {chapter}{\numberline {1}Introdu\c c\~ao}{12}
-\contentsline {section}{\numberline {1.1}Interoperabilidade}{14}
-\contentsline {section}{\numberline {1.2}Organiza\c c\~ao}{14}
-\contentsline {chapter}{\numberline {2}Padr\~oes e Tecnologias de Videoconfer\^encia}{16}
-\contentsline {section}{\numberline {2.1}Protocolos de Sinaliza\c c\~ao}{16}
-\contentsline {subsection}{\numberline {2.1.1}Padr\~ao H.323}{17}
-\contentsline {subsubsection}{\numberline {2.1.1.1}\textbf {H.225}}{18}
-\contentsline {subsubsection}{\numberline {2.1.1.2}\textbf {H.245}}{19}
-\contentsline {subsubsection}{\numberline {2.1.1.3}\textbf {H.323 \textit {Fast Connect Mode}}}{21}
-\contentsline {subsubsection}{\numberline {2.1.1.4}\textbf {Mais informa\c c\~oes sobre H.323}}{22}
-\contentsline {subsection}{\numberline {2.1.2}Padr\~ao SIP}{22}
-\contentsline {subsubsection}{\numberline {2.1.2.1}\textbf {Mais informa\c c\~oes sobre SIP}}{28}
-\contentsline {section}{\numberline {2.2}Protocolos de Transporte de M\IeC {\'\i }dia em Tempo Real}{28}
-\contentsline {subsection}{\numberline {2.2.1}Padr\~ao RTP}{28}
-\contentsline {subsubsection}{\numberline {2.2.1.1}\textbf {RTCP}}{30}
-\contentsline {subsubsection}{\numberline {2.2.1.2}\textbf {Mais informa\c c\~oes sobre RTP e RTCP}}{30}
-\contentsline {subsection}{\numberline {2.2.2}Padr\~ao RTMP}{30}
-\contentsline {subsubsection}{\numberline {2.2.2.1}\textbf {Mais informa\c c\~oes sobre RTMP}}{31}
-\contentsline {section}{\numberline {2.3}Codifica\c c\~ao de M\IeC {\'\i }dia}{31}
-\contentsline {subsection}{\numberline {2.3.1}Padr\~oes para Codifica\c c\~ao de \'Audio}{32}
-\contentsline {subsubsection}{\numberline {2.3.1.1}\textbf {Padr\~ao G.7xx}}{32}
-\contentsline {subsubsection}{\numberline {2.3.1.2}\textbf {Padr\~ao Speex e Padr\~ao OPUS}}{33}
-\contentsline {subsubsection}{\numberline {2.3.1.3}\textbf {Padr\~ao iLBC e Padr\~ao iSAC}}{34}
-\contentsline {subsection}{\numberline {2.3.2}Padr\~oes para Codifica\c c\~ao de V\IeC {\'\i }deo}{35}
-\contentsline {subsubsection}{\numberline {2.3.2.1}\textbf {Padr\~ao H.26x}}{35}
-\contentsline {subsubsection}{\numberline {2.3.2.2}\textbf {Padr\~ao VPx}}{35}
-\contentsline {section}{\numberline {2.4}Tecnologias para Webconfer\^encia}{36}
-\contentsline {subsection}{\numberline {2.4.1}Plataforma Flash}{36}
-\contentsline {subsection}{\numberline {2.4.2}WebRTC}{37}
-\contentsline {chapter}{\numberline {3}Solu\c c\~oes \textit {Open Source} para Interoperabilidade}{38}
-\contentsline {section}{\numberline {3.1}Freeswitch}{38}
-\contentsline {subsubsection}{\numberline {3.1.0.1}\textbf {mod\_conference}}{42}
-\contentsline {subsubsection}{\numberline {3.1.0.2}\textbf {Freeswitch 1.6}}{43}
-\contentsline {section}{\numberline {3.2}FFMPEG}{44}
-\contentsline {section}{\numberline {3.3}Red5}{47}
-\contentsline {section}{\numberline {3.4}Outras Solu\c c\~oes para Trabalhos Futuros}{48}
-\contentsline {chapter}{\numberline {4}Arquitetura}{49}
-\contentsline {section}{\numberline {4.1}Mconf}{49}
-\contentsline {subsection}{\numberline {4.1.1}Arquitetura anterior}{49}
-\contentsline {subsection}{\numberline {4.1.2}Arquitetura modificada}{49}
-\contentsline {chapter}{\numberline {5}Resultados}{50}
-\contentsline {chapter}{Refer{\^e}ncias}{51}
+\contentsline {chapter}{\numberline {1}Introdu\c c\~ao}{13}
+\contentsline {section}{\numberline {1.1}Interoperabilidade}{15}
+\contentsline {section}{\numberline {1.2}Objetivo}{15}
+\contentsline {section}{\numberline {1.3}Organiza\c c\~ao}{16}
+\contentsline {chapter}{\numberline {2}Padr\~oes e Tecnologias de Videoconfer\^encia}{17}
+\contentsline {section}{\numberline {2.1}Protocolos de Sinaliza\c c\~ao}{17}
+\contentsline {subsection}{\numberline {2.1.1}Padr\~ao H.323}{18}
+\contentsline {subsubsection}{\numberline {2.1.1.1}\textbf {H.225}}{19}
+\contentsline {subsubsection}{\numberline {2.1.1.2}\textbf {H.245}}{20}
+\contentsline {subsubsection}{\numberline {2.1.1.3}\textbf {H.323 \textit {Fast Connect Mode}}}{22}
+\contentsline {subsubsection}{\numberline {2.1.1.4}\textbf {Mais informa\c c\~oes sobre H.323}}{23}
+\contentsline {subsection}{\numberline {2.1.2}Padr\~ao SIP}{23}
+\contentsline {subsubsection}{\numberline {2.1.2.1}\textbf {Mais informa\c c\~oes sobre SIP}}{29}
+\contentsline {section}{\numberline {2.2}Protocolos de Transporte de M\IeC {\'\i }dia em Tempo Real}{29}
+\contentsline {subsection}{\numberline {2.2.1}Padr\~ao RTP}{29}
+\contentsline {subsubsection}{\numberline {2.2.1.1}\textbf {RTCP}}{31}
+\contentsline {subsection}{\numberline {2.2.2}Padr\~ao RTMP}{31}
+\contentsline {section}{\numberline {2.3}Codifica\c c\~ao de M\IeC {\'\i }dia}{32}
+\contentsline {subsection}{\numberline {2.3.1}Padr\~oes para Codifica\c c\~ao de \'Audio}{33}
+\contentsline {subsubsection}{\numberline {2.3.1.1}\textbf {Padr\~ao G.7xx}}{33}
+\contentsline {subsubsection}{\numberline {2.3.1.2}\textbf {Padr\~ao Speex e Padr\~ao OPUS}}{34}
+\contentsline {subsubsection}{\numberline {2.3.1.3}\textbf {Padr\~ao iLBC e Padr\~ao iSAC}}{35}
+\contentsline {subsection}{\numberline {2.3.2}Padr\~oes para Codifica\c c\~ao de V\IeC {\'\i }deo}{36}
+\contentsline {subsubsection}{\numberline {2.3.2.1}\textbf {Padr\~ao H.26x}}{36}
+\contentsline {subsubsection}{\numberline {2.3.2.2}\textbf {Padr\~ao VPx}}{36}
+\contentsline {section}{\numberline {2.4}Tecnologias para Webconfer\^encia}{37}
+\contentsline {subsection}{\numberline {2.4.1}Plataforma Flash}{37}
+\contentsline {subsection}{\numberline {2.4.2}WebRTC}{38}
+\contentsline {chapter}{\numberline {3}Solu\c c\~oes \textit {Open Source} para Interoperabilidade}{40}
+\contentsline {section}{\numberline {3.1}Freeswitch}{40}
+\contentsline {subsection}{\numberline {3.1.1}\textit {mod\_conference}}{44}
+\contentsline {subsubsection}{\numberline {3.1.1.1}\textbf {Freeswitch 1.6}}{45}
+\contentsline {section}{\numberline {3.2}FFMPEG}{46}
+\contentsline {section}{\numberline {3.3}Red5}{49}
+\contentsline {section}{\numberline {3.4}Outras Solu\c c\~oes para Trabalhos Futuros}{50}
+\contentsline {chapter}{\numberline {4}Estudo de Caso: Mconf}{52}
+\contentsline {section}{\numberline {4.1}Mconf}{52}
+\contentsline {subsection}{\numberline {4.1.1}Arquitetura Mconf-Live}{53}
+\contentsline {section}{\numberline {4.2}Estendendo a interoperabilidade do Mconf}{55}
+\contentsline {subsection}{\numberline {4.2.1}Suporte a H.323}{55}
+\contentsline {subsubsection}{\numberline {4.2.1.1}\textbf {Mais informa\c c\~oes sobre \textit {mod\_h323}}}{57}
+\contentsline {subsection}{\numberline {4.2.2}Suporte a V\IeC {\'\i }deo SIP}{57}
+\contentsline {chapter}{\numberline {5}Resultados}{60}
+\contentsline {section}{\numberline {5.1}Casos de Uso}{61}
+\contentsline {subsection}{\numberline {5.1.1}Caso 1}{61}
+\contentsline {subsection}{\numberline {5.1.2}Caso 2}{62}
+\contentsline {subsection}{\numberline {5.1.3}Caso 3}{64}
+\contentsline {subsection}{\numberline {5.1.4}Caso 4}{65}
+\contentsline {chapter}{\numberline {6}Considera\c c\~oes Finais e Trabalhos Futuros}{67}
+\contentsline {chapter}{Refer{\^e}ncias}{69}

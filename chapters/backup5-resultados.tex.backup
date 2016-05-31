@@ -1,0 +1,13 @@
+\chapter{Resultados}\label{cha:resultados}
+
+    % *Mostra interoperabilidade funcionando: Mconf com Ekiga, Polycom (SIP e H.323), MCU*
+    
+    Para a realização dos testes de interoperabilidade, foram utilizados os seguintes sistemas de videoconferência:
+    
+    \begin{itemize}
+    	\item Ekiga\footnote{\url{http://www.ekiga.org/}}: Lançado em 2001 com o nome de GnomeMeeting, Ekiga é um softfone open source com suporte a SIP e H.323;
+    	
+    	\item Jitsi\footnote{\url{http://www.jitsi.org/}}: antes conhecido como JsPhone, Jitsi é um softfone opensource, desenvolvido na linguagem Java, cuja camada SIP é baseada no JAIN-SIP. O projeto Jitsi tem focado no desenvolvimento de produtos WebRTC, como o Jitsi Meet\footnote{\url{https://jitsi.org/Projects/JitsiMeet}}, sistema de webconferência, e o Jitsi Videobridge \footnote{\url{https://jitsi.org/Projects/JitsiVideobridge}}, hardware dedicado para conferência de múltiplos usuários, também compatível, naturalmente, com WebRTC;
+    \end{itemize}
+	
+	

@@ -1,0 +1,19 @@
+\chapter{Considerações Finais e Trabalhos Futuros}\label{cha:final}
+
+   Através do estudo dos diversos tipos, padrões e tecnologias de videoconferência (Capítulo 1 e 2), e do levantamento de soluções open source que integram tais padrões (Capítulo 3), este trabalhou apresentou meios que possibilitam sistemas de webconferência interoperarem com os mais diversos softwares e equipamentos de videoconferência, apresentando um estudo de caso onde se estendeu a interoperabilidade do sistema Mconf, utilizando-se das soluções apresentadas.
+   
+   Por meio do mesmo estudo de caso, é possível, ainda, realizar melhorias ou investigar novas formas de interoperabilidade. Para tal, são apresentadas duas sugestões de trabalhos futuros:
+   
+   \begin{enumerate}
+   		\item \textbf{Explorar Freeswitch 1.6}: como já mencionado no Capítulo 3, à época da finalização deste trabalho, foi lançado o Freeswitch versão 1.6, com diversas novas \textit{features} para vídeo, permitindo seleção e composição.
+  		
+   		Através da seleção de vídeos, uma importante melhoria que pode ser desenvolvida é exibir todos os vídeos dos usuários externos simultaneamente na interface web do Mconf, e utilizar o mecanismo de \textit{switching} apenas para enviar vídeo para os usuários externos que só exibem um vídeo por vez. Assim, por exemplo, o \textit{bbb-voice} selecionaria os múltiplos vídeos de usuários externos e os publicaria no \textit{bbb-video}.
+   		
+   		Além disso, com essa função, usuários WebRTC poderiam enviar seu vídeo diretamente para o Freeswitch (assim como acontece com o áudio), e o \textit{bbb-voice} selecionaria, além dos vídeos dos usuários externos, os vídeos dos usuários \\ WebRTC. Vídeos WebRTC geralmente utilizam VP8, portanto, o Freeswitch deve ser reconfigurado para aceitar chamadas que usam tal codec. O submódulo FFMPEG no \textit{bbb-voice} transcodificaria tais vídeos de VP8 para H.264 e os publicaria no \textit{bbb-video}.		
+   		
+   		Outra opção seria uma espécie de 'Modo MCU' no Mconf, onde existiria apenas uma janela de vídeo ativa na sala de conferência, exibindo a composição de vídeo de todos os usuários (web e externos). Assim, cada usuário - utilizando o navegador web ou outro sistema de videoconferência - receberia apenas uma \textit{stream} de vídeo. Contudo, composição de vídeo é uma tarefa complexa que envolve uso de muitos recursos computacionais, e, desse modo, deve-se tomar cuidado com a carga do servidor que está hospedando o Freeswitch.
+   		
+   		\item \textbf{Explorar Kurento}: O projeto Bigbluebutton aos poucos se encaminha para um cliente web puramente baseado em HTML5. Assim, a distribuição de mídia deverá ser feita exclusivamente via WebRTC (que é parte do conjunto de tecnologias que o HTML5 define). Um servidor de mídia WebRTC open source citado neste trabalho é o Kurento, que trabalha de uma maneira similar ao Red5. 
+   		
+   		Uma sugestão de trabalho seria conectar os usuários web em um servidor Kurento (portanto, não seria mais preciso o SIP.js), e, por meio de uma aplicação Kurento que ofereça uma camada SIP, conectá-lo ao Freeswitch a fim da distribuição de mídia entre usuários externos. 
+   \end{enumerate}

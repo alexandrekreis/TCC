@@ -1,5 +1,137 @@
 \chapter{Resultados}\label{cha:resultados}
-
-    *Mostra interoperabilidade funcionando: Mconf com Ekiga, Polycom (SIP e H.323), MCU*
-	
-	
+    
+    A realização dos testes de interoperabilidade validou os seguintes sistemas de videoconferência:
+    
+    \begin{itemize}
+    	\item \textbf{Ekiga}\footnote{\url{http://www.ekiga.org/}}: Lançado em 2001 com o nome de GnomeMeeting, Ekiga é um softfone SIP e H.323 open source, implementando diversos codecs de áudio, como Speex, G.7xx e iLBC, e suportando vídeo H.263 (as 3 versões deste) e H.264.
+    	
+    	\item \textbf{Jitsi}\footnote{\url{http://www.jitsi.org/}}: antes conhecido como JsPhone, Jitsi é um softfone SIP open source desenvolvido em Java, e cuja camada SIP é baseada na biblioteca JAIN-SIP. O projeto Jitsi tem focado no desenvolvimento de produtos WebRTC, como o Jitsi Meet\footnote{\url{https://jitsi.org/Projects/JitsiMeet}}, sistema de webconferência, e o Jitsi Videobridge\footnote{\url{https://jitsi.org/Projects/JitsiVideobridge}}, hardware dedicado para conferência de múltiplos usuários, também compatível, naturalmente, com WebRTC. Para áudio, além de Speex, G.7xx e iLBC, Jitsi também implementa Opus. Já para vídeo, há suporte para H.263-1998, H.264 e VP8;
+    	
+    	\item \textbf{Polycom QDX 6000}\footnote{\url{http://support.polycom.com/PolycomService/support/us/support/video/qdx/qdx_6000.html}}: QDX 6000 é um sistema de videoconferência de sala desenvolvido pela Polycom\footnote{\url{http://www.polycom.com.br/}}, com suporte a SIP, vídeo H.263 e H.264, e diversos codecs de áudio. Para a validação da interoperabilidade com o Mconf, foi utilizado a unidade da Sala de Videoconferência do Instituto de Informática da UFRGS.
+    	
+    	\item \textbf{Huawei TE-30}\footnote{\url{http://e.huawei.com/br/products/enterprise-networking/telepresence-video-conferencing/endpoints/te-30}}: TE-30 é um sistema de videoconferência de sala SIP e H.323, desenvolvido pela Huawei\footnote{\url{http://e.huawei.com/}}. Suporta G.7xx, H.263 e H.264.
+    	
+    	\item \textbf{Polycom RMX 2000}\footnote{\url{http://support.polycom.com/PolycomService/support/us/support/network/collaboration_conferencing_platforms/rmx_2000.html}}: RMX 2000 é um MCU desenvolvido pela Polycom, conectando múltiplos usuários SIP e H.323, mixando áudio, compondo vídeo e distribuindo as mídias entre os participantes. Implementa áudio G.7xx e vídeo H.26x.
+    	
+    	\item \textbf{Polycom ViewStation FX}\footnote{\url{http://support.polycom.com/PolycomService/support/us/support/video/other_video/viewstation_fx.html}}: Outro sistema de videoconferência de sala da Polycom, com suporte apenas a H.323. Implementa G.722, G.728 e H.26x.
+    \end{itemize}
+    
+    Ambos sistemas implementam o padrão RTP para o transporte de mídia.
+    
+    \section{Casos de Uso}\label{sec:casos}	
+    
+    Nessa seção, serão apresentados alguns casos de uso dos testes de interoperabilidade. Cada usuário externo (operando algum dos sistemas listados acima) acessou a sala 72013 do servidor Mconf-Live hospedado em \textit{lab-mconf-live-sip.rnp.br}.
+    
+    \subsection{Caso 1}\label{sec:caso1}	
+    
+    A Figura~\ref{fig:caso1} ilustra o Caso de Uso 1, demonstrando um uso básico de interoperabilidade H.323.
+    
+  	 \begin{figure}[h]
+  	     \centering
+  	     \includegraphics[width=22em, height=10em]{img/caso1.png}
+  	     \caption{Caso de Uso 1.}
+  	     \label{fig:caso1}
+  	  \end{figure}
+  	  
+  	 O acesso à sala 72013 via H.323 pelo usuário Ekiga, com o \textit{username} 'Alexandre', se dá através da ligação \textit{h323:72013@lab-mconf-live-sip.rnp.br}, como mostra a Figura~\ref{fig:ekigah323}.
+  	  
+   	 \begin{figure}[h]
+   	     \centering
+   	     \includegraphics[width=15em, height=18em]{img/ekigah323.png}
+   	     \caption{Ligação H.323 Ekiga.}
+   	     \label{fig:ekigah323}
+   	  \end{figure}
+   	  
+   	  Assim, ao efetuar a chamada, o usuário Ekiga será um dos integrantes da sala de conferência, sendo exibido na lista de participantes na interface do navegador web, e poderá interagir via áudio com o usuário web '\textit{Web User}', como demonstrado na Figura~\ref{fig:caso1-demo}. Ainda na interface, indicamos com um pequeno símbolo de telefone à esquerda que o usuário em questão é um usuário externo. No momento da captura da Figura~\ref{fig:caso1-demo}, o usuário Ekiga H.323 estava falando (o que implica no brilho do ícone de microfone à direita do \textit{username} 'Alexandre').
+   	  
+    	 \begin{figure}[h]
+    	     \centering
+    	     \includegraphics[width=25em, height=22em]{img/caso1-demo.png}
+    	     \caption{Usuário Ekiga H.323 em uma sala do Mconf.}
+    	     \label{fig:caso1-demo}
+    	  \end{figure} 
+    	  
+      Tal caso de uso foi repetido com os demais softwares e equipamentos H.323, como o Huawei TE-30 e o Polycom ViewStation FX, onde ambos interoperaram com sucesso.
+ 
+    \subsection{Caso 2}\label{sec:caso2}	
+        	  
+    A Figura~\ref{fig:caso2} ilustra o Caso de Uso 2, demonstrando um uso básico de interoperabilidade SIP.
+    
+  	 \begin{figure}[h]
+  	     \centering
+  	     \includegraphics[width=22em, height=10em]{img/caso2.png}
+  	     \caption{Caso de Uso 2.}
+  	     \label{fig:caso2}
+  	  \end{figure}
+  	  
+  	 O acesso à sala 72013 via SIP pelo usuário Ekiga, com o \textit{username} 'Ekiga soft phone', se dá através da ligação \textit{sip:72013@lab-mconf-live-sip.rnp.br}. As Figuras~\ref{fig:caso2-demo1} e~\ref{fig:caso2-demo2} demonstram como a interoperabilidade SIP via áudio e vídeo se reflete na interface web do Mconf.
+  	 
+  	 Na primeira figura (\ref{fig:caso2-demo1}), o \textit{video floor} é o usuário Ekiga (como mencionado, o ícone de microfone brilhando indica que esse usuário está falando). Assim, o resultado do \textit{switching} do Freeswitch transmite o vídeo do usuário Ekiga para o \textit{bbb-voice}, que, checando que tal vídeo é de um usuário externo, publica-o no \textit{bbb-video} para ser distribuído entre os usuários web. A janela do cliente web responsável por exibir vídeos de usuários externos é a janela \textit{Videoconference} (posicionada mais abaixo na Figura~\ref{fig:caso2-demo1}). No momento em que o usuário Ekiga se torna o \textit{video floor}, ele também recebe o próprio vídeo (como explicado na Seção~\ref{sec:fs-mod}).
+  	 
+  	 
+    	 \begin{figure}[h]
+    	     \centering
+    	     \includegraphics[width=32em, height=23em]{img/caso2-demo1.jpg}
+    	     \caption{Usuário Ekiga como \textit{video floor}.}
+    	     \label{fig:caso2-demo1}
+    	  \end{figure}
+    	   
+    Já quando o \textit{Web User} começa a falar, o \textit{bbb-voice} - que receberá o vídeo desse usuário como resultado do \textit{switching} - verificará que foi um usuário web que se tornou o \textit{video floor}, e não publicará o vídeo do Freeswitch no \textit{bbb-video}. Desse modo, a janela \textit{Videoconference} exibe um gif animado para não haver vídeo duplicado, como pode ser conferido na Figura~\ref{fig:caso2-demo2}. Já o usuário externo receberá e exibirá o vídeo do \textit{Web User} normalmente.
+     
+    	 \begin{figure}[h]
+    	     \centering
+    	     \includegraphics[width=34em, height=22em]{img/caso2-demo2.jpg}
+    	     \caption{Usuário web como \textit{video floor}.}
+    	     \label{fig:caso2-demo2}
+    	  \end{figure}  
+    	  
+    Tal caso de uso também foi repetido com os demais softwares e equipamentos SIP, validando a interoperabilidade com o Jitsi, Huawei TE-30 e Polycom QDX 6000, onde ambos interoperaram com sucesso. \\ \\ \\ \\ 
+      
+    \subsection{Caso 3}\label{sec:caso3}
+    
+    A Figura~\ref{fig:caso3} ilustra o Caso de Uso 3, validando a interoperabilidade do Mconf com múltiplos tipos de usuários simultâneos. Nesse teste, o Mconf-Live conecta dois usuários web e quatro sistemas externos: Polycom QDX 6000, Huawei TE-30, Jitsi e Polycom ViewStation FX (este está apenas via áudio, pois só utiliza H.323).
+    
+  	 \begin{figure}[h]
+  	     \centering
+  	     \includegraphics[width=30em, height=15em]{img/caso3.png}
+  	     \caption{Caso de Uso 3.}
+  	     \label{fig:caso3}
+  	  \end{figure}
+  	  
+  	 A Figura~\ref{fig:caso3-demo1} apresenta a interface web do Mconf, onde há as duas janelas de vídeo dos usuários web (\textit{Web User 1} e \textit{Web User 2}), e a janela \textit{Videoconference}, que no momento está mostrando o vídeo do Polycom QDX 6000 (\textit{QDX User} é o \textit{video floor}).
+  	 
+  	     	 \begin{figure}[h]
+  	     	     \centering
+  	     	     \includegraphics[width=32em, height=22em]{img/caso3-demo1.png}
+  	     	     \caption{Mconf exibindo o vídeo do Polycom QDX 6000 (\textit{QDX User}).}
+  	     	     \label{fig:caso3-demo1}
+  	     	  \end{figure}
+  	     	  
+  	  Já a Figura~\ref{fig:caso3-demo2} é uma fotografia do Polycom QDX 6000 da Sala de Videoconferência do Instituto de Informática da UFRGS (o \textit{QDX User} do Caso 3) exibindo o vídeo do \textit{Web User 1}, quando este se tornou o \textit{video floor} em um momento posterior.
+  	     	  
+  	     	 \begin{figure}[H]
+  	     	     \centering
+  	     	     \includegraphics[width=28em, height=16em]{img/caso3-demo2.png}
+  	     	     \caption{Polycom QDX 6000 exibindo vídeo do usuário web \textit{Web User 1}.}
+  	     	     \label{fig:caso3-demo2}
+  	     	  \end{figure}
+  	 
+    \subsection{Caso 4}\label{sec:caso4}
+    
+    A Figura~\ref{fig:caso4} ilustra o Caso de Uso 4, validando a interoperabilidade do Mconf com o MCU RMX 2000 da Polycom. Conectaram-se ao MCU 3 sistemas de videoconferência: Ekiga, Huawei TE-30 e Jitsi. Desse modo, quando o MCU se conecta ao Mconf (através de uma ligação SIP), temos na interface web o que está ilustrado na Figura~\ref{fig:caso4-demo}. Nela, há os vídeos dos usuários web e, no \textit{Videoconference}, a composição de vídeo feita pelo RMX 2000, mostrando todos os usuários externos.
+    
+  	 \begin{figure}[h]
+  	     \centering
+  	     \includegraphics[width=27em, height=12em]{img/caso4.png}
+  	     \caption{Caso de Uso 4.}
+  	     \label{fig:caso4}
+  	  \end{figure}
+  	  
+  	  \begin{figure}[h]
+  	     \centering
+  	     \includegraphics[width=32em, height=30em]{img/caso4-demo.png}
+  	     \caption{Mconf exibindo a composição de vídeo do RMX 2000.}
+  	     \label{fig:caso4-demo}
+  	  \end{figure}
+  	 
+  	   	 	
