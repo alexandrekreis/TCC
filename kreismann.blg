@@ -3,44 +3,50 @@ Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: kreismann.aux
 The style file: abnt.bst
 Database file #1: kreismann.bib
-You've used 28 entries,
+Repeated entry---line 535 of file kreismann.bib
+ : @misc{webrtc
+ :             ,
+I'm skipping whatever remains of this entry
+Warning--I didn't find a database entry for "kurento"
+You've used 34 entries,
             2371 wiz_defined-function locations,
-            691 strings with 6605 characters,
-and the built_in function-call counts, 17951 in all, are:
-= -- 1734
-> -- 105
-< -- 318
-+ -- 1045
-- -- 29
-* -- 967
-:= -- 1576
-add.period$ -- 93
-call.type$ -- 28
-change.case$ -- 237
+            711 strings with 6935 characters,
+and the built_in function-call counts, 21416 in all, are:
+= -- 2038
+> -- 129
+< -- 388
++ -- 1234
+- -- 35
+* -- 1184
+:= -- 1879
+add.period$ -- 113
+call.type$ -- 34
+change.case$ -- 289
 chr.to.int$ -- 1
-cite$ -- 28
-duplicate$ -- 2307
-empty$ -- 1047
-format.name$ -- 249
-if$ -- 3719
+cite$ -- 34
+duplicate$ -- 2733
+empty$ -- 1275
+format.name$ -- 305
+if$ -- 4414
 int.to.chr$ -- 1
 int.to.str$ -- 0
 missing$ -- 0
-newline$ -- 59
-num.names$ -- 135
-pop$ -- 428
+newline$ -- 71
+num.names$ -- 165
+pop$ -- 523
 preamble$ -- 1
-purify$ -- 28
+purify$ -- 34
 quote$ -- 0
-skip$ -- 1062
+skip$ -- 1254
 stack$ -- 0
-substring$ -- 812
-swap$ -- 1556
+substring$ -- 949
+swap$ -- 1859
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 192
+type$ -- 238
 warning$ -- 0
-while$ -- 164
+while$ -- 200
 width$ -- 0
-write$ -- 30
+write$ -- 36
+(There was 1 error message)

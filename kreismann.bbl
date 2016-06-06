@@ -1,15 +1,25 @@
 \begin{thebibliography}{\hspace{\parindent}}
 
+\bibitem[ADOBE(2016)ADOBE]{adobe.com} ADOBE. \textbf{Adobe}. [Online; acessado
+  em 26-Maio-2016], \url{http://www.adobe.com/}.
+
 \bibitem[ADOBE CONNECT: BRINGING TOGETHER VIDEO AND NEXT-GENERATION WEB
   CONFERENCING(2011)ADOBE CONNECT: BRINGING TOGETHER VIDEO AND NEXT-GENERATION
   WEB CONFERENCING]{adobeConnect} Adobe Connect: bringing together video and
   next-generation web conferencing. \textbf{White paper}, [S.l.], 2011.
 
+\bibitem[ASTERISK(2016)ASTERISK]{asterisk} ASTERISK. \textbf{Asterisk}.
+  [Online; acessado em 26-Maio-2016], \url{http://www.asterisk.org/}.
+
 \bibitem[BIGBLUEBUTTON(????)BIGBLUEBUTTON]{BBB} BIGBLUEBUTTON.
   \textbf{Bigbluebutton}. [Online; acessado em 22-Maio-2016],
   \url{http://bigbluebutton.org/}.
 
-\bibitem[EKIGA(????)EKIGA]{ekiga} EKIGA. \textbf{Ekiga}. [Online; acessado em
+\bibitem[CROWCROFT; HANDLEY; WAKEMAN(2009)CROWCROFT; HANDLEY;
+  WAKEMAN]{cambridge} CROWCROFT, J.; HANDLEY, M.; WAKEMAN, I\@.
+  \textbf{Internetworking Multimedia}. [S.l.]: Morgan Kaufmann, 2009.
+
+\bibitem[EKIGA(2016)EKIGA]{ekiga} EKIGA. \textbf{Ekiga}. [Online; acessado em
   26-Maio-2016], \url{http://www.ekiga.org/}.
 
 \bibitem[FFMPEG(????)FFMPEG]{FFMPEG} FFMPEG. \textbf{FFMPEG}. [Online; acessado
@@ -19,9 +29,12 @@
   FRY]{conferencingFundamentals} FIRESTONE, S.; RAMALINGAM, T.; FRY, S\@.
   \textbf{Voice and Video Conferencing Fundamentals}. [S.l.:~s.n.], 2007.
 
-\bibitem[FREESWITCH(????)FREESWITCH]{Freeswitch} FREESWITCH.
+\bibitem[FREESWITCH(2016)FREESWITCH]{Freeswitch} FREESWITCH.
   \textbf{Freeswitch}. [Online; acessado em 22-Maio-2016],
   \url{https://freeswitch.org/}.
+
+\bibitem[HARTPENCE(2013)HARTPENCE]{orly} HARTPENCE, B\@. \textbf{Packet Guide
+  to Voice over IP}. [S.l.]: O'Reilly Media, Inc., 2013.
 
 \bibitem[HUAWEI(????)HUAWEI]{huawei} HUAWEI. \textbf{Huawei}. [Online; acessado
   em 26-Maio-2016], \url{http://www.huawei.com/}.
@@ -62,7 +75,7 @@
   \textbf{Computer Networking}: a top-down approach, 6th edition. [S.l.]:
   Pearson, 2013.
 
-\bibitem[MCONF(????)MCONF]{Mconf.org} MCONF. \textbf{Mconf}. [Online; acessado
+\bibitem[MCONF(2016)MCONF]{Mconf.Org} MCONF. \textbf{Mconf}. [Online; acessado
   em 22-Maio-2016], \url{http://mconf.org/}.
 
 \bibitem[OGUNFUNMI; NARASIMHA(2010)OGUNFUNMI; NARASIMHA]{speech} OGUNFUNMI, T.;
@@ -88,12 +101,18 @@
   JACOBSON]{schulz} SCHULZRINNE, H. et~al\@. \textbf{RTP}: a transport protocol
   for real time applications. [S.l.:~s.n.], 2003.
 
+\bibitem[SKYPE(2016)SKYPE]{skype} SKYPE. \textbf{Skype}. [Online; acessado em
+  26-Maio-2016], \url{http://www.skype.com/}.
+
 \bibitem[TANENBAUM; WETHERALL(2011)TANENBAUM; WETHERALL]{tanenbaum} TANENBAUM,
   A.~S.; WETHERALL, D.~J\@. \textbf{Computer Networks, 5th Edition}. [S.l.]:
   Pearson, 2011.
 
 \bibitem[WEBRTC(2011)WEBRTC]{ilbc} WEBRTC. \textbf{iLBC Freeware}. [Online;
   acessado em 8-Maio-2016], \url{https://webrtc.org/license/ilbc-freeware/}.
+
+\bibitem[WEBRTC(2016)WEBRTC]{webrtc} WEBRTC. \textbf{WebRTC}. [Online; acessado
+  em 26-Maio-2016], \url{https://webrtc.org/}.
 
 \bibitem[XIPH.ORG(2003)XIPH.ORG]{speex} XIPH.ORG. \textbf{Speex}. [Online;
   acessado em 8-Maio-2016], \url{http://www.speex.org/}.

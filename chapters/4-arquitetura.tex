@@ -6,14 +6,15 @@
 	
 \section{Mconf}\label{sec:mconf}
 	
-    Mconf é um sistema de web conferência open source baseado no Bigbluebutton. Basicamente, é composto por dois blocos principais. O primeiro é o \textit{Mconf-Live}, componente de conferência do Mconf. Mconf-Live é uma versão personalizada do Bigbluebutton, incluindo novas características, e será o foco deste capítulo, pois nele é definido o Plano de Controle e de Mídia do Mconf. O segundo é o \textit{Mconf-Web}, portal web onde os usuários podem colaborar entre si, agendando conferências.
+    Mconf é um sistema de web conferência open source baseado no Bigbluebutton. Basicamente, é composto por dois blocos principais. O primeiro é o \textit{Mconf-Live}, componente de conferência do sistema. Mconf-Live é uma versão personalizada do Bigbluebutton, incluindo novas características, e será o foco deste capítulo, pois nele é definido o Plano de Controle e de Mídia do Mconf. O segundo é o \textit{Mconf-Web}, portal web onde os usuários podem colaborar entre si, agendando conferências.
     
     A Figura~\ref{fig:mconf-interface} ilustra a interface web de um usuário conectado em uma sala de conferência do Mconf e, dentre as funcionalidades disponibilizadas, enumera:
  
  	 \begin{figure}[h]
  	     \centering
- 	     \includegraphics[width=42em, height=24em]{img/mconf-live-interface2.png}
  	     \caption{Interface web do Mconf.}
+ 	     \includegraphics[width=42em, height=24em]{img/mconf-live-interface2.png}
+ 	     \footnotesize{ \\ Fonte: \cite{Mconf.Org}.}	     
  	     \label{fig:mconf-interface}
  	  \end{figure}	
  	 
@@ -28,7 +29,7 @@
   	 			\item Participante ou \textit{Viewer}: é o usuário comum. Pode utilizar áudio, vídeo, chat e bloco de notas.
   	 		\end{itemize}
   	 		
- 	 	\item Botão de ligar áudio: ao clicá-lo, o usuário se conecta no áudio, podendo falar com os outros participantes também conectados. Também é dada a opção do usuário entrar como \textit{Listen Only}, onde o participante apenas ouvirá o áudio dos demais usuários, sem alocação de microfone;
+ 	 	\item Botão de ligar áudio: ao clicá-lo, o usuário se conecta no áudio, podendo falar com os outros participantes também conectados. Também é dada a opção de entrar como \textit{Listen Only}, onde o participante apenas ouvirá o áudio dos demais usuários, sem alocação de microfone;
  	 	  	 	
  	 	\item Botão de compartilhamento de tela: ao clicá-lo, o apresentador da sessão passa a transmitir o vídeo da tela do seu computador;
  	 	
@@ -43,15 +44,15 @@
 	  
 \subsection{Arquitetura Mconf-Live}\label{sec:anterior}
 
-	Mconf-Live é, por sua vez, formada por dois componentes principais. O primeiro é o Freeswitch, responsável por conectar os usuários que estão utilizando áudio, distribuindo-o entre os usuários.
+	Mconf-Live é, por sua vez, formada por dois componentes principais. O primeiro é o Freeswitch, responsável por conectar, através do \textit{mod\_conference}, os usuários que estão utilizando áudio.
 	O segundo é o Red5 que, em termos de áudio e vídeo, apresenta duas principais funções. A primeira é receber os áudios dos usuários web utilizando Flash e reencaminhá-los ao Freeswitch. Este fará a mixagem dos áudios e transmitirá de volta as \textit{streams} resultantes para o Red5, que, por sua vez, as distribuirá para os usuários Flash. Dessa forma, cada usuário Flash recebe apenas uma \textit{stream} de áudio, pois, caso deixássemos a distribuição deste a cargo do Red5, esse tipo de usuário receberia múltiplas \textit{streams} (como explicado na Seção~\ref{sec:red5}, na Figura~\ref{fig:red5-midia}). A segunda função do Red5 é receber os vídeos dos usuários web e apenas redirecioná-los para os demais usuários. Essa distribuição não envolve o Freeswitch, portanto, se múltiplos usuários web estão enviando vídeo, cada participante receberá múltiplas \textit{streams} de vídeo.
 	
 	A visão geral da arquitetura do Mconf-Live é demonstrada na Figura~\ref{fig:mconf-live-arq}.
 
 	 \begin{figure}[h]
 	     \centering
-	     \includegraphics[width=34em, height=20em]{img/mconf-live-arq.png}
 	     \caption{Visão geral da arquitetura do Mconf-Live.}
+	     \includegraphics[width=34em, height=20em]{img/mconf-live-arq.png}	    
 	     \label{fig:mconf-live-arq}
 	  \end{figure}
 	 			
@@ -59,7 +60,7 @@
 	
 	Mconf-Live utiliza-se do SIP.js para adicionar uma camada SIP ao WebRTC. Assim, a troca de mensagens SIP e o envio/recebimento de áudio RTP ocorrem diretamente entre o navegador web e o Freeswitch (item 1 na Figura~\ref{fig:mconf-live-arq}).
 	
-	Já a conexão de áudio via Flash envolve o Red5. O cliente Flash primeiro se conecta na aplicação Red5 chamada \textit{bbb-voice}, onde está implementada a camada SIP baseada no MjSip. \textit{bbb-voice} cria um User Agent e envia um INVITE para o Freeswitch. Assim que a chamada for estabelecida, o usuário web passa a enviar áudio RTMP para o User Agent do Red5, que o transcodificará para RTP e o redirecionará para o Freeswitch. Da mesma forma, o User Agent recebe o áudio RTP do FS e, após a transcodificação para RTMP, o reencaminha para o usuário web. Com esse parágrafo, portanto, cobrimos os itens 2, 3 e 4 da Figura~\ref{fig:mconf-live-arq}.
+	Já a conexão de áudio via Flash envolve o Red5. O cliente Flash primeiro se conecta na aplicação Red5 chamada \textit{bbb-voice}, onde está implementada a camada SIP, baseada no MjSip. \textit{bbb-voice} cria um User Agent e envia um INVITE para o Freeswitch. Assim que a chamada for estabelecida, o usuário web passa a enviar áudio RTMP para o User Agent do Red5, que o transcodificará para RTP e o redirecionará para o Freeswitch. Da mesma forma, o User Agent recebe o áudio RTP do FS e, após a transcodificação para RTMP, o reencaminha para o usuário web. Com esse parágrafo, portanto, cobrimos os itens 2, 3 e 4 da Figura~\ref{fig:mconf-live-arq}.
 	
 	Para cada sala do Mconf existe um número de 5 dígitos associado no Freeswitch. Assim, usuários externos (operando algum outro sistema de videoconferência) podem utilizá-lo para efetuar uma ligação SIP (item 5) e, no caso do Mconf-Live, interagir via áudio (apenas) com os usuários web. Assim que uma chamada SIP é estabelecida entre o usuário externo e o Freeswitch, há duas ações que ocorrem concorrentemente. 
 	
@@ -77,7 +78,7 @@
  	
 	\subsection{Suporte a H.323}\label{sec:suporte-h323}
 	
-		Para que usuários externos H.323 possam se conectar em salas do Mconf, deve-se habilitar o \textit{mod\_h323} no Freeswitch. Uma vez habilitado, o usuário H.323, ao ligar algo como \textit{h323:72013@servidor-do-mconf.com}, trocará mensagens H.323 com o \textit{mod\_h323}, e este passará o destino (no caso, o destino é a sala 72013) para o módulo de \textit{dialplans} do Freeswitch. Ao encontrar o dialplan que, checando que o destino tem 5 dígitos, encaminha a ligação para a sala 72013 do \textit{mod\_conference} (como foi exemplificado na Seção~\ref{sec:freeswitch}, especialmente em ~\ref{sec:fs-mod}), o usuário H.323 está finalmente conectado.
+		Para que usuários externos H.323 possam se conectar em salas do Mconf, deve-se habilitar o \textit{mod\_h323} no Freeswitch. Uma vez habilitado, o usuário H.323, ao ligar algo como \textit{h323:72013@servidor-do-mconf.com}, trocará mensagens H.323 com o \textit{mod\_h323}, e este passará o destino (no caso, o destino é a sala 72013) para o módulo de \textit{dialplans} do Freeswitch. Ao encontrar o dialplan que, checando que o destino tem 5 dígitos, encaminha a ligação para a sala 72013 do \textit{mod\_conference} (como foi exemplificado na Seção~\ref{sec:freeswitch}, especialmente em ~\ref{sec:fs-mod}), o usuário H.323 estará finalmente conectado.
 		
 		São necessários os seguintes passos para habilitar o \textit{mod\_h323}:
 		
@@ -88,6 +89,7 @@
 			
 						\begin{figure}[h]
 						    \centering
+						    \caption{Compilação do \textit{mod\_h323} no Ubuntu.}
 						    \adjustbox{margin=1em,width=13cm,frame,center}
 						    {\begin{minipage}{0.85\linewidth}
 						        \textit{cd pasta-do-codigo-fonte-do-freeswitch \\
@@ -95,8 +97,7 @@
 								./configure --prefix=/opt/freeswitch \\								
 								make mod\_h323 \\
 								make mod\_h323-install}
-						    \end{minipage}}
-						    \caption{Compilação do \textit{mod\_h323} no Ubuntu.}
+						    \end{minipage}}						    
 						    \label{fig:mod323-compilacao}
 						\end{figure}
 						
@@ -104,8 +105,8 @@
 			
       	    	 \begin{figure}[h]
       	    	    \centering
+      	    	    \caption{Exemplo de \textit{h323.conf.xml}.}
       	    	    \includegraphics[width=28em, height=13em]{img/modh323-config.png}
-				    \caption{Exemplo de \textit{h323.conf.xml}.}
 				    \label{fig:modh323-config}
 				 \end{figure}
 				 
@@ -117,52 +118,51 @@
 	
 		Um ponto negativo do \textit{mod\_h323} é apenas aceitar ligações H.323 de áudio. Isso pois o campo \textit{codec\_prefs} em \textit{h323.conf.xml} só aceita os seguintes codecs: PCMA, PCMU, GSM, G723, G729B, G729, G729A, G729A/B, G723.1.
 	
-		Após habilitar o \textit{mod\_h323}, usuários externos H.323 podem se conectar a uma sala de conferência do Mconf e interagir com os participantes via áudio, da mesma forma que usuários externos SIP o fazem atualmente.
+		Após habilitar o \textit{mod\_h323}, usuários externos H.323 podem se conectar a uma sala de conferência do Mconf e interagir com os participantes via áudio, da mesma forma que usuários externos SIP o fazem atualmente. \\
 				
-		\subsubsection{\textbf{Mais informações sobre \textit{mod\_h323}}}
 		
-			Para mais informações sobre o módulo H.323 do Freeswitch, é possível consultar a página web dedicada ao \textit{mod\_h323} em \textit{freeswitch.org}\footnote{\url{https://freeswitch.org/confluence/display/FREESWITCH/mod_h323}}.
+		Para mais informações sobre o módulo H.323 do Freeswitch, é possível consultar a página web dedicada ao \textit{mod\_h323} em \textit{freeswitch.org}\footnote{\url{https://freeswitch.org/confluence/display/FREESWITCH/mod_h323}}.
 			 
 	\subsection{Suporte a Vídeo SIP}\label{sec:suporte-sip}		
 		
-	 	Já para dar suporte à interoperabilidade de usuários externos SIP via áudio e vídeo, foram necessárias mudanças não só nas configurações dos componentes, mas algumas mudanças estruturais na arquitetura do Mconf-Live.
+	 	Já para dar suporte à interoperabilidade de usuários externos SIP via áudio e vídeo, foram necessárias mudanças não só nas configurações dos componentes, mas também na estrutura da arquitetura do Mconf-Live.
 	 	
 	 	A decisão de projeto foi continuar usando o Red5 para a distribuição do vídeo. Entretanto, o \textit{bbb-video} receberia, além de todos os vídeos RTMP dos usuários web, mais uma \textit{stream} de vídeo: o vídeo do Freeswitch, resultante do processo de \textit{switching}.
-	 	Assim, quando um usuário externo SIP fosse o \textit{video floor}, o vídeo extra no \textit{bbb-video} seria distribuído para todos os usuários web, que veriam, então, o vídeo desse usuário externo.
+	 	Assim, quando um usuário externo SIP se tornasse o \textit{video floor}, o vídeo extra no \textit{bbb-video} seria distribuído para todos os usuários web, que veriam, então, o vídeo desse usuário externo.
  	 		 	
-	 	Para isso, o Freeswitch agora teria de receber o vídeo dos usuários web, bem como dos usuários externos SIP. Recebendo todos esses vídeos, o Freeswitch tem condição de avaliar o usuário falante e enviar o vídeo correspondente via \textit{switching}.
+	 	Para isso, o Freeswitch agora teria de receber o vídeo de todos os participantes (web e externos). Recebendo-os, o Freeswitch tem condição de avaliar o usuário falante e enviar o vídeo correspondente via \textit{switching}.
 	 	
-	 	Todavia, um problema no que diz respeito a usabilidade teve de ser resolvido: o caso do usuário web ser o \textit{video floor}. No contexto do usuário externo não havia problema, pois, durante a fala do usuário web, o Freeswitch selecionaria o vídeo desse e enviaria para todos os participantes conectados, e, então, o usuário externo SIP (que normalmente são softwares ou equipamentos que conseguem exibir apenas um vídeo por vez) veria o vídeo do usuário web. O problema era o contexto web. O \textit{bbb-video}, como já esclarecido, recebe e distribui todos os vídeos dos usuários web, de forma que cada usuário desse tipo vê, em sua interface gráfica no navegador, os vídeos dos que estão compartilhando a câmera. Nesse sentido, caso algum usuário web seja o \textit{video floor}, o \textit{bbb-video} - que agora também recebe e distribui o vídeo resultante do \textit{switching} - faria a interface do navegador mostrar duas janelas com o mesmo vídeo. A decisão para resolver esse problema foi não exibir, no navegador web, o vídeo do Freeswitch quando este envia um vídeo de usuário web, já que este já estaria sendo exibido (a ilustração desse caso está na Seção~\ref{sec:caso2}, no próximo capítulo).
+	 	Todavia, um problema no que diz respeito a usabilidade teve de ser resolvido: o caso do usuário web ser o \textit{video floor}. No contexto do usuário externo não havia problema, pois, durante a fala do usuário web, o Freeswitch selecionaria o vídeo desse e o enviaria para todos os participantes conectados, e, então, usuários externos SIP veriam a imagem do usuário web. O problema era o contexto web. O \textit{bbb-video}, como já esclarecido, recebe e distribui todos os vídeos dos usuários web, de forma que cada usuário desse tipo vê, em sua interface gráfica no navegador, os vídeos dos demais usuários web compartilhando a câmera. Nesse sentido, caso o \textit{video floor} seja justamente um usuário web, o \textit{bbb-video} - que agora também recebe e distribui o vídeo resultante do \textit{switching} - receberia e distribuiria o mesmo vídeo duas vezes, fazendo a interface do contexto web mostrar duas janelas com o mesmo conteúdo de imagem. A decisão, portanto, foi não exibir, no navegador web, o \textit{switching} do Freeswitch quando este envia um vídeo de usuário web, já que esse já estaria sendo exibido (a ilustração desse caso está no próximo capítulo, na Seção~\ref{sec:caso2}).
 	 			 	
 		Para implementar a interoperabilidade de áudio e vídeo com usuários externos SIP, foram necessárias as seguintes mudanças:
 		
 		\begin{itemize}
-			\item \textbf{Habilitar chamadas SIP de vídeo no Freeswitch}: A configuração atual do Freeswitch do Mconf-Live implica que toda chamada SIP será apenas de áudio, mesmo se o endpoint SIP que efetuou a chamada avisar, via SDP, que suporta vídeo. Para aceitarmos ligações SIP desse tipo, devemos habilitar pelo menos algum codec de vídeo na variável \textit{global\_codec\_prefs} em \textit{vars.xml}, local onde é listado quais codecs se aceita nas negociações de mídia. A decisão do projeto foi habilitar apenas H.264;
+			\item \textbf{Habilitar chamadas SIP de vídeo no Freeswitch}: A configuração atual do\\ Freeswitch do Mconf-Live implica que toda chamada SIP será apenas de áudio, mesmo se o endpoint SIP que efetuou a chamada avisar, via SDP, que suporta vídeo. Para aceitarmos ligações SIP desse tipo, devemos habilitar pelo menos algum codec de vídeo na variável \textit{global\_codec\_prefs} em \textit{vars.xml}, local onde são listados os codecs permitidos nas negociações de mídia. A decisão do projeto foi habilitar apenas H.264, visto que esse é o codec de vídeo de alta qualidade mais comum em sistemas de videoconferência;
 			
-			\item \textbf{Listar vídeo como mídia suportada no SDP dos usuários web}: quando um usuário web se conecta no áudio, o SDP que o Freeswitch recebe (seja do SIP.js - no caso de áudio WebRTC -, ou do User Agent criado no Red5 - se áudio Flash) contém apenas informações de áudio. Para o Freeswitch receber os vídeos do contexto web, é necessário estabelecer uma chamada SIP de áudio e vídeo e, para isso, modificamos a criação de SDPs tanto do SIP.js quanto do \textit{bbb-voice}, a fim de incluir vídeo como mídia suportada, adicionando, naturalmente, H.264 como atributo de vídeo;
+			\item \textbf{Listar vídeo como mídia suportada no SDP dos usuários web}: quando um usuário web se conecta no áudio, o SDP que o Freeswitch recebe (seja do SIP.js - no caso de áudio WebRTC -, ou do User Agent criado no Red5 - se áudio Flash) contém apenas informações de áudio. Para o Freeswitch receber os vídeos do contexto web, é necessário estabelecer uma chamada SIP de áudio e vídeo e, para isso, modificamos a criação de SDPs tanto do SIP.js quanto do \textit{bbb-voice}, a fim de incluir vídeo como mídia suportada, adicionando, naturalmente, H.264 como seu atributo;
 			
-			\item \textbf{Adição do módulo FFMPEG em \textit{bbb-voice}}: O módulo \textit{bbb-voice} possui em seu código fonte um mecanismo de transcodificação RTP/RTMP para áudio, que poderia ser estendido também para vídeo. Entretanto, essa seria uma tarefa trabalhosa, visto que a transcodificação RTP/RTMP de \textit{streams} de vídeo apresenta alta complexidade (muito maior que a de áudio), de forma que foi decidido integrar um submódulo FFMPEG ao \textit{bbb-voice}. Esse submódulo, portanto, tem as seguintes tarefas:
+			\item \textbf{Adição do módulo FFMPEG em \textit{bbb-voice}}: O módulo \textit{bbb-voice} possui, em seu código fonte, um mecanismo de transcodificação RTP/RTMP para áudio, que poderia ser estendido também para vídeo. Entretanto, essa seria uma tarefa trabalhosa, visto que a transcodificação RTP/RTMP de \textit{streams} de vídeo apresenta complexidade maior que a de \textit{streams} de áudio, de forma que foi decidido integrar um submódulo FFMPEG ao \textit{bbb-voice}. Esse submódulo, portanto, teria as seguintes funções:
 				\begin{itemize}
-					\item Rodar sobre as \textit{streams} RTMP do \textit{bbb-video}, transcodificá-las para RTP e enviá-las para o Freeswitch, usando IP e portas de vídeo que foram definidos nas negociações SIP, que ocorreram quando os usuários web se conectaram no áudio (seja via WebRTC ou Flash). Na prática, transcodificaremos apenas uma \textit{stream} RTMP, como explicaremos mais adiante;
+					\item Rodar sobre as \textit{streams} RTMP do \textit{bbb-video}, transcodificá-las para RTP e enviá-las para o Freeswitch. Tal transmissão usaria IP e portas de vídeo que foram definidos nas negociações SIP, que ocorreram quando os usuários web se conectaram no áudio (seja via WebRTC ou Flash). Na prática, transcodificaremos apenas uma \textit{stream} RTMP, como explicaremos mais adiante;
 					
-					\item Rodar sobre a \textit{stream} de vídeo RTP que o Freeswitch gera a partir do \textit{switching}, transcodificá-la para RTMP e publicá-la no \textit{bbb-video}, a fim da distribuição entre os usuários web. Se o vídeo do \textit{switching} for de algum usuário web, não há a publicação no \textit{bbb-video}, visto que tal vídeo já está sendo publicado. Portanto, só ocorre a distribuição do vídeo do Freeswitch entre os usuários web quando tal vídeo é de um usuário externo.								
+					\item Rodar sobre a \textit{stream} de vídeo RTP que o Freeswitch gera a partir do \textit{switching}, transcodificá-la para RTMP e publicá-la no \textit{bbb-video}, a fim da distribuição entre os usuários web. Se o vídeo do \textit{switching} for de algum usuário web, não há a publicação no \textit{bbb-video}. Portanto, só ocorre a distribuição do vídeo do Freeswitch entre os usuários web quando tal vídeo é de um usuário externo.								
 				\end{itemize}
 				
-				\item \textbf{Administrar novos eventos XML no bbb-apps}: Em um cenário onde existem usuários conectados com áudio e vídeo no \textit{mod\_conference}, este dispara um evento XML para seus \textit{subscribers} - que é o caso do \textit{bbb-apps} - toda vez que há um novo \textit{video floor}. Ao receber tal evento, o \textit{bbb-apps} passa a saber quem é o \textit{video floor} atual (pois um dos argumentos do evento é o identificador do usuário) e repassa essa informação ao \textit{bbb-voice}. Este, por sua vez, toma as seguintes decisões:
+				\item \textbf{Administrar novos eventos XML no bbb-apps}: Em um cenário onde existem usuários conectados com áudio e vídeo no \textit{mod\_conference}, este dispara um evento XML para seus \textit{subscribers} - que é o caso do \textit{bbb-apps} - toda vez que há um novo \textit{video floor}. Ao receber tal evento, o \textit{bbb-apps} passa a saber quem é o \textit{video floor} atual (pois um dos argumentos do evento é o identificador desse) e repassa essa informação ao \textit{bbb-voice}. Este, por sua vez, toma as seguintes decisões:
 				
 				\begin{itemize}
-					\item Se o \textit{video floor} for um usuário web, transcodificaremos apenas a sua \textit{stream} RTMP para RTP. Dessa forma, não transmitimos todas as \textit{streams} do \textit{bbb-video} para o Freeswitch, poupando uso de CPU no servidor (já que não haverá múltiplas transcodificações de vídeo) e uso de banda. Além disso, identificando que o \textit{video floor} é um usuário web, sabemos que não precisamos publicar o resultado do \textit{switching} no \textit{bbb-video}.
+					\item Se o \textit{video floor} for um usuário web, transcodificaremos apenas a sua \textit{stream} de RTMP para RTP. Dessa forma, não transmitimos todas as \textit{streams} do \textit{bbb-video} para o Freeswitch, poupando uso de CPU no servidor (já que não haverá múltiplas transcodificações de vídeo). Além disso, identificando que o \textit{video floor} é um usuário web, sabemos que não precisamos publicar o resultado do \textit{switching} no \textit{bbb-video}.
 					
 				    \item Se o \textit{video floor} for um usuário externo, o módulo FFMPEG irá transcodificar a \textit{stream} RTP do Freeswitch para RTMP e publicá-la no \textit{bbb-video}.
 				\end{itemize}					 
 		\end{itemize}
 		
-		A visão geral da nova arquitetura pode ser conferida na Figura~\ref{fig:mconf-live-mod-arq}. \\ \\ \\
+		A visão geral da nova arquitetura pode ser conferida na Figura~\ref{fig:mconf-live-mod-arq}. \\ \\ \\ \\ \\ \\
 		
 		 \begin{figure}[h]
 		     \centering
-		     \includegraphics[width=34em, height=20em]{img/mconf-live-mod-arq.png}
 		     \caption{Visão geral da arquitetura modificada do Mconf-Live.}
+		     \includegraphics[width=34em, height=20em]{img/mconf-live-mod-arq.png}		     
 		     \label{fig:mconf-live-mod-arq}
 		  \end{figure}	
 		  

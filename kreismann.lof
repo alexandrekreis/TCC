@@ -31,7 +31,7 @@
 \contentsline {figure}{\numberline {Figura\nobreakspace 2.15:}{\ignorespaces Vis\~ao geral da arquitetura da plataforma Flash.}}{37}
 \contentsline {figure}{\numberline {Figura\nobreakspace 2.16:}{\ignorespaces Vis\~ao geral da arquitetura do WebRTC.}}{38}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {Figura\nobreakspace 3.1:}{\ignorespaces Exemplo de um \textit {dialplan} em XML.}}{41}
+\contentsline {figure}{\numberline {Figura\nobreakspace 3.1:}{\ignorespaces Exemplo de um \textit {dialplan} em XML.}}{40}
 \contentsline {figure}{\numberline {Figura\nobreakspace 3.2:}{\ignorespaces Registo de usu\'ario b\'asico.}}{41}
 \contentsline {figure}{\numberline {Figura\nobreakspace 3.3:}{\ignorespaces Ponte H323-SIP do Freeswitch.}}{41}
 \contentsline {figure}{\numberline {Figura\nobreakspace 3.4:}{\ignorespaces Exemplo de \textit {dialplan} de redirecionamento SIP.}}{42}

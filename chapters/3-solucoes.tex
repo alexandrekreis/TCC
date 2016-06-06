@@ -9,12 +9,12 @@
     As configurações do Freeswitch são definidas em arquivos XML. Dentre as inúmeras características do Freeswitch (FS), destacam-se:
     
 	    \begin{itemize}
-	        \item Configuração de \textit{dialplans}: Através de \textit{dialplans} definimos as regras de ligações e de roteamentos. Por exemplo, podemos definir que as ligações que contêm 5 dígitos serão encaminhadas para uma sala de conferência, como define o dialplan da Figura~\ref{fig:fs-dialplan};
+	        \item Configuração de \textit{dialplans}: Através de \textit{dialplans}, definimos as regras de ligações e de roteamentos. Por exemplo, podemos definir que as ligações que contêm 5 dígitos serão encaminhadas para uma sala de conferência, como define o dialplan da Figura~\ref{fig:fs-dialplan};
 	        
 	              \begin{figure}[h]
 	            	 \centering
-	            	 \includegraphics[width=29em, height=9em]{img/fs-dialplan.png}
 	            	 \caption{Exemplo de um \textit{dialplan} em XML.}
+	            	 \includegraphics[width=29em, height=9em]{img/fs-dialplan.png}	            	 
 	            	 \label{fig:fs-dialplan}
 	               \end{figure} 
 	               
@@ -22,45 +22,46 @@
 	         
 	               \begin{figure}[h]
 	             	 \centering
-	             	 \includegraphics[width=23em, height=6em]{img/fs-register.png}
 	             	 \caption{Registo de usuário básico.}
+	             	 \includegraphics[width=23em, height=6em]{img/fs-register.png}	             	 
 	             	 \label{fig:fs-register}
 	                \end{figure}      
 	               
-	    	\item Capacidade de conectar múltiplos participantes: através do \textit{mod\_conference}, módulo de conferência do FS (que será detalhado mais adiante), é possível que múltiplos usuários se conectem em uma sessão via SIP ou H.323. \textit{mod\_conference} irá administrar essa sessão, gerenciando os participantes e sendo um servidor de mídia, recebendo e distribuindo áudio e vídeo entre o grupo de \textit{endpoints}. 
+	    	\item Capacidade de conectar múltiplos participantes: através do \textit{mod\_conference}, módulo de conferência do FS (que será detalhado mais adiante), é possível que múltiplos usuários se conectem em uma sessão via SIP ou H.323. \textit{mod\_conference} irá administrar essa sessão, gerenciando os participantes e sendo um servidor de mídia, portanto, distribuindo áudio e vídeo entre o grupo de \textit{endpoints}. 
 	    \end{itemize}
     
-    Freeswitch é uma ferramenta open source poderosa, provendo recursos para a interoperação de \textit{endpoints} que implementam diferentes padrões, como:
+    O Freeswitch provê recursos para resolver os seguintes problemas de interoperabilidade:
     
     	\begin{itemize}
-    	    \item \textbf{Conectar endpoints SIP e H.323}: Freeswitch tem 2 módulos específicos para lidar com endpoints SIP e H.323. \textit{mod\_sofia} é a implementação da camada SIP e \textit{mod\_h323}, a da camada H.323. A Figura~\ref{fig:fs-bridge} ilustra como acontece a ponte H.323/SIP.
+    	    \item \textbf{Conectar endpoints SIP e H.323}: Freeswitch tem 2 módulos específicos para lidar com endpoints SIP e H.323. \textit{mod\_sofia} é a implementação da camada SIP e \textit{mod\_h323}, a da camada H.323. A Figura~\ref{fig:fs-bridge} ilustra um exemplo de como acontece a ponte H.323/SIP.
     	    
     	    	 \begin{figure}[h]
     	    	    \centering
-    	    	    \includegraphics[width=32em, height=16em]{img/fs-bridge.png}
     	    	    \caption{Ponte H323-SIP do Freeswitch.}
+    	    	    \includegraphics[width=32em, height=16em]{img/fs-bridge.png}    	    	    
     	    	    \label{fig:fs-bridge}
     	    	 \end{figure}
     	    	                
-    	    Começamos com um endpoint H.323 ligando para o Freeswitch, pedindo para se conectar ao usuário Fulano (item 1 na figura). Quem lida com a ligação (e com todas as mensagens H.323) é o mod\_h323. Após, mod\_h323 repassa o destino para o módulo responsável pelos \textit{dialplans}. O Freeswitch irá checar suas configurações e deverá encontrar um \textit{dialplan} com algum formato desse tipo (Figura~\ref{fig:fs-bridge-dialplan}): \\ \\ \\
+    	    Começamos com um endpoint H.323 ligando para o Freeswitch, pedindo para se conectar ao usuário \textit{fulano} (item 1 na figura). Quem lida com a ligação (e com todas as mensagens H.323) é o \textit{mod\_h323}. Após, este repassa o destino (\textit{fulano}) para o módulo responsável pelos \textit{dialplans}. O Freeswitch irá checar suas configurações e deverá encontrar um \textit{dialplan} com algum formato desse tipo (Figura~\ref{fig:fs-bridge-dialplan}): \\ \\ \\
     	    
      	    	 \begin{figure}[h]
      	    	    \centering
-     	    	    \includegraphics[width=25em, height=8em]{img/fs-bridge-dialplan.png}
      	    	    \caption{Exemplo de \textit{dialplan} de redirecionamento SIP.}
+     	    	    \includegraphics[width=25em, height=8em]{img/fs-bridge-dialplan.png}
      	    	    \label{fig:fs-bridge-dialplan}
      	    	 \end{figure} 	    
     	    
-    	    Nele, o Freeswitch confirma que, se o destino for \textit{fulano}, ele deverá fazer uma ligação SIP para o IP 143.54.10.103 (item 2). A partir do momento que ambos os \textit{endpoints} estão conectados, o Freeswitch recebe e repassa os dados de mídia para as partes envolvidas (3), podendo haver transcodificação de codecs (o que veremos no próximo item).
+    	    Nele, o Freeswitch confirma que, se o destino for \textit{fulano}, ele deverá fazer uma ligação SIP para o IP 143.54.10.103 (item 2), realizada a partir do \textit{mod\_sofia}. A partir do momento em que \textit{fulano} aceita a ligação e ambos os \textit{endpoints} estão conectados, o Freeswitch recebe e repassa os dados de mídia para as partes envolvidas (3) via RTP, podendo haver transcodificação de codecs (o que veremos no próximo item).
+    	       	    
+    	    É graças a esse mecanismo que o \textit{mod\_conference} pode conectar endpoints SIP e H.323 na mesma sessão. Ao receber uma ligação SIP ou H.323, \textit{mod\_sofia} ou \textit{mod\_h323} redirecionam a chamada para o \textit{mod\_conference} através de um dialplan como o da Figura~\ref{fig:fs-dialplan}.
     	    
-    	    Graças a esse mecanismo, o \textit{mod\_conference} pode conectar endpoints SIP e H.323 na mesma sessão. Ao ligar H.323 ou SIP, basta haver um dialplan que redirecione a chamada para o mod\_conference (como na Figura~\ref{fig:fs-dialplan}).
-    	    
-    		\item \textbf{Transcodificar codecs de áudio}: o Freeswitch é capaz de conectar usuários que não implementam os mesmos codecs de áudio. Por exemplo, se na Figura~\ref{fig:fs-bridge}, o Endpoint H.323, ao fazer a ligação, afirmasse via protocolo H.245 que só trabalha com áudio G.711, e o \textit{fulano}, ao aceitar a ligação, afirmasse via SDP que apenas implementa Speex, o Freeswitch aceitaria a conexão mesmo assim, pois ele é capaz de transcodificar ambos os áudios. No exemplo, FS receberia áudio G.711, transcodificaria para Speex, e repassaria a mídia para \textit{fulano}; da mesma forma, receberia Speex, transcodificaria para G.711 e repassaria para o Endpoint H.323.	
-    		A lista de codecs de áudio que o FS é capaz de transcodificar é listada no arquivo \textit{vars.xml}, que é o local onde há a declaração das variáveis usadas globalmente nas diversas configurações possíveis (dialplans, registro de usuários, entre outros). A lista completa está na Tabela~\ref{tab:fs-codecs-trans}. No mesmo arquivo, é listado os codecs que o Freeswitch não tem a capacidade de transcodificar (\textit{passthrough}), ou seja, o Freeswitch só tem a capacidade de repassar para os \textit{endpoints} as mídias que usam tais codecs. Basicamente, os codecs \textit{passthrough} do Freeswitch são os codecs de vídeo e também alguns poucos de áudio. A lista está na Tabela~\ref{tab:fs-codecs-no-trans}. \\ \\ \\ \\ \\ \\ \\ \\ \\ \\
+    		\item \textbf{Transcodificar codecs de áudio}: o Freeswitch é capaz de conectar usuários que não implementam os mesmos codecs de áudio. Se, ainda considerando a Figura~\ref{fig:fs-bridge}, o endpoint H.323, ao fazer a ligação, afirmasse via protocolo H.245 que só trabalha com áudio G.711, e o \textit{fulano}, ao aceitá-la, afirmasse via SDP que apenas implementa Speex, o Freeswitch conectaria os usuários realizando a transcodificação dos áudios. No exemplo, FS receberia áudio G.711, transcodificaria a mídia para Speex, e a repassaria para \textit{fulano}; da mesma forma, receberia Speex, transcodificaria tal codec para G.711, e repassaria o resultado para o endpoint H.323.
+    		A lista de codecs de áudio que o FS é capaz de transcodificar é descrita no arquivo \textit{vars.xml}, que é o local onde há a declaração das variáveis usadas globalmente nas diversas configurações possíveis (dialplans, registro de usuários, entre outros). A lista completa está na Tabela~\ref{tab:fs-codecs-trans}. No mesmo arquivo, é listado os codecs que o Freeswitch não tem a capacidade de transcodificar (\textit{passthrough}), ou seja, o\\Freeswitch só tem a capacidade de repassar para os \textit{endpoints} as mídias que usam tais codecs. Basicamente, os codecs \textit{passthrough} do Freeswitch são os codecs de vídeo e também alguns poucos de áudio. A lista está na Tabela~\ref{tab:fs-codecs-no-trans}. \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\
     		
-			   \begin{table}[H]
+			   \begin{table}[h]
 				\begin{center}
-				 \resizebox{14.5cm}{!} {
+				 \caption{Lista de codecs que o Freeswitch é capaz de transcodificar.}
+				 \resizebox{14cm}{!} {
 				    \begin{tabular}{| c |}    \hline
 				    \textbf{Lista de codecs transcodificáveis em \textit{vars.xml}}   \\ \hline \hline
 				       \makecell[l]{opus@48000h@10i - Opus 48khz using 10 ms ptime (mono and stereo)} \\ \hline
@@ -98,16 +99,15 @@
 				       \makecell[l]{AAL2-G726-32     - Same as G726-32 but using AAL2 packing. (multiples of 10)} \\ \hline
 				       \makecell[l]{AAL2-G726-40     - Same as G726-40 but using AAL2 packing. (multiples of 10)} \\ \hline      
 				       \makecell[l]{LPC              - LPC10 using 90ms ptime (only supports 90ms at this time in FreeSWITCH)} \\ \hline    
-				       \makecell[l]{L16              - L16 isn't recommended for VoIP but you can do it. L16 can exceed the MTU rather quickly.} \\ \hline
-				
-				    \end{tabular}}
-					\caption{Lista de codecs que o Freeswitch é capaz de transcodificar.}
+				       \makecell[l]{L16              - L16 isn't recommended for VoIP but you can do it. L16 can exceed the MTU rather quickly.} \\ \hline				
+				    \end{tabular}}					
 					\label{tab:fs-codecs-trans}
 				 \end{center}
 				\end{table}
     	
 			   \begin{table}[H]
 				\begin{center}
+				 \caption{Lista de codecs que o Freeswitch não é capaz de transcodificar.}
 				 \resizebox{8cm}{!} {
 				    \begin{tabular}{| c |}    \hline
 				    \textbf{Lista de codecs não transcodificáveis em \textit{vars.xml}}   \\ \hline \hline
@@ -120,47 +120,46 @@
 					   \makecell[l]{H263-2000        - H.263-2000 Video}     \\ \hline	
 					   \makecell[l]{H264             - H.264 Video}     \\ \hline
 					   \makecell[l]{VP8              - VP8 Video}     \\ \hline					  			   			   			
-				    \end{tabular}}
-					\caption{Lista de codecs que o Freeswitch não é capaz de transcodificar.}
+				    \end{tabular}}					
 					\label{tab:fs-codecs-no-trans}
 				 \end{center}
 				\end{table}
 				
-			Apesar de dar suporte a todos os codecs acima (sejam passthrough ou não), é possível configurar quais codecs serão aceitos nas negociações SIP e H.323, através da variável \textit{global\_codec\_prefs} em \textit{vars.xml} (Figura~\ref{fig:fs-vars-codecs}).
+			Apesar de dar suporte a todos os codecs acima (sejam \textit{passthrough} ou não), é possível configurar quais deles serão aceitos nas negociações SIP e H.323, através da variável \textit{global\_codec\_prefs} em \textit{vars.xml} (Figura~\ref{fig:fs-vars-codecs}).
 			
 			    \begin{figure}[h]
 			     	\centering
+					\caption{Exemplo da variável \textit{global\_codec\_prefs} em \textit{vars.xml}.}			     	
 			     	\includegraphics[width=34em, height=2em]{img/fs-vars-codecs.png}
-			     	\caption{Exemplo da variável \textit{global\_codec\_prefs} em \textit{vars.xml}.}
 			     	\label{fig:fs-vars-codecs}
 			     \end{figure} 
 		\end{itemize}
 		
       \subsection{\textit{mod\_conference}}\label{sec:fs-mod}
       
-      	Como explicado anteriormente, \textit{mod\_conference} é o módulo de conferência do Freeswitch, capaz de conectar múltiplos usuários e de ser um servidor de mídia, distribuindo as mídias ativas entre os participantes conectados.
+      	Como explicado anteriormente, \textit{mod\_conference} é o módulo de conferência do \\Freeswitch, capaz de conectar múltiplos usuários e de ser um servidor de mídia, distribuindo as mídias ativas entre os participantes de uma sessão.
       	
       	No exemplo de dialplan da Figura~\ref{fig:fs-dialplan}, quando o FS recebe uma ligação de 5 dígitos, ocorre o redirecionamento para uma sala de conferência. Quando um primeiro usuário liga, por exemplo, \textit{sip:12345@freeswitch-server-ip} e a chamada chega no Freeswitch, o dialplan, verificando que o número discado é de 5 dígitos, criará uma sala de conferência chamada \textit{12345} e conectará o usuário nessa sala. Todo endpoint que ligar posteriormente \textit{sip:12345@freeswitch-server-ip} ou \textit{h323:12345@freeswitch-server-ip} será direcionado para a sala \textit{12345}.
       	
-      	Uma importante questão é a política do servidor de mídia para a distribuição desta entre o grupo conectado. O Freeswitch apresenta 2 políticas distintas para áudio e vídeo.
+      	Uma importante questão é a política do servidor de mídia para a distribuição desta entre o grupo conectado. O Freeswitch apresenta duas políticas distintas para áudio e vídeo.
       	
-      	Para áudio, ocorre \textit{mixagem}. O Freeswitch recebe os áudios dos endpoints, os compõe, e então os distribui. O exemplo da Figura~\ref{fig:fs-audio} ilustra um caso de uso.
+      	Para áudio, ocorre \textit{mixagem}. O exemplo da Figura~\ref{fig:fs-audio} demonstra o mecanismo dessa política.
       	
      	    	 \begin{figure}[h]
      	    	    \centering
-     	    	    \includegraphics[width=32em, height=16em]{img/fs-audio.png}
      	    	    \caption{Mixagem de áudio do Freeswitch.}
+     	    	    \includegraphics[width=32em, height=16em]{img/fs-audio.png}     	    	    
      	    	    \label{fig:fs-audio}
      	    	 \end{figure}     	
       
-         Na Figura~\ref{fig:fs-audio} temos quatro endpoints: dois (User 1 e User 2) utilizando navegadores web WebRTC (que se conectaram na sala através do SIP.js, por exemplo), um endpoint genérico (equipamento ou softfone) usando SIP (User 3) e outro endpoint genérico usando H.323 (User 4). A mixagem de áudio no Freeswitch ocorre da seguinte maneira: o mod\_conference recebe os pacotes de áudio do User 2, 3 e 4, transcodifica-os para OPUS, e executa a composição dos pacotes numa única \textit{stream} RTP chamada Mix 1. Após, o Mix 1 é transmitido para o User 1, que, desse modo, ouvirá todos os participantes, menos a si próprio. Assim ocorre com todos os demais participantes: User 2 recebe o Mix 2 em iLBC, composto dos áudios dos usuários 1,3,4 ; User 3 recebe o Mix 3 em Speex, composto dos áudios dos usuários 1,2,4 ; e, finalmente, User 4 recebe o Mix 4 em G.722, composto dos áudios dos usuários 1,2,3. \\  
+         No exemplo, temos quatro \textit{endpoints}: dois (User 1 e User 2) utilizando uma aplicação WebRTC (que permite que usuários se conectem no Freeswitch através do SIP.js, por exemplo), um \textit{endpoint} genérico SIP - equipamento ou softfone - (User 3), e outro \textit{endpoint} genérico H.323 (User 4). A mixagem de áudio no Freeswitch ocorre da seguinte maneira: o \textit{mod\_conference} recebe os pacotes de áudio do User 2, 3 e 4, transcodifica-os para OPUS, e executa a composição dos pacotes numa única \textit{stream} RTP chamada Mix 1. Após, o Mix 1 é transmitido para o User 1, que, desse modo, ouvirá todos os participantes, menos a si próprio. Assim ocorre com todos os demais participantes: User 2 recebe o Mix 2 em iLBC, composto dos áudios dos usuários 1,3,4 ; User 3 recebe o Mix 3 em Speex, composto dos áudios dos usuários 1,2,4 ; e, finalmente, User 4 recebe o Mix 4 em G.722, composto dos áudios dos usuários 1,2,3. \\  
          
-         Para vídeo, ocorre \textit{switching}. O vídeo que é distribuído para o grupo é o vídeo do participante que está falando no momento, o chamado \textit{video floor}. Na Figura~\ref{fig:fs-video}, podemos ver o vídeo do User 1 sendo transmitido para todos os usuários (incluindo ele próprio); isso significa que o User 1 é o usuário com áudio ativo no momento.
+         Para vídeo, ocorre \textit{switching}. O vídeo que é distribuído para o grupo é o vídeo do participante que está falando no momento, o chamado \textit{video floor}. No exemplo da Figura~\ref{fig:fs-video}, podemos ver o vídeo do User 1 sendo transmitido para todos os usuários (incluindo ele próprio). Portanto, o User 1 é o usuário com áudio ativo no momento.
          
       	    	 \begin{figure}[h]
       	    	    \centering
-      	    	    \includegraphics[width=32em, height=16em]{img/fs-video.png}
       	    	    \caption{\textit{Switching} de vídeo do Freeswitch.}
+      	    	    \includegraphics[width=32em, height=16em]{img/fs-video.png}      	    	    
       	    	    \label{fig:fs-video}
       	    	 \end{figure}  
       	    	 
@@ -169,12 +168,13 @@
       À época do desenvolvimento deste trabalho, foi lançado o Freeswitch Versão 1.6, prevendo várias \textit{features} novas para a distribuição de vídeo, como:
       
       \begin{itemize}
-          \item Composição de vídeo: o Freeswitch recebe os vídeos de todos os usuários e constrói uma \textit{stream} única de vídeo, onde seu conteúdo é a composição de todos os vídeos recebidos, que será enviada para os participantes. É semelhante ao mecanismo de mixagem de áudio, porém o usuário recebe o vídeo mixado também incluindo seu próprio vídeo. Um exemplo de composição é mostrado na Figura~\ref{fig:fs-composicao}.
+          \item Composição de vídeo: o Freeswitch recebe os vídeos de todos os usuários e constrói uma \textit{stream} única de vídeo, em que seu conteúdo é a composição de todos os vídeos recebidos. Assim, é transmitida a mesma \textit{stream} de vídeo para os usuários. Cada um verá, dessa maneira, a imagem dos outros participantes e também a si mesmo. Um exemplo de composição é mostrado na Figura~\ref{fig:fs-composicao}.
       
       	    	 \begin{figure}[h]
       	    	    \centering
-      	    	    \includegraphics[width=30em, height=15em]{img/fs-composicao.png}
       	    	    \caption{Exemplo de composição de vídeo do Freeswitch.}
+      	    	    \includegraphics[width=30em, height=14.7em]{img/fs-composicao.png}
+      	    	    \footnotesize{ \\ Fonte: \cite{Freeswitch}.}
       	    	    \label{fig:fs-composicao}
       	    	 \end{figure} 
           
@@ -182,11 +182,12 @@
           
           			 \begin{figure}[h]
           			 \centering
-          			 \subfigure{\includegraphics[width=5.5cm, height=9em]{img/fs-layout1.png}}
-          			 \subfigure{\includegraphics[width=5.5cm, height=9em]{img/fs-layout2.png}}
-          			 \subfigure{\includegraphics[width=5.5cm, height=9em]{img/fs-layout3.png}}
-          			 \subfigure{\includegraphics[width=5.5cm, height=9em]{img/fs-layout4.png}}
           			 \caption{Quatro exemplos de \textit{layouts} de vídeo do Freeswitch 1.6.}
+          			 \subfigure{\includegraphics[width=5.2cm, height=8.7em]{img/fs-layout1.png}}
+          			 \subfigure{\includegraphics[width=5.2cm, height=8.7em]{img/fs-layout2.png}}
+          			 \subfigure{\includegraphics[width=5.2cm, height=8.7em]{img/fs-layout3.png}}
+          			 \subfigure{\includegraphics[width=5.2cm, height=8.7em]{img/fs-layout4.png}}
+          			 \footnotesize{ \\ Fonte: \cite{Freeswitch}.}
           			 \label{fig:fs-layout}
           			 \end{figure}
           			 
@@ -206,7 +207,7 @@
 	   	
 	   	\item \textit{ffplay}\footnote{\url{https://ffmpeg.org/ffplay.html}}: player de mídia;
 	   	
-	   	\item \textit{ffprobe}\footnote{\url{https://ffmpeg.org/ffprobe.html}}: ferramente que levanta dados de uma stream específica, como codecs usados, \textit{bitrate}, \textit{sample rate}, resolução, \textit{fps}, etc.
+	   	\item \textit{ffprobe}\footnote{\url{https://ffmpeg.org/ffprobe.html}}: ferramenta que levanta dados de uma stream específica, como codecs usados, \textit{bitrate}, \textit{sample rate}, resolução, \textit{fps}, etc.
 	   \end{itemize}
 	   
 	   Este trabalho focará na ferramenta \textit{ffmpeg}, visando resolver questões de interoperabilidade que o Freeswitch não prevê, que são:
@@ -214,24 +215,24 @@
 	   \begin{itemize}
 		   	\item Transcodificação RTP/RTMP: esse passo é necessário para a interoperabilidade entre usuários Flash e não-Flash (ver também Seção~\ref{sec:red5});
 		   	
-		   	\item Transcodificação de vídeo: trocar o codec utilizado na \textit{stream} de vídeo. Por exemplo, receber uma \textit{stream} em VP8 e distribuí-la em H.264.
+		   	\item Transcodificação de vídeo: trocar o codec utilizado na \textit{stream} de vídeo. Por exemplo, receber uma \textit{stream} em VP8 e convertê-la para H.264.
 	    \end{itemize}
 	    	   	  	
 	   	Um comando ffmpeg para transcodificação de \textit{streams} tem o seguinte formato (Figura~\ref{fig:ff-trans}):
 
 			\begin{figure}[h]
 			    \centering
+			    \caption{Formato do comando \textit{ffmpeg}.}
 			    \adjustbox{margin=1em,width=10.3cm,frame,center}
 			    {\begin{minipage}{0.75\linewidth}
 					\textit{ffmpeg -i <stream de entrada> <opções> <stream de saída>}
 			    \end{minipage}}
-			    \caption{Formato do comando \textit{ffmpeg}.}
-			    \label{fig:ff-trans}
+				\label{fig:ff-trans}
 			\end{figure}
 			
 		Primeiramente, colocamos o endereço da \textit{stream} que queremos transcodificar (\textit{stream} de entrada). Por exemplo, uma \textit{stream} de entrada poderia ser \textit{rtp://143.54.10.53:20881}. 
 		
-		Após, configuramos as opções do comando ffmpeg. Tais opções definem como o ffmpeg será executado e também as opções da transcodificação. Por exemplo, podemos definir se queremos geração de logs, se queremos que os logs sejam impressos em tela ou em arquivo, o nível de detalhe do log que será gerado, entre outros. Já as opções de transcodificação incluem quesitos como quais codecs serão utilizados, \textit{bitrates}, resolução, fps, etc (veremos em seguida).
+		Após, configuramos as opções do comando ffmpeg. Tais opções definem como o\\ffmpeg será executado e também os parâmetros da transcodificação. Por exemplo, podemos definir se queremos geração de logs, se estes serão impressos em tela ou em arquivo, o nível de detalhe do log que será gerado, entre outros. Já nas opções de transcodificação, descrevemos quais codecs serão utilizados, \textit{bitrates}, resolução, fps, etc (veremos em seguida).
 		
 		Finalmente, colocamos o endereço para onde a \textit{stream} transcodificada será transmitida. Poderíamos inserir algo como \textit{rtmp://143.54.10.103/video-sala-de-conferencia-3}, caso quiséssemos transcodificar uma \textit{stream} de entrada para RTMP.	
 		
@@ -242,33 +243,33 @@
 			
 						\begin{figure}[h]
 						    \centering
+						    \caption{Comando \textit{ffmpeg} para transcodificação de RTP para RTMP.}
 						    \adjustbox{margin=1em,width=13cm,frame,center}
 						    {\begin{minipage}{0.75\linewidth}
 								\textit{ffmpeg -i rtp://192.168.1.5:20646 \\
 								  -vcodec libopenh264 -profile:v baseline -s 640x480\\
 								  -r 15 -b:v 1024k -maxrate 1024k\\
 								  "rtmp://192.168.1.5/video/sala-de-conferencia-3 live=1"}
-						    \end{minipage}}
-						    \caption{Comando \textit{ffmpeg} para transcodificação de RTP para RTMP.}
+						    \end{minipage}}						    
 						    \label{fig:ff-RTP-RTMP}
 						\end{figure}
 						
 						\begin{enumerate}
-							\item O primeiro passo do comando é definir o \textit{input}. No caso, estamos utilizando uma \textit{stream} RTP rodando no IP 192.168.1.5 e na porta 20646;
+							\item O primeiro passo do comando é definir o \textit{input}. No caso, estamos utilizando uma \textit{stream} RTP rodando em 192.168.1.5, na porta 20646;
 							
 							\item O segundo é estabelecer o codec que será utilizado na transcodificação. No caso, estamos transcodificando a \textit{stream} para H.264 \textit{baseline} (\textit{-vcodec libopenh264 -profile:v baseline}). O comando utiliza a \textit{OpenH264}\footnote{\url{http://www.openh264.org/}}, biblioteca open source e de uso livre. A outra opção seria usar \textit{x264} (ficando: \textit{-vcodec h264 -profile:v baseline}). Essa opção é a biblioteca H.264 da VideoLAN\footnote{\url{http://www.videolan.org/developers/x264.html}}, também open source, porém para uso comercial é necessário o pagamento de royalties\footnote{\url{http://x264licensing.com/faq}}.
 							
-							Na configuração do \textit{vcodec}, poderíamos ter utilizado VP8 (\textit{-vcodec vp8} ; por consequência, não utilizaríamos \textit{-profile:v baseline}), caso quiséssemos tal conversão.
+							Na configuração do \textit{vcodec}, poderíamos ter utilizado VP8 (\textit{-vcodec vp8}; por consequência, não utilizaríamos \textit{-profile:v baseline}), caso quiséssemos tal conversão.
 							
 							Se o desejado fosse não transcodificar o codec, a configuração seria: \textit{-vcodec copy}. Mesmo mantendo o mesmo codec, é possível alterar seus parâmetros, como é apresentado nos próximos itens. 
 							
-							Neste exemplo (Figura~\ref{fig:ff-RTP-RTMP}), se assume que a \textit{stream} de entrada é uma \textit{stream} de vídeo. Caso tentássemos transcodificar uma \textit{stream} de áudio para H.264 - ou outro codec de vídeo - o comando ffmpeg geraria erro.
+							Nesse exemplo (Figura~\ref{fig:ff-RTP-RTMP}), se assume que a \textit{stream} de entrada é uma \textit{stream} de vídeo. Caso tentássemos transcodificar uma \textit{stream} de áudio para H.264 - ou outro codec de vídeo - o comando ffmpeg geraria erro.
 							
 							\item Após, definimos que o vídeo transcodificado terá a resolução de 640x480 (\textit{-s 640x480}).
 							
-							\item Em seguida, estabelecemos parâmetros adicionais que serão usados na transcodificação: 15 \textit{fps} (\textit{-r 15}), \textit{bitrate} base de 1024kbps (\textit{-b:v 1024k}), com taxa máxima de, também, 1024kbps; desse modo, definimos que o vídeo gerado será CBR.
+							\item Em seguida, estabelecemos parâmetros adicionais que serão usados na transcodificação: 15 \textit{fps} (\textit{-r 15}), \textit{bitrate} base de 1024kbps (\textit{-b:v 1024k}), com taxa máxima de, também, 1024kbps (\textit{-maxrate 1024k}); desse modo, definimos que o vídeo gerado será CBR.
 							
-							\item Finalmente, definimos o endereço para onde será transmitida a \textit{stream} transcodificada (\textit{"rtmp://192.168.1.5/video/sala-de-conferencia-3 live=1"}). Com esse endereço de saída, estamos informando ao ffmpeg que a stream RTP convertida para H.264 \textit{baseline} ainda deve sofrer mais uma transcodificação: de RTP para RTMP. A opção \textit{live=1} estabelece que a mídia da \textit{stream} RTMP não tem tamanho final definido (que é o caso das mídias de videoconferência: não há como saber qual o tamanho do áudio e do vídeo que serão transmitidos; a mídia dura enquanto durar a sessão de conferência).
+							\item Finalmente, definimos o endereço para onde será transmitida a \textit{stream} transcodificada (\textit{"rtmp://192.168.1.5/video/sala-de-conferencia-3 live=1"}). Com esse endereço de saída, estamos informando ao ffmpeg que a \textit{stream} convertida para H.264 \textit{baseline} ainda deve sofrer mais uma transcodificação: de RTP para RTMP. A opção \textit{live=1} estabelece que a mídia da \textit{stream} RTMP não tem tamanho final definido (que é o caso das mídias de videoconferência: não há como saber qual o tamanho do áudio e do vídeo que serão transmitidos; a mídia existe enquanto durar a sessão de conferência).
 							
 							
 						\end{enumerate}
@@ -277,14 +278,14 @@
 			
 						\begin{figure}[h]
 						    \centering
+						    \caption{Comando \textit{ffmpeg} para transcodificação de RTMP para RTP.}
 						    \adjustbox{margin=1em,width=13cm,frame,center}
 						    {\begin{minipage}{0.85\linewidth}
 								\textit{ffmpeg \\ -i "rtmp://192.168.1.5/video/sala-de-conferencia-3/video-usuario-6 live=1" \\
 								-vcodec libopenh264 -profile:v baseline -r 15\\
 								-payload\_type 97 -b:v 1024k -maxrate 1024k\\ 
 								 rtp://192.168.1.5:18888}
-						    \end{minipage}}
-						    \caption{Comando \textit{ffmpeg} para transcodificação de RTMP para RTP.}
+						    \end{minipage}}						    
 						    \label{fig:ff-RTMP-RTP}
 						\end{figure}
 						
@@ -298,27 +299,27 @@
     
     O primeiro é justamente ser um servidor de mídia para Flash open source e gratuíto. Sem uma opção desse tipo, depende-se da própria solução da Adobe, o Adobe Media Server, ferramenta paga e fechada. 
     
-    Cada usuário Flash se conecta ao Red5 através de um \textit{NetConnection}. Uma vez conectados, usuários Flash enviam áudio e vídeo em RTMP. Red5 recebe cada uma das mídias e simplesmente as distribui para os outros usuários Flash conectados (não fazendo mixagem ou \textit{switching}, por exemplo). A Figura~\ref{fig:red5-midia} ilustra usuários Flash conectados em um servidor Red5, onde cada usuário manda sua mídia (linha colorida em direção ao Red5) e recebe as mídias dos demais usuários (representadas pelas cores de cada usuário).
+    Cada cliente Flash se conecta ao Red5 através de um \textit{NetConnection}. Uma vez conectados, usuários Flash enviam áudio e vídeo em RTMP. Red5 recebe cada uma das mídias e simplesmente as distribui para os outros clientes Flash (não fazendo mixagem ou \textit{switching}, por exemplo), de forma que cada cliente recebe múltiplas \textit{streams}. A Figura~\ref{fig:red5-midia} ilustra usuários Flash conectados em um servidor Red5, em que cada usuário manda sua mídia (linha colorida em direção ao Red5) e recebe as mídias dos demais usuários (representadas pelas cores de cada usuário).
     
       \begin{figure}[h]
     	 \centering
-    	 \includegraphics[width=26em, height=12em]{img/red5-midia.png}
     	 \caption{Red5 como servidor de mídia Flash.}
+    	 \includegraphics[width=26em, height=12em]{img/red5-midia.png}    	
     	 \label{fig:red5-midia}
        \end{figure} 
     
     O segundo motivo é a possibilidade de adicionar capacidades SIP e de transcodificação RTP/RTMP através do desenvolvimento de aplicações Red5, e, assim, interoperar com endpoints não-Flash. O Red5, nativamente, não suporta SIP. Porém, através da sua API em Java, o Red5 dá suporte a construção de aplicações, e nelas é possível estender as funcionalidades do servidor de mídia. Desse modo, podemos adicionar uma camada SIP. Existem soluções open source já consolidadas como o MjSip\footnote{\url{http://mjsip.org/index.html}} e o JAIN-SIP\footnote{\url{https://github.com/RestComm/jain-sip}}, ambas implementadas em Java.
     
-    Red5Phone\footnote{\url{https://code.google.com/archive/p/red5phone/}} e Bigbluebutton\footnote{\url{http://bigbluebutton.org/}}, projetos open source que utilizam Red5, adicionaram o MjSip como aplicação Red5, incorporando, assim, uma camada SIP ao servidor de mídia Flash. O recomendado para uma camada SIP de um servidor Red5 é prever um mecanismo de transcodificação RTP/RTMP, visto que a grande maioria de endpoints SIP usam RTP. Os já mencionados Red5Phone e Bigbluebutton possuem um módulo na sua camada SIP que faz essa tradução (códigos próprios, escritos em Java). Alternativamente, poderia se utilizar o FFMPEG, como explicado na Seção~\ref{sec:ffmpeg}. 
+    Red5Phone\footnote{\url{https://code.google.com/archive/p/red5phone/}} e Bigbluebutton\footnote{\url{http://bigbluebutton.org/}}, videoconferências open source que utilizam Red5, adicionaram o MjSip como aplicação Red5, incorporando, assim, uma camada SIP ao servidor de mídia Flash. O recomendado para uma camada SIP de um servidor Red5 é prever um mecanismo de transcodificação RTP/RTMP, visto que a grande maioria de endpoints SIP usam RTP. Os já mencionados Red5Phone e Bigbluebutton possuem um módulo na sua camada SIP que faz essa tradução (códigos próprios, escritos em Java). Alternativamente, poderia se utilizar o FFMPEG, como explicado na Seção~\ref{sec:ffmpeg}. 
     
-    Assim, com uma camada SIP efetuando transcodificação RTP/RTMP, o Red5 tem a capacidade de se conectar a um softswitch - como o Freeswitch -, transcodificar as mídias dos usuários Flash (RTMP para RTP) e transmiti-las para o softswitch. Desse modo, o softswitch receberia as \textit{streams} e, de acordo com alguma política (por exemplo, mixando os áudios e selecionando o vídeo do falante, como ocorre no Freeswitch), encaminharia a mídia para os usuários SIP/H.323 conectados ao softswitch. Da mesma forma, o softswitch receberia as mídias dos endpoints SIP/H.323 e as enviaria para o Red5, que, por sua vez, as transcodificaria de RTP para RTMP e as distribuiria entre os usuários Flash.
+    Assim, com uma camada SIP executando a transcodificação RTP/RTMP, o Red5 tem a capacidade de se conectar a um softswitch - como o Freeswitch -, transcodificar as mídias dos usuários Flash (RTMP para RTP) e transmiti-las para o softswitch. Este receberia as \textit{streams} e, de acordo com alguma política (por exemplo, mixando os áudios e selecionando o vídeo do falante, como ocorre no Freeswitch), encaminharia a mídia para os usuários SIP/H.323 conectados a ele. Da mesma forma, o softswitch receberia as mídias dos endpoints SIP/H.323 e as enviaria para o Red5, que, por sua vez, executaria a transcodificação de RTP para RTMP e distribuiria o resultado entre os clientes Flash.
     
-    A Figura~\ref{fig:red5-fs} ilustra um exemplo de usuários Flash e não-Flash conectados através do Freeswitch e de um servidor Red5. Cada usuário Flash manda sua mídia para o Red5, e este distribui para os demais usuários Flash e também para o Freeswitch. Este, por sua vez, processa as mídias recebidas (mixagem ou \textit{switching}) e transmite o resultado para os \textit{endpoints} (flechas em amarelo). Também há o caminho contrário: os \textit{endpoints} enviam sua mídia para o Freeswitch, este processa as mídias recebidas e transmite o resultado do processamento para o Red5 (flecha em preto) que, por sua vez, o distribui entre os usuários Flash. Lembrando que a troca de mídia entre Red5 e Freeswitch envolve transcodificação RTP e RTMP.
+    A Figura~\ref{fig:red5-fs} ilustra um exemplo de usuários Flash e não-Flash conectados através do Freeswitch e de um servidor Red5. Cada usuário Flash manda sua mídia para o Red5, e este distribui para os demais usuários Flash e também para o Freeswitch. Este, por sua vez, processa as mídias recebidas (mixagem ou \textit{switching}) e transmite o resultado para os \textit{endpoints} (flechas em amarelo). Também há o caminho contrário: os \textit{endpoints} enviam suas mídias para o Freeswitch, este as processa e transmite o resultado do processamento para o Red5 (flecha em preto) que, por sua vez, o distribui entre os usuários Flash. Lembrando que a troca de mídia entre Red5 e Freeswitch envolve transcodificação RTP/RTMP.
     
       \begin{figure}[h]
        	 \centering
-       	 \includegraphics[width=35em, height=17em]{img/red5-fs.png}
        	 \caption{Red5 e Freeswitch conectando múltiplos usuários.}
+       	 \includegraphics[width=35em, height=17em]{img/red5-fs.png}      	 
        	 \label{fig:red5-fs}
       \end{figure} 
    
@@ -329,9 +330,9 @@
 	Foram levantadas algumas outras soluções open source que não serão detalhadas, ficando como sugestão a pesquisa destas para futuros trabalhos sobre interoperabilidade. Tais soluções são:
 	
 	   \begin{itemize}
-	   	\item \textbf{Asterisk}\footnote{\url{http://www.asterisk.org/}}: pode atuar como um \textit{softswitch}, sendo uma alternativa ao Freeswitch. Em testes realizados, foi possível fazer uma ponte entre um \textit{endpoint} SIP e um H.323;
+	   	\item \textbf{Asterisk}\footnote{\url{http://www.asterisk.org/}}: pode atuar como um \textit{softswitch}, sendo uma alternativa ao Freeswitch. Em testes realizados, foi possível conectar \textit{endpoints} SIP e H.323 via áudio;
 	   	
-	   	\item \textbf{Kurento}\footnote{\url{https://www.kurento.org/}}: servidor de mídia WebRTC, onde usuários web se conectam via \textit{WebSocket}, portanto não utilizando protocolo de sinalização (como ocorre, por exemplo, com usuários Flash se conectando ao Red5). Diferentemente do Red5, o Kurento dá opções para a distribuição da mídia, onde o administrador do servidor pode habilitar o uso de mixagem de áudio ou de composição de vídeo. Assim como o Red5, é possível estender as funcionalidades do servidor de mídia através do desenvolvimento de aplicações Kurento. Dessa forma, pode-se adicionar uma camada SIP para a comunicação com \textit{softswitches} ou outros sistemas de videoconferência.
+	   	\item \textbf{Kurento}\footnote{\url{https://www.kurento.org/}}: servidor de mídia WebRTC, onde clientes web se conectam via \textit{WebSocket}. Portanto, não é necessário o uso de bibliotecas como o SIP.js no lado do cliente. Diferentemente do Red5, o Kurento dá opções para a distribuição da mídia, onde o administrador do servidor pode habilitar o uso de mixagem de áudio ou de composição de vídeo. Assim como o Red5, é possível estender as funcionalidades do servidor de mídia através do desenvolvimento de aplicações Kurento. Dessa forma, pode-se adicionar uma camada SIP para a comunicação com \textit{softswitches} ou outros sistemas de videoconferência.
 	   \end{itemize}	
 	
 	 

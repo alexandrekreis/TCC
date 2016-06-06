@@ -51,8 +51,9 @@
 		 
 		 \begin{figure}[h]
 			\centering
+			\caption{Unidades H.323.}			
 			\includegraphics[width=24em, height=9em]{img/unidades-h323.png}
-			\caption{Unidades H.323.}
+			\footnotesize{ \\ Fonte: \cite{tanenbaum}.}
 			\label{fig:unidades-h323}
 		 \end{figure}
 		  
@@ -64,8 +65,9 @@
       	
  		 \begin{figure}[h]
  			\centering
+ 			\caption{Pacote H.225.} 			
  			\includegraphics[width=22em, height=8em]{img/pacote-h225.png}
- 			\caption{Pacote H.225.}
+ 			\footnotesize{ \\ Fonte: \cite{orly}.}
  			\label{fig:pacote-h225}
  		 \end{figure}
  		 
@@ -81,8 +83,8 @@
  		 
  		 \begin{figure}[h]
  			\centering
- 			\includegraphics[width=29em, height=17.2em]{img/conexao-h323-basica.png}
- 			\caption{Estabelecimento de uma chamada H.323 básica.}
+ 			\caption{Estabelecimento de uma chamada H.323 básica.} 			
+ 			\includegraphics[width=29em, height=16.7em]{img/conexao-h323-basica.png}
  			\label{fig:conexao-h323-basica}
  		 \end{figure}
  		 
@@ -108,8 +110,8 @@
       
   		 \begin{figure}[h]
   			\centering
+  			\caption{Negociação de mídia H.323.}  			
   			\includegraphics[width=26em, height=38em]{img/negociacao-h323-basica.png}
-  			\caption{Negociação de mídia H.323.}
   			\label{fig:negociacao-h323-basica}
   		 \end{figure}     
       
@@ -134,12 +136,12 @@
   		 
       \subsubsection{\textbf{H.323 \textit{Fast Connect Mode}}}\label{sec:h323-fast}
       
-         No H.323 versão 2 existe a opção do \textit{Fast Connect Mode} (Figura~\ref{fig:h323-fast}). O \textit{caller} manda um H.245 \textit{OLC} com um codec sugerido dentro do H.225 \textit{Setup Message}. Se o \textit{callee} suportar \textit{Fast Connect Mode} e aceitar a sugestão do codec, será respondido um H.225 \textit{Connect} também transportando um H.245 \textit{OLC}. Com isso, as partes envolvidas já têm as informações necessárias para estabelecer a conexão de mídia, diminuindo significantemente o número de mensagens requeridas para estabelecer a sessão H.323. Segundo \cite{conferencingFundamentals}, equipamentos de vídeo H.323 geralmente não suportam \textit{Fast Connect Mode}. \\
+         No H.323 versão 2 existe a opção do \textit{Fast Connect Mode} (Figura~\ref{fig:h323-fast}). O \textit{caller} manda um H.245 \textit{OLC} com um codec sugerido dentro do H.225 \textit{Setup Message}. Se o \textit{callee} suportar \textit{Fast Connect Mode} e aceitar a sugestão do codec, será respondido um H.225 \textit{Connect} também transportando um H.245 \textit{OLC}. Com isso, as partes envolvidas já têm as informações necessárias para estabelecer a conexão de mídia, diminuindo significantemente o número de mensagens requeridas para estabelecer a sessão H.323. Segundo \cite{conferencingFundamentals}, equipamentos de vídeo H.323 geralmente não suportam \textit{Fast Connect Mode}. \\ \\
          
  		 \begin{figure}[h]
  			\centering
+ 			\caption{H.323 \textit{Fast Connect Mode}.} 			
  			\includegraphics[width=26em, height=18em]{img/h323-fast.png}
- 			\caption{H.323 \textit{Fast Connect Mode}.}
  			\label{fig:h323-fast}
  		 \end{figure}        
 
@@ -167,18 +169,19 @@
 	
  		\begin{figure}[h]
  			\centering
+ 			\caption{Diálogo SIP.} 			
  			\includegraphics[width=30em, height=19.5em]{img/sip-dialog.png}
- 			\caption{Diálogo SIP.}
  			\label{fig:sip-dialog}
  		\end{figure}
  		
  		\begin{enumerate}
- 			\item Começamos com o UA callee recebendo um \textit{INVITE} do UA Caller, para o início de uma chamada. Tipicamente, a porta que define o canal de sinalização SIP é a porta 5060 (podemos encontrar ambientes onde se usa a porta 5070 ou 5061 - esta última para sinalizações encriptadas). Um \textit{INVITE} tem a seguinte estrutura (Figura~\ref{fig:sip-invite}): \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\
+ 			\item Começamos com o UA callee recebendo um \textit{INVITE} do UA Caller, para o início de uma chamada. Tipicamente, a porta que define o canal de sinalização SIP é a porta 5060 (podemos encontrar ambientes onde se usa a porta 5070 ou 5061 - esta última para sinalizações encriptadas). Um \textit{INVITE} tem a seguinte estrutura (Figura~\ref{fig:sip-invite}): \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\
  		
 			\begin{figure}[h]
 			    \centering
+			    \caption{SIP Invite.}			    
 			    \adjustbox{margin=1em,width=10.3cm,frame,center}
-			    {\begin{minipage}{0.99\linewidth}
+			    {\begin{minipage}{1.05\linewidth}
 			        INVITE sip:UAcallee@172.27.14.53 SIP/2.0 \newline
 			        
 			        ! As linhas abaixo são os \textit{headers} SIP: \newline
@@ -204,7 +207,6 @@
 			        a=rtpmap:104 H264/90000 \newline
 			        a=fmtp:104 max-fs=6336;max-mbps=190080;profile-level-id=42801e
 			    \end{minipage}}
-			    \caption{SIP Invite.}
 			    \label{fig:sip-invite}
 			\end{figure}
 			
@@ -215,7 +217,8 @@
 			  
 			   \begin{table}[h]
 				\begin{center}
-				 \resizebox{15.5cm}{!} {
+				 \caption{SIP Requests.}				
+				 \resizebox{14.5cm}{!} {
 				    \begin{tabular}{| c | l |}    \hline
 				    \textbf{SIP Request} & \textbf{Descrição}   \\ \hline \hline
 				    INVITE &  Convida um UA para uma chamada.     \\ \hline
@@ -232,7 +235,6 @@
 				    NOTIFY & Envia um evento de notificação para UAs inscritos.     \\ \hline
 				    REFER & \makecell[l]{Indica que um UA deve usar o endereço contido no REFER para refazer um \\ determinado \textit{Request}.}      \\ \hline
 				    \end{tabular}}
-					\caption{SIP Requests.}
 					\label{tab:sip-requests}
 				 \end{center}
 				\end{table}
@@ -240,6 +242,7 @@
 
 			   \begin{table}[h]
 				\begin{center}
+					\caption{SIP Responses.}
 				    \begin{tabular}{| c | c | c |}    \hline
 				    \textbf{SIP Response Code} & \textbf{Reason} & \textbf{Response Class}  \\ \hline \hline
 				    100 & Trying & 1xx     \\ \hline
@@ -252,7 +255,6 @@
 				    603 & Decline & 6xx       \\ \hline
 				    604 & Does not exist & 6xx       \\ \hline				    				 
 				    \end{tabular}
-					\caption{SIP Responses.}
 					\label{tab:sip-responses}
 				 \end{center}
 				\end{table}
@@ -301,6 +303,7 @@
 			
 			\begin{figure}[h]
 			    \centering
+			    \caption{SIP 100 Trying.}			    
 			    \adjustbox{margin=1em,width=10.3cm,frame,center}
 			    {\begin{minipage}{0.9\linewidth}
 			        SIP/2.0 100 Trying \newline \newline
@@ -311,7 +314,6 @@
 			        CSeq: 1 INVITE \newline
 			        Content-Length: 0
 			    \end{minipage}}
-			    \caption{SIP 100 Trying.}
 			    \label{fig:sip-trying}
 			\end{figure}
 			
@@ -319,6 +321,7 @@
 			\newline		
 			\begin{figure}[h]
 			    \centering
+			    \caption{SIP 200 OK.}			    
 			    \adjustbox{margin=1em,width=10.3cm,frame,center}
 			    {\begin{minipage}{1.05\linewidth}
 			        SIP/2.0 200 OK \newline
@@ -344,7 +347,6 @@
 					a=fmtp:104 max-fs=6336;max-mbps=190080;profile-level-id=42801e \newline
 					a=rtcp:29241 IN IP4 172.27.14.53			           
 			    \end{minipage}}
-			    \caption{SIP 200 OK.}
 			    \label{fig:sip-ok}
 			\end{figure}			
 				
@@ -352,6 +354,7 @@
 
 			\begin{figure}[h]
 			    \centering
+			    \caption{SIP ACK.}			    
 			    \adjustbox{margin=1em,width=10.3cm,frame,center}
 			    {\begin{minipage}{1.05\linewidth}
 			        ACK sip:UAcallee@172.27.14.53 SIP/2.0 \newline
@@ -364,7 +367,6 @@
 			        CSeq: 1 ACK \newline
 			        Content-Length: 0
 			    \end{minipage}}
-			    \caption{SIP ACK.}
 			    \label{fig:sip-ack}
 			\end{figure}			
 			
@@ -372,6 +374,7 @@
 			
 			\begin{figure}[h]
 			    \centering
+			    \caption{SIP BYE.}			    
 			    \adjustbox{margin=1em,width=10.3cm,frame,center}
 			    {\begin{minipage}{1.05\linewidth}
 			        BYE sip:UAcaller@172.27.14.4 SIP/2.0\newline
@@ -383,7 +386,6 @@
 			        CSeq: 5 BYE \newline
 			        Content-Length: 0
 			    \end{minipage}}
-			    \caption{SIP BYE.}
 			    \label{fig:sip-bye}
 			\end{figure}			
 			
@@ -392,6 +394,7 @@
 			
 			\begin{figure}[h]
 			    \centering
+			    \caption{SIP 200 OK.}			    
 			    \adjustbox{margin=1em,width=10.3cm,frame,center}
 			    {\begin{minipage}{1.05\linewidth}
 			        SIP/2.0 200 OK \newline
@@ -404,7 +407,6 @@
 			        CSeq: 5 BYE \newline
 			        Content-Length: 0
 			    \end{minipage}}
-			    \caption{SIP 200 OK.}
 			    \label{fig:sip-ok-final}
 			\end{figure}			
  		\end{enumerate}		
@@ -428,8 +430,9 @@
 	
  		 \begin{figure}[h]
  			\centering
+ 			\caption{Pacote RTP.} 			
  			\includegraphics[width=22em, height=9em]{img/rtp-pacote.png}
- 			\caption{Pacote RTP.}
+ 			\footnotesize{ \\ Fonte: \cite{cambridge}.}
  			\label{fig:rtp-pacote}
  		 \end{figure}	
  		 
@@ -442,7 +445,8 @@
    	 
  			   \begin{table}[h]
  				\begin{center}
- 				 %\resizebox{15.5cm}{!} {
+ 				   \caption{RTP Payload Types.} 				
+ 				   %\resizebox{15.5cm}{!} {
  				    \begin{tabular}{| c | c | c |}    \hline
  				    \textbf{Codec} & \textbf{Tipo} & \textbf{Payload Type}   \\ \hline \hline
  				    PCMU  &  Áudio &   0   \\ \hline
@@ -455,7 +459,6 @@
  				    H.264 &  Vídeo &  Dinâmico    \\ \hline
 				    VP8 &  Vídeo &  Dinâmico    \\ \hline			    
  				    \end{tabular} %}
- 					\caption{RTP Payload Types.}
  					\label{tab:rtp-payload-types}
  				 \end{center}
  				\end{table}  	 
@@ -540,7 +543,7 @@
 		
 		O origem do G Series se deu em 1972, com o lançamento do padrão G.711, formalmente conhecido como \textit{Pulse Code Modulation} (PCM) \textit{of Voice Frequencies}. Foi primeiramente usado em telefonia, onde existiam 2 versões: o G.711 $µ$-law (ou PCMU), usado em redes de telefonia dos Estados Unidos e Japão, e o G.711 A-law (ou PCMA) usado na Europa e internacionalmente \cite{tanenbaum}. Ainda houve melhorias, como o G.711.0, que gerava compressão sem perdas (\textit{lossless}) e como o G.711.1, que incrementava a qualidade do áudio (bem como o uso de banda). O suporte de G.711 é obrigatório em sistemas H.323.
 		
-		A Tabela~\ref{tab:g-series} mostra os \textit{bitrates} e a qualidade de alguns codecs G.7xx \cite{speech}. A qualidade foi medida usando MOS, popular tipo de medida subjetiva de qualidade de áudio, classificando-a de 1 a 5 (MOS não será abordado nesse trabalho). Nessa tabela se observa que, no geral, a evolução da G Series apresentou uma taxa de compressão cada vez maior (diminuindo o \textit{bitrate} a cada nova versão, exceto nas versões G.727 e G.728), enquanto manteve o nível de qualidade (exceto pelo G.723.1, em que, comparado à versão anterior deste, diminuiu-se bruscamente o \textit{bitrate}).
+		A Tabela~\ref{tab:g-series} mostra os \textit{bitrates} e a qualidade de alguns codecs G.7xx \cite{speech}. A qualidade foi medida usando MOS, popular tipo de medida subjetiva de qualidade de áudio, classificando-a de 1 a 5 (MOS não será abordado nesse trabalho). Nessa tabela se observa que, no geral, a evolução da G Series apresentou uma taxa de compressão cada vez maior (diminuindo o \textit{bitrate} a cada nova versão, exceto nas versões G.727 e G.728), enquanto manteve o nível de qualidade (exceto pelo G.723.1, em que, comparado à versão anterior deste, reduziu-se bruscamente o \textit{bitrate}).
 		
 		Mais informações sobre G.7xx é possível acessando \textit{ITU-T G Series: Transmission systems and media, digital systems and networks}\footnote{\url{http://www.itu.int/net/itu-t/sigdb/speaudio/Gseries.htm}}, página web da ITU-T dedicada a G Series, contendo todas as especificações. \\ \\ \\ \\
 		
@@ -548,6 +551,7 @@
 		
  			   \begin{table}[h]
  				\begin{center}
+ 				\caption{Comparação G Series.} 				
  				 %\resizebox{6.7cm}{!} {
  				    \begin{tabular}{| c | c | c |}    \hline
  				    \textbf{Codec} & \textbf{Bitrate (kbps)} & \textbf{Qualidade}   \\ \hline \hline
@@ -562,7 +566,6 @@
  				    G.729       &  8            &   4.3    \\ \hline
  				    G.729A      &  8            &   4.3    \\ \hline		    
  				    \end{tabular} %}
- 					\caption{Comparação G Series.}
  					\label{tab:g-series}
  				 \end{center}
  				\end{table} 	
@@ -600,8 +603,9 @@
 		
  		 \begin{figure}[h]
  			\centering
+ 			\caption{OPUS vs outros codecs de áudio.} 		
  			\includegraphics[width=22em, height=25em]{img/opus-qualidade.png}
- 			\caption{OPUS vs outros codecs de áudio.}
+ 			\footnotesize{ \\ Fonte: \cite{opus}.}
  			\label{fig:opus-qualidade}
  		 \end{figure}				
 	    
@@ -660,12 +664,13 @@
     
   		 \begin{figure}[h]
   			\centering
+  			\caption{Visão geral da arquitetura da plataforma Flash.}  			
   			\includegraphics[width=34em, height=25em]{img/adobe-arch.jpg}
-  			\caption{Visão geral da arquitetura da plataforma Flash.}
+  			\footnotesize{ \\ Fonte: \cite{adobe.com}.}
   			\label{fig:adobe-arch}
   		 \end{figure}
   		 
-  	 O desenvolvimento de aplicações Flash se dá através da linguagem de programação ActionScript\footnote{\url{http://www.adobe.com/devnet/actionscript.html}} e, para a confecção de interfaces de usuário, da linguagem de marcação MXML\footnote{\url{http://help.adobe.com/en_US/flex/using/WS2db454920e96a9e51e63e3d11c0bf5f39f-7fff.html}}, ambas integradas no framework Flex\footnote{\url{http://www.adobe.com/br/products/flex.html}}. Para administrar os projetos de código que utilizam tal framework, há a IDE Flex Builder\footnote{\url{http://www.adobe.com/br/products/flash-builder.html}}, renomeada posteriormente para \textit{Flash Builder} e exclusiva para Windows. O software Adobe Air\footnote{\url{http://www.adobe.com/br/products/air.html}} permite que o mesmo código seja executado em diferentes sistemas operacionais (Windows, Linux, Mac, Android, Mac OS, entre outros).
+  	 O desenvolvimento de aplicações Flash se dá através da linguagem de programação ActionScript\footnote{\url{http://www.adobe.com/devnet/actionscript.html}} e, para a confecção de interfaces de usuário, da linguagem de marcação MXML\footnote{\url{http://help.adobe.com/en_US/flex/using/WS2db454920e96a9e51e63e3d11c0bf5f39f-7fff.html}}, ambas integradas no framework Flex\footnote{\url{http://www.adobe.com/br/products/flex.html}}. Para administrar os projetos de código que utilizam tal framework, há a IDE Flex Builder\footnote{\url{http://www.adobe.com/br/products/flash-builder.html}}, renomeada posteriormente para \textit{Flash Builder} (exclusiva para Windows). O software Adobe Air\footnote{\url{http://www.adobe.com/br/products/air.html}} permite que o mesmo código seja executado em diferentes ambientes (Windows, Linux, Android, Mac OS, entre outros).
   	    	
      É através do software Flash Player que navegadores web podem, por meio da instalação do plugin, reproduzir conteúdo multimídia. Devido sua facilidade de uso, logo tornou-se um padrão popular para \textit{streaming} de áudio e vídeo na web. Entre os famosos provedores de conteúdo que utilizam ou já utilizaram o Flash Player, destacam-se Spotify, Yahoo, BBC Online, Youtube, entre outros.
      
@@ -687,8 +692,9 @@
 	
   		 \begin{figure}[h]
   			\centering
+  			\caption{Visão geral da arquitetura do WebRTC.}  			
   			\includegraphics[width=35em, height=20em]{img/webrtc-arch.png}
-  			\caption{Visão geral da arquitetura do WebRTC.}
+			\footnotesize{ \\ Fonte: \cite{webrtc}.}  			
   			\label{fig:webrtc-arch}
   		 \end{figure}
   	

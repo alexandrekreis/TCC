@@ -46,7 +46,6 @@
 \contentsline {subsection}{\numberline {4.1.1}Arquitetura Mconf-Live}{53}
 \contentsline {section}{\numberline {4.2}Estendendo a interoperabilidade do Mconf}{55}
 \contentsline {subsection}{\numberline {4.2.1}Suporte a H.323}{55}
-\contentsline {subsubsection}{\numberline {4.2.1.1}\textbf {Mais informa\c c\~oes sobre \textit {mod\_h323}}}{57}
 \contentsline {subsection}{\numberline {4.2.2}Suporte a V\IeC {\'\i }deo SIP}{57}
 \contentsline {chapter}{\numberline {5}Resultados}{60}
 \contentsline {section}{\numberline {5.1}Casos de Uso}{61}
