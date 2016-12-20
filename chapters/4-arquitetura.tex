@@ -1,12 +1,12 @@
 \chapter{Estudo de Caso: Mconf}\label{cha:arq}
 	
-	Como vimos no capítulo 3, as soluções de interoperabilidade apresentadas implementam apenas parcialmente os padrões de videoconferência. Empiricamente, por mais que uma solução cubra boa parte dos padrões (como o Freeswitch, por exemplo), dificilmente não teremos que integrá-la com outras soluções para um resultado final mais abrangente. 
+	Como vimos no capítulo 3, as soluções de interoperabilidade apresentadas implementam apenas parcialmente os padrões de videoconferência. Empiricamente, por mais que uma única solução cubra boa parte desses padrões (como o Freeswitch, por exemplo), o desenvolvimento de um sistema de conferência terá que integrar múltiplas soluções para um resultado final mais abrangente.
 	
 	Este capítulo, portanto, apresentará uma análise da arquitetura do sistema de web conferência open source Mconf\footnote{\url{http://mconf.org/}} e a modificará para alcançar um nível maior de interoperabilidade, utilizando-se das soluções estudadas no capítulo anterior.
 	
 \section{Mconf}\label{sec:mconf}
 	
-    Mconf é um sistema de web conferência open source baseado no Bigbluebutton. Basicamente, é composto por dois blocos principais. O primeiro é o \textit{Mconf-Live}, componente de conferência do sistema. Mconf-Live é uma versão personalizada do Bigbluebutton, incluindo novas características, e será o foco deste capítulo, pois nele é definido o Plano de Controle e de Mídia do Mconf. O segundo é o \textit{Mconf-Web}, portal web onde os usuários podem colaborar entre si, agendando conferências.
+    Mconf é um sistema de web conferência open source baseado no BigBlueButton. Basicamente, é composto por dois blocos principais. O primeiro é o \textit{Mconf-Live}, componente de conferência do sistema. Mconf-Live é uma versão personalizada do Bigbluebutton, incluindo novas características, e será o foco deste capítulo, pois nele é definido o Plano de Controle e de Mídia do Mconf. O segundo é o \textit{Mconf-Web}, portal web onde os usuários podem colaborar entre si, agendando conferências.
     
     A Figura~\ref{fig:mconf-interface} ilustra a interface web de um usuário conectado em uma sala de conferência do Mconf e, dentre as funcionalidades disponibilizadas, enumera:
  
